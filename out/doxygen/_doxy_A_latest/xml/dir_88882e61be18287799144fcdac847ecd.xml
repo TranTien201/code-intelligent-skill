@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_88882e61be18287799144fcdac847ecd" kind="dir">
+    <compoundname>src/print</compoundname>
+    <innerfile refid="density_8c">density.c</innerfile>
+    <innerfile refid="density_8h">density.h</innerfile>
+    <innerfile refid="render_8c">render.c</innerfile>
+    <innerfile refid="render_8h">render.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/print/"/>
+  </compounddef>
+</doxygen>

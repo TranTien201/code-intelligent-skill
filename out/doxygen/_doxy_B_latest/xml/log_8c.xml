@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="log_8c" kind="file" language="C++">
+    <compoundname>log.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="log_8h" local="yes">log.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>src/core/log.c</label>
+        <link refid="log_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>log.h</label>
+        <link refid="log_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Log_Info</definition>
+        <argsstring>(const char *msg)</argsstring>
+        <name>Log_Info</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/core/log.c" line="4" column="6" bodyfile="src/core/log.c" bodystart="4" bodyend="7"/>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <referencedby refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</referencedby>
+        <referencedby refid="menu_8c_1a6c762c0f0cc74c6b879ab9306d103970" compoundref="menu_8c" startline="30" endline="34">Menu_Fax</referencedby>
+        <referencedby refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="19" endline="23">Menu_Quality</referencedby>
+        <referencedby refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" compoundref="pjl__commands_8c" startline="11" endline="15">Pjl_SetCopies</referencedby>
+        <referencedby refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" compoundref="pjl__commands_8c" startline="17" endline="21">Pjl_SetDuplex</referencedby>
+        <referencedby refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="5" endline="13">Render_Page</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="log_8h" kindref="compound">log.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kindref="member">Log_Info</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg)</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;[INFO]<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>msg);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/core/log.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="log_8h" kind="file" language="C++">
+    <compoundname>log.h</compoundname>
+    <includedby refid="pjl__commands_8c" local="yes">src/cmd/pjl_commands.c</includedby>
+    <includedby refid="log_8c" local="yes">src/core/log.c</includedby>
+    <includedby refid="eco__report_8c" local="yes">src/features/eco_report/eco_report.c</includedby>
+    <includedby refid="toner__save_8c" local="yes">src/features/toner_save/toner_save.c</includedby>
+    <includedby refid="menu_8c" local="yes">src/panel/menu.c</includedby>
+    <includedby refid="render_8c" local="yes">src/print/render.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/cmd/pjl_commands.c</label>
+        <link refid="pjl__commands_8c"/>
+      </node>
+      <node id="3">
+        <label>src/core/log.c</label>
+        <link refid="log_8c"/>
+      </node>
+      <node id="1">
+        <label>src/core/log.h</label>
+        <link refid="log_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>src/features/eco_report/eco_report.c</label>
+        <link refid="eco__report_8c"/>
+      </node>
+      <node id="5">
+        <label>src/features/toner_save/toner_save.c</label>
+        <link refid="toner__save_8c"/>
+      </node>
+      <node id="6">
+        <label>src/panel/menu.c</label>
+        <link refid="menu_8c"/>
+      </node>
+      <node id="7">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="log_8h_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Log_Info</definition>
+        <argsstring>(const char *msg)</argsstring>
+        <name>Log_Info</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/core/log.h" line="3" column="6" bodyfile="src/core/log.c" bodystart="4" bodyend="7" declfile="src/core/log.h" declline="3" declcolumn="6"/>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <referencedby refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</referencedby>
+        <referencedby refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</referencedby>
+        <referencedby refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" compoundref="pjl__commands_8c" startline="12" endline="16">Pjl_SetCopies</referencedby>
+        <referencedby refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" compoundref="pjl__commands_8c" startline="18" endline="22">Pjl_SetDuplex</referencedby>
+        <referencedby refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="8" endline="16">Render_Page</referencedby>
+        <referencedby refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="30" endline="37">TonerSave_MenuHandler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>LOG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kindref="member">Log_Info</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg);</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/core/log.h"/>
+  </compounddef>
+</doxygen>

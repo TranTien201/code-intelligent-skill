@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_f00275ed25ebf4bdd4d445c21081ae81" kind="dir">
+    <compoundname>src/features/eco_report</compoundname>
+    <innerfile refid="eco__report_8c">eco_report.c</innerfile>
+    <innerfile refid="eco__report_8h">eco_report.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/features/eco_report/"/>
+  </compounddef>
+</doxygen>

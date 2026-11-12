@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="pjl__commands_8h" kind="file" language="C++">
+    <compoundname>pjl_commands.h</compoundname>
+    <includedby refid="pjl__commands_8c" local="yes">src/cmd/pjl_commands.c</includedby>
+    <includedby refid="main_8c" local="yes">src/main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/cmd/pjl_commands.c</label>
+        <link refid="pjl__commands_8c"/>
+      </node>
+      <node id="1">
+        <label>src/cmd/pjl_commands.h</label>
+        <link refid="pjl__commands_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pjl__commands_8h_1ad8867745f0c9b6284051d7b6a9026ccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Pjl_Dispatch</definition>
+        <argsstring>(const char *cmd, const char *arg)</argsstring>
+        <name>Pjl_Dispatch</name>
+        <param>
+          <type>const char *</type>
+          <declname>cmd</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.h" line="3" column="5" bodyfile="src/cmd/pjl_commands.c" bodystart="30" bodyend="38" declfile="src/cmd/pjl_commands.h" declline="3" declcolumn="5"/>
+        <references refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" compoundref="pjl__commands_8c" startline="9">PjlEntry_t::fn</references>
+        <references refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" compoundref="pjl__commands_8c" startline="24" endline="28">g_pjl_table</references>
+        <references refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="30" endline="38">Pjl_Dispatch</references>
+        <referencedby refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" compoundref="main_8c" startline="7" endline="15">main</referencedby>
+        <referencedby refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="30" endline="38">Pjl_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PJL_COMMANDS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PJL_COMMANDS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" kindref="member">Pjl_Dispatch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cmd,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg);</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/cmd/pjl_commands.h"/>
+  </compounddef>
+</doxygen>

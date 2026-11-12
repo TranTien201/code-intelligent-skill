@@ -1,0 +1,566 @@
+{
+ "builder": "treesitter",
+ "root": "/Users/trantien/Documents/my-project/f-research/data/feature_after",
+ "files": [
+  "Makefile",
+  "config/model_a.h",
+  "src/cmd/pjl_commands.c",
+  "src/features/toner_save/toner_save.c",
+  "src/features/toner_save/toner_save.h",
+  "src/panel/menu_table.c",
+  "src/print/render.c",
+  "src/resources/strings.h",
+  "src/resources/strings_en.c",
+  "src/settings/nv_settings.c",
+  "src/settings/nv_settings.h"
+ ],
+ "nodes": {
+  "MODEL_NAME": {
+   "name": "MODEL_NAME",
+   "kind": "macro",
+   "file": "config/model_a.h",
+   "start": 1,
+   "end": 2,
+   "static": false,
+   "hash": "565c85b9fb8e",
+   "guards": []
+  },
+  "SUPPORT_DUPLEX": {
+   "name": "SUPPORT_DUPLEX",
+   "kind": "macro",
+   "file": "config/model_a.h",
+   "start": 2,
+   "end": 3,
+   "static": false,
+   "hash": "fdaa77e7bb5c",
+   "guards": []
+  },
+  "SUPPORT_TONER_SAVE": {
+   "name": "SUPPORT_TONER_SAVE",
+   "kind": "macro",
+   "file": "config/model_a.h",
+   "start": 3,
+   "end": 4,
+   "static": false,
+   "hash": "110827eae527",
+   "guards": []
+  },
+  "PjlHandler_t": {
+   "name": "PjlHandler_t",
+   "kind": "type",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 6,
+   "end": 6,
+   "static": false,
+   "hash": "b0011e840c3f",
+   "guards": []
+  },
+  "PjlEntry_t": {
+   "name": "PjlEntry_t",
+   "kind": "type",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 7,
+   "end": 10,
+   "static": false,
+   "hash": "65a5e174926d",
+   "guards": []
+  },
+  "Pjl_SetCopies@src/cmd/pjl_commands.c": {
+   "name": "Pjl_SetCopies",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 12,
+   "end": 16,
+   "static": true,
+   "hash": "0521fc54f0b8",
+   "guards": []
+  },
+  "Pjl_SetDuplex@src/cmd/pjl_commands.c": {
+   "name": "Pjl_SetDuplex",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 18,
+   "end": 22,
+   "static": true,
+   "hash": "1961e43bc35e",
+   "guards": []
+  },
+  "g_pjl_table@src/cmd/pjl_commands.c": {
+   "name": "g_pjl_table",
+   "kind": "var",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 24,
+   "end": 28,
+   "static": true,
+   "hash": "275668833005",
+   "guards": []
+  },
+  "Pjl_Dispatch": {
+   "name": "Pjl_Dispatch",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 30,
+   "end": 38,
+   "static": false,
+   "hash": "e24a3af2948e",
+   "guards": []
+  },
+  "k_percent@src/features/toner_save/toner_save.c": {
+   "name": "k_percent",
+   "kind": "var",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 8,
+   "end": 8,
+   "static": true,
+   "hash": "7cdb8b664c4b",
+   "guards": []
+  },
+  "is_valid@src/features/toner_save/toner_save.c": {
+   "name": "is_valid",
+   "kind": "function",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 10,
+   "end": 13,
+   "static": true,
+   "hash": "c295b615f9c8",
+   "guards": []
+  },
+  "TonerSave_GetLevel": {
+   "name": "TonerSave_GetLevel",
+   "kind": "function",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 15,
+   "end": 18,
+   "static": false,
+   "hash": "8acce2fcb79c",
+   "guards": []
+  },
+  "TonerSave_ApplyDensity": {
+   "name": "TonerSave_ApplyDensity",
+   "kind": "function",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 20,
+   "end": 26,
+   "static": false,
+   "hash": "1fe30079687c",
+   "guards": []
+  },
+  "TonerSave_MenuHandler": {
+   "name": "TonerSave_MenuHandler",
+   "kind": "function",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 28,
+   "end": 35,
+   "static": false,
+   "hash": "5560acde7feb",
+   "guards": []
+  },
+  "TonerSave_PjlSet": {
+   "name": "TonerSave_PjlSet",
+   "kind": "function",
+   "file": "src/features/toner_save/toner_save.c",
+   "start": 37,
+   "end": 40,
+   "static": false,
+   "hash": "773168048eac",
+   "guards": []
+  },
+  "TONER_SAVE_OFF": {
+   "name": "TONER_SAVE_OFF",
+   "kind": "enumconst",
+   "file": "src/features/toner_save/toner_save.h",
+   "start": 4,
+   "end": 4,
+   "static": false,
+   "hash": "395357306bba",
+   "guards": []
+  },
+  "TONER_SAVE_LOW": {
+   "name": "TONER_SAVE_LOW",
+   "kind": "enumconst",
+   "file": "src/features/toner_save/toner_save.h",
+   "start": 5,
+   "end": 5,
+   "static": false,
+   "hash": "0f51bb66c379",
+   "guards": []
+  },
+  "TONER_SAVE_HIGH": {
+   "name": "TONER_SAVE_HIGH",
+   "kind": "enumconst",
+   "file": "src/features/toner_save/toner_save.h",
+   "start": 6,
+   "end": 6,
+   "static": false,
+   "hash": "6a3561468961",
+   "guards": []
+  },
+  "g_menu_table@src/panel/menu_table.c": {
+   "name": "g_menu_table",
+   "kind": "var",
+   "file": "src/panel/menu_table.c",
+   "start": 8,
+   "end": 16,
+   "static": true,
+   "hash": "9cedbd41d5f4",
+   "guards": []
+  },
+  "Menu_Dispatch": {
+   "name": "Menu_Dispatch",
+   "kind": "function",
+   "file": "src/panel/menu_table.c",
+   "start": 18,
+   "end": 26,
+   "static": false,
+   "hash": "b8b555c4613e",
+   "guards": []
+  },
+  "Render_Page": {
+   "name": "Render_Page",
+   "kind": "function",
+   "file": "src/print/render.c",
+   "start": 8,
+   "end": 16,
+   "static": false,
+   "hash": "2b4f80988181",
+   "guards": []
+  },
+  "StrId_t": {
+   "name": "StrId_t",
+   "kind": "type",
+   "file": "src/resources/strings.h",
+   "start": 3,
+   "end": 9,
+   "static": false,
+   "hash": "adc32e200e39",
+   "guards": []
+  },
+  "STR_COPIES": {
+   "name": "STR_COPIES",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 4,
+   "end": 4,
+   "static": false,
+   "hash": "e6eb56f5b002",
+   "guards": []
+  },
+  "STR_DUPLEX": {
+   "name": "STR_DUPLEX",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 5,
+   "end": 5,
+   "static": false,
+   "hash": "231884343daf",
+   "guards": []
+  },
+  "STR_TONER_SAVE": {
+   "name": "STR_TONER_SAVE",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 6,
+   "end": 6,
+   "static": false,
+   "hash": "9451f5082261",
+   "guards": []
+  },
+  "STR_QUALITY": {
+   "name": "STR_QUALITY",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 7,
+   "end": 7,
+   "static": false,
+   "hash": "df18df734b23",
+   "guards": []
+  },
+  "STR_COUNT": {
+   "name": "STR_COUNT",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 8,
+   "end": 8,
+   "static": false,
+   "hash": "f08573083ea6",
+   "guards": []
+  },
+  "g_strings_en@src/resources/strings_en.c": {
+   "name": "g_strings_en",
+   "kind": "var",
+   "file": "src/resources/strings_en.c",
+   "start": 3,
+   "end": 8,
+   "static": true,
+   "hash": "4aa1e9384813",
+   "guards": []
+  },
+  "Str_Get": {
+   "name": "Str_Get",
+   "kind": "function",
+   "file": "src/resources/strings_en.c",
+   "start": 10,
+   "end": 13,
+   "static": false,
+   "hash": "ef8f72f60799",
+   "guards": []
+  },
+  "g_settings@src/settings/nv_settings.c": {
+   "name": "g_settings",
+   "kind": "var",
+   "file": "src/settings/nv_settings.c",
+   "start": 4,
+   "end": 4,
+   "static": true,
+   "hash": "590b98134f1d",
+   "guards": []
+  },
+  "NV_GetSettings": {
+   "name": "NV_GetSettings",
+   "kind": "function",
+   "file": "src/settings/nv_settings.c",
+   "start": 6,
+   "end": 9,
+   "static": false,
+   "hash": "afdd6c584b01",
+   "guards": []
+  },
+  "NV_LoadDefaults": {
+   "name": "NV_LoadDefaults",
+   "kind": "function",
+   "file": "src/settings/nv_settings.c",
+   "start": 11,
+   "end": 18,
+   "static": false,
+   "hash": "d7d9175956ea",
+   "guards": []
+  },
+  "NvSettings_t": {
+   "name": "NvSettings_t",
+   "kind": "type",
+   "file": "src/settings/nv_settings.h",
+   "start": 5,
+   "end": 11,
+   "static": false,
+   "hash": "a16590418b3c",
+   "guards": []
+  }
+ },
+ "edges": [
+  {
+   "src": "Menu_Dispatch",
+   "dst": "g_menu_table@src/panel/menu_table.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "NV_GetSettings",
+   "dst": "NvSettings_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "NV_GetSettings",
+   "dst": "g_settings@src/settings/nv_settings.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "NV_LoadDefaults",
+   "dst": "NvSettings_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "NV_LoadDefaults",
+   "dst": "TONER_SAVE_OFF",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "NV_LoadDefaults",
+   "dst": "g_settings@src/settings/nv_settings.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "PjlEntry_t",
+   "dst": "PjlHandler_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "Pjl_Dispatch",
+   "dst": "PjlEntry_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "Pjl_Dispatch",
+   "dst": "g_pjl_table@src/cmd/pjl_commands.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "Render_Page",
+   "dst": "SUPPORT_TONER_SAVE",
+   "type": "GUARDED_BY"
+  },
+  {
+   "src": "Render_Page",
+   "dst": "TonerSave_ApplyDensity",
+   "type": "CALLS"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_COPIES",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_COUNT",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_DUPLEX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_QUALITY",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_TONER_SAVE",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "Str_Get",
+   "dst": "StrId_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "Str_Get",
+   "dst": "g_strings_en@src/resources/strings_en.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "TonerSave_ApplyDensity",
+   "dst": "TonerSave_GetLevel",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_ApplyDensity",
+   "dst": "is_valid@src/features/toner_save/toner_save.c",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_ApplyDensity",
+   "dst": "k_percent@src/features/toner_save/toner_save.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "TonerSave_GetLevel",
+   "dst": "NV_GetSettings",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_GetLevel",
+   "dst": "NvSettings_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "TonerSave_MenuHandler",
+   "dst": "NV_GetSettings",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_MenuHandler",
+   "dst": "NvSettings_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "TonerSave_MenuHandler",
+   "dst": "STR_TONER_SAVE",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "TonerSave_MenuHandler",
+   "dst": "Str_Get",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_MenuHandler",
+   "dst": "is_valid@src/features/toner_save/toner_save.c",
+   "type": "CALLS"
+  },
+  {
+   "src": "TonerSave_PjlSet",
+   "dst": "TonerSave_MenuHandler",
+   "type": "CALLS"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "SUPPORT_TONER_SAVE",
+   "type": "GUARDED_BY"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "TonerSave_MenuHandler",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "PjlEntry_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "Pjl_SetCopies@src/cmd/pjl_commands.c",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "Pjl_SetDuplex@src/cmd/pjl_commands.c",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "TonerSave_PjlSet",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_settings@src/settings/nv_settings.c",
+   "dst": "NvSettings_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_COPIES",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_COUNT",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_DUPLEX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_QUALITY",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_TONER_SAVE",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "is_valid@src/features/toner_save/toner_save.c",
+   "dst": "TONER_SAVE_HIGH",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "is_valid@src/features/toner_save/toner_save.c",
+   "dst": "TONER_SAVE_OFF",
+   "type": "USES_CONST"
+  }
+ ]
+}

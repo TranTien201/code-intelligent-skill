@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="struct_pjl_entry__t" kind="struct" language="C++" prot="public">
+    <compoundname>PjlEntry_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* PjlEntry_t::cmd</definition>
+        <argsstring></argsstring>
+        <name>cmd</name>
+        <qualifiedname>PjlEntry_t::cmd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="7" column="16" bodyfile="src/cmd/pjl_commands.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" prot="public" static="no" mutable="no">
+        <type><ref refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" kindref="member">PjlHandler_t</ref></type>
+        <definition>PjlHandler_t PjlEntry_t::fn</definition>
+        <argsstring></argsstring>
+        <name>fn</name>
+        <qualifiedname>PjlEntry_t::fn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="8" column="18" bodyfile="src/cmd/pjl_commands.c" bodystart="8" bodyend="-1"/>
+        <referencedby refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="28" endline="36">Pjl_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/cmd/pjl_commands.c" line="6" column="1" bodyfile="src/cmd/pjl_commands.c" bodystart="6" bodyend="9"/>
+    <listofallmembers>
+      <member refid="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" prot="public" virt="non-virtual"><scope>PjlEntry_t</scope><name>cmd</name></member>
+      <member refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" prot="public" virt="non-virtual"><scope>PjlEntry_t</scope><name>fn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,72 @@
+# Work artifacts (`OUTPUT_ROOT/_work/`)
+
+Markdown tables, one file per checkpoint. They are the hand-off between checkpoints: the next
+checkpoint reads these files instead of re-deriving. Keep them complete even when the report is concise.
+
+| File | Written by | Content |
+|---|---|---|
+| `input_baseline.txt` | Init | `shasum` of every file in `SOURCE_REQUEST/Before` and `After` |
+| `.start_marker` | Init | empty file; its mtime is the integrity reference |
+| `A_files.txt` | A | output of `diff -rq` normalised: `<status>\t<path>` |
+| `A_ranges/<path>.{before,after}.txt` | A | top-level symbol ranges per code file (recipe R1) |
+| `A_hunks.md` | A | hunk + modification point inventory |
+| `B_anchor.md` | B | where each request file/symbol/hunk lives in latest source, latest state, evolution blocks |
+| `alias_map.md` | B, C | request name/path → latest source name/path → target name/path + evidence |
+| `B_symbols.md` | B | changed + extension symbols, port version, code/data dependencies, tests |
+| `C_trace.md` | C | target state per symbol + flows |
+| `D_plan.md` | D | mapping matrix + planned changes (full detail) |
+| `E_changes.md` | E | executed changes |
+| `F_validation.md` | F | raw command outputs (trimmed) + traceability |
+
+## Schemas
+
+### `A_hunks.md`
+```
+| H-id | file | hunk header | before range | after range | point | symbol (kind) | function_status | -lines | +lines | manifest No |
+```
+`point` = `p1`, `p2` … inside the hunk. `manifest No` = row number in the report manifest.
+
+### `B_anchor.md`
+```
+| id (file/S/H) | request location | latest location | anchor result | latest state | evidence | confidence |
+```
+Evolution blocks: `| S-id | block (SRC lines) | class (EXTENSION/BUGFIX/REFACTOR/UNRELATED/UNCLEAR) | R14 signals |`
+Extension hits: `| hit (SRC:path:line) | symbol | class (EXTENSION_NEW/CONSUMER/UNCLEAR) | reason |`
+
+### `alias_map.md`
+```
+| kind (file/symbol) | request | latest source | target | evidence (R11/R12) | confidence |
+```
+
+### `B_symbols.md`
+Section 1 – changed symbols:
+```
+| S-id | symbol (kind) | file | H-ids | change type | behavior before → after | new tokens used |
+```
+`change type`: `new`, `logic`, `signature`, `constant`, `layout` (struct/enum member added/removed/reordered), `guard`, `registration`, `removed`, `cosmetic` (comments/whitespace only).
+
+Section 2 – dependencies:
+```
+| S-id | dir (out/in) | dependency (kind) | defined at (SRC:path:line) | in diff? | note |
+```
+Section 3 – port version: `| S-id | content source (SRC:path:lines) | includes blocks | excluded UNRELATED lines |`
+Section 3b – data dependencies: `| S-id | kind | item | places in source (SRC:path:line, all of them) |`
+Section 4 – tests: `| S-id | test file:line | covers |` or `none found (searched: <patterns>)`.
+
+### `C_trace.md`
+```
+| S-id | symbol | source location | target location | target state | evidence | confidence | note |
+```
+Plus flow chains: `FLOW-n source: SRC:a.c:10 Entry → SRC:b.c:42 Func → ...` and the matching `FLOW-n target: ...` (or `MISSING at <step>`).
+Dependencies (from B section 2) also get a row with an `S-id.d#` id, e.g. `S003.d2`.
+
+### `D_plan.md`
+Full Formula Mapping Matrix and Planned Changes (formats in `report-template.md`), plus for each
+P-id the exact text to insert/replace (fenced code), so E only executes.
+
+### `E_changes.md`
+`| E-id | P-id | file | OUT-A lines | applied/skipped | note |`
+
+## ID rules
+- Never reuse or renumber IDs after a checkpoint is `Complete`.
+- Every `S` names ≥1 `H`, or is `ext`, or is a dependency `S###.d#`; every `M` names ≥1 `S`; every `P` names one `M`; every `E` names one `P`.

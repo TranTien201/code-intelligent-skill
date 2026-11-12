@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="render_8c" kind="file" language="C++">
+    <compoundname>render.c</compoundname>
+    <includes refid="log_8h" local="yes">../core/log.h</includes>
+    <includes refid="model__config_8h" local="yes">../../config/model_config.h</includes>
+    <includes refid="toner__save_8h" local="yes">../features/toner_save/toner_save.h</includes>
+    <includes refid="render_8h" local="yes">render.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>model_a.h</label>
+        <link refid="model__a_8h"/>
+      </node>
+      <node id="3">
+        <label>../../config/model_config.h</label>
+        <link refid="model__config_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>../core/log.h</label>
+        <link refid="log_8h"/>
+      </node>
+      <node id="5">
+        <label>../features/toner_save/toner_save.h</label>
+        <link refid="toner__save_8h"/>
+      </node>
+      <node id="1">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>render.h</label>
+        <link refid="render_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Render_Page</definition>
+        <argsstring>(int density)</argsstring>
+        <name>Render_Page</name>
+        <param>
+          <type>int</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/print/render.c" line="8" column="5" bodyfile="src/print/render.c" bodystart="8" bodyend="16"/>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <references refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="8" endline="16">Render_Page</references>
+        <references refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" compoundref="toner__save_8c" startline="21" endline="28">TonerSave_ApplyDensity</references>
+        <referencedby refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" compoundref="main_8c" startline="7" endline="15">main</referencedby>
+        <referencedby refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="8" endline="16">Render_Page</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="log_8h" kindref="compound">../core/log.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="model__config_8h" kindref="compound">../../config/model_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>SUPPORT_TONER_SAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="toner__save_8h" kindref="compound">../features/toner_save/toner_save.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="render_8h" kindref="compound">render.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" kindref="member">Render_Page</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>density)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kindref="member">Log_Info</ref>(</highlight><highlight class="stringliteral">&quot;render<sp/>start&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>SUPPORT_TONER_SAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>density<sp/>=<sp/><ref refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" kindref="member">TonerSave_ApplyDensity</ref>(density);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kindref="member">Log_Info</ref>(</highlight><highlight class="stringliteral">&quot;render<sp/>done&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>density;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/print/render.c"/>
+  </compounddef>
+</doxygen>

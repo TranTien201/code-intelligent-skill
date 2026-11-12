@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="nv__settings_8c" kind="file" language="C++">
+    <compoundname>nv_settings.c</compoundname>
+    <includes refid="nv__settings_8h" local="yes">nv_settings.h</includes>
+    <includes refid="toner__save_8h" local="yes">../features/toner_save/toner_save.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>../features/toner_save/toner_save.h</label>
+        <link refid="toner__save_8h"/>
+      </node>
+      <node id="1">
+        <label>src/settings/nv_settings.c</label>
+        <link refid="nv__settings_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>nv_settings.h</label>
+        <link refid="nv__settings_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" prot="public" static="yes" mutable="no">
+        <type><ref refid="struct_nv_settings__t" kindref="compound">NvSettings_t</ref></type>
+        <definition>NvSettings_t g_settings</definition>
+        <argsstring></argsstring>
+        <name>g_settings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.c" line="4" column="21" bodyfile="src/settings/nv_settings.c" bodystart="4" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" compoundref="nv__settings_8c" startline="6" endline="9">NV_GetSettings</referencedby>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="11" endline="18">NV_LoadDefaults</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_nv_settings__t" kindref="compound">NvSettings_t</ref> *</type>
+        <definition>NvSettings_t * NV_GetSettings</definition>
+        <argsstring>(void)</argsstring>
+        <name>NV_GetSettings</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.c" line="6" column="14" bodyfile="src/settings/nv_settings.c" bodystart="6" bodyend="9"/>
+        <references refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" compoundref="nv__settings_8c" startline="4">g_settings</references>
+        <references refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" compoundref="nv__settings_8c" startline="6" endline="9">NV_GetSettings</references>
+        <referencedby refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" compoundref="nv__settings_8c" startline="6" endline="9">NV_GetSettings</referencedby>
+        <referencedby refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="15" endline="18">TonerSave_GetLevel</referencedby>
+        <referencedby refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="28" endline="35">TonerSave_MenuHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void NV_LoadDefaults</definition>
+        <argsstring>(void)</argsstring>
+        <name>NV_LoadDefaults</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.c" line="11" column="6" bodyfile="src/settings/nv_settings.c" bodystart="11" bodyend="18"/>
+        <references refid="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" compoundref="nv__settings_8h" startline="6">NvSettings_t::copies</references>
+        <references refid="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" compoundref="nv__settings_8h" startline="7">NvSettings_t::duplex</references>
+        <references refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" compoundref="nv__settings_8c" startline="4">g_settings</references>
+        <references refid="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" compoundref="nv__settings_8h" startline="9">NvSettings_t::language</references>
+        <references refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="11" endline="18">NV_LoadDefaults</references>
+        <references refid="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" compoundref="nv__settings_8h" startline="10">NvSettings_t::quality</references>
+        <references refid="struct_nv_settings__t_1a4edff143328ffe3abed15f8a899c7fae" compoundref="nv__settings_8h" startline="8">NvSettings_t::toner_save_level</references>
+        <references refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" compoundref="toner__save_8h" startline="4">TONER_SAVE_OFF</references>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="11" endline="18">NV_LoadDefaults</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nv__settings_8h" kindref="compound">nv_settings.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="toner__save_8h" kindref="compound">../features/toner_save/toner_save.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_nv_settings__t" kindref="compound">NvSettings_t</ref><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" refkind="member"><highlight class="normal"><ref refid="struct_nv_settings__t" kindref="compound">NvSettings_t</ref><sp/>*<ref refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" kindref="member">NV_GetSettings</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" kindref="member">NV_LoadDefaults</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>.<ref refid="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" kindref="member">copies</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>.<ref refid="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" kindref="member">duplex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>.<ref refid="struct_nv_settings__t_1a4edff143328ffe3abed15f8a899c7fae" kindref="member">toner_save_level</ref><sp/>=<sp/><ref refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" kindref="member">TONER_SAVE_OFF</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>.<ref refid="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" kindref="member">language</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kindref="member">g_settings</ref>.<ref refid="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" kindref="member">quality</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/settings/nv_settings.c"/>
+  </compounddef>
+</doxygen>

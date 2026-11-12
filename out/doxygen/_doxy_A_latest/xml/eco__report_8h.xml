@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="eco__report_8h" kind="file" language="C++">
+    <compoundname>eco_report.h</compoundname>
+    <includedby refid="eco__report_8c" local="yes">src/features/eco_report/eco_report.c</includedby>
+    <includedby refid="menu__table_8c" local="yes">src/panel/menu_table.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/features/eco_report/eco_report.c</label>
+        <link refid="eco__report_8c"/>
+      </node>
+      <node id="1">
+        <label>src/features/eco_report/eco_report.h</label>
+        <link refid="eco__report_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="eco__report_8h_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EcoReport_Print</definition>
+        <argsstring>(void)</argsstring>
+        <name>EcoReport_Print</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/eco_report/eco_report.h" line="3" column="6" bodyfile="src/features/eco_report/eco_report.c" bodystart="5" bodyend="9" declfile="src/features/eco_report/eco_report.h" declline="3" declcolumn="6"/>
+        <references refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</references>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <references refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" compoundref="toner__save_8h" startline="4">TONER_SAVE_OFF</references>
+        <references refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="16" endline="19">TonerSave_GetLevel</references>
+        <referencedby refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</referencedby>
+        <referencedby refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="eco__report_8h_1aa15fa73bba493253538d15200b614e60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EcoReport_MenuHandler</definition>
+        <argsstring>(int key)</argsstring>
+        <name>EcoReport_MenuHandler</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/eco_report/eco_report.h" line="4" column="5" bodyfile="src/features/eco_report/eco_report.c" bodystart="11" bodyend="15" declfile="src/features/eco_report/eco_report.h" declline="4" declcolumn="5"/>
+        <references refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</references>
+        <references refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</references>
+        <referencedby refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ECO_REPORT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ECO_REPORT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" kindref="member">EcoReport_Print</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" kindref="member">EcoReport_MenuHandler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/features/eco_report/eco_report.h"/>
+  </compounddef>
+</doxygen>

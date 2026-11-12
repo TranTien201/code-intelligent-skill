@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="menu_8h" kind="file" language="C++">
+    <compoundname>menu.h</compoundname>
+    <includedby refid="main_8c" local="yes">src/main.c</includedby>
+    <includedby refid="menu_8c" local="yes">src/panel/menu.c</includedby>
+    <includedby refid="menu__table_8c" local="yes">src/panel/menu_table.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="3">
+        <label>src/panel/menu.c</label>
+        <link refid="menu_8c"/>
+      </node>
+      <node id="1">
+        <label>src/panel/menu.h</label>
+        <link refid="menu_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_menu_entry__t" prot="public">MenuEntry_t</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" prot="public" static="no">
+        <type>int(*)</type>
+        <definition>typedef int(*) MenuHandler_t(int key)</definition>
+        <argsstring>(int key)</argsstring>
+        <name>MenuHandler_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="3" column="9" bodyfile="src/panel/menu.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="menu_8h_1a164b6704b267ba46b06bc6b3e284dd7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Copies</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Copies</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="9" column="5" bodyfile="src/panel/menu.c" bodystart="10" bodyend="13" declfile="src/panel/menu.h" declline="9" declcolumn="5"/>
+        <references refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" compoundref="toner__save_8c" startline="11" endline="14">is_valid</references>
+        <references refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" compoundref="menu_8c" startline="10" endline="13">Menu_Copies</references>
+        <referencedby refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" compoundref="menu_8c" startline="10" endline="13">Menu_Copies</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8h_1abda4b86c9caac43a38c2f799e90a7c94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Duplex</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Duplex</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="10" column="5" bodyfile="src/panel/menu.c" bodystart="15" bodyend="18" declfile="src/panel/menu.h" declline="10" declcolumn="5"/>
+        <references refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" compoundref="menu_8c" startline="15" endline="18">Menu_Duplex</references>
+        <referencedby refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" compoundref="menu_8c" startline="15" endline="18">Menu_Duplex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8h_1a0725e3acd30d3b68bd5bbda4b089fa4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Quality</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Quality</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="11" column="5" bodyfile="src/panel/menu.c" bodystart="20" bodyend="23" declfile="src/panel/menu.h" declline="11" declcolumn="5"/>
+        <references refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</references>
+        <references refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="20" endline="23">Menu_Quality</references>
+        <referencedby refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="20" endline="23">Menu_Quality</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8h_1ab0e432d9883679eb4085531d53af6ddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Language</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Language</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="12" column="5" bodyfile="src/panel/menu.c" bodystart="25" bodyend="28" declfile="src/panel/menu.h" declline="12" declcolumn="5"/>
+        <references refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" compoundref="menu_8c" startline="25" endline="28">Menu_Language</references>
+        <referencedby refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" compoundref="menu_8c" startline="25" endline="28">Menu_Language</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Dispatch</definition>
+        <argsstring>(const char *name, int key)</argsstring>
+        <name>Menu_Dispatch</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="13" column="5" bodyfile="src/panel/menu_table.c" bodystart="24" bodyend="32" declfile="src/panel/menu.h" declline="13" declcolumn="5"/>
+        <references refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" compoundref="menu__table_8c" startline="11" endline="22">g_menu_table</references>
+        <references refid="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" compoundref="menu_8h" startline="6">MenuEntry_t::handler</references>
+        <references refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="24" endline="32">Menu_Dispatch</references>
+        <referencedby refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" compoundref="main_8c" startline="7" endline="15">main</referencedby>
+        <referencedby refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="24" endline="32">Menu_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MENU_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MENU_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>int<sp/>(*<ref refid="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" kindref="member">MenuHandler_t</ref>)(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="4" refid="struct_menu_entry__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5" refid="struct_menu_entry__t_1a73de158ceb71d1ab891cd12764d3f070" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_menu_entry__t_1a73de158ceb71d1ab891cd12764d3f070" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="6" refid="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" kindref="member">MenuHandler_t</ref><sp/><ref refid="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" kindref="member">handler</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">}<sp/><ref refid="struct_menu_entry__t" kindref="compound">MenuEntry_t</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" kindref="member">Menu_Copies</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" kindref="member">Menu_Duplex</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" kindref="member">Menu_Quality</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" kindref="member">Menu_Language</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" kindref="member">Menu_Dispatch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/panel/menu.h"/>
+  </compounddef>
+</doxygen>

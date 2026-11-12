@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="main_8c" kind="file" language="C++">
+    <compoundname>main.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="nv__settings_8h" local="yes">settings/nv_settings.h</includes>
+    <includes refid="render_8h" local="yes">print/render.h</includes>
+    <includes refid="menu_8h" local="yes">panel/menu.h</includes>
+    <includes refid="pjl__commands_8h" local="yes">cmd/pjl_commands.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>cmd/pjl_commands.h</label>
+        <link refid="pjl__commands_8h"/>
+      </node>
+      <node id="1">
+        <label>src/main.c</label>
+        <link refid="main_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>panel/menu.h</label>
+        <link refid="menu_8h"/>
+      </node>
+      <node id="4">
+        <label>print/render.h</label>
+        <link refid="render_8h"/>
+      </node>
+      <node id="3">
+        <label>settings/nv_settings.h</label>
+        <link refid="nv__settings_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(void)</argsstring>
+        <name>main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.c" line="7" column="5" bodyfile="src/main.c" bodystart="7" bodyend="15"/>
+        <references refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" compoundref="main_8c" startline="7" endline="15">main</references>
+        <references refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="13" endline="21">Menu_Dispatch</references>
+        <references refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</references>
+        <references refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="28" endline="36">Pjl_Dispatch</references>
+        <references refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="5" endline="13">Render_Page</references>
+        <referencedby refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" compoundref="main_8c" startline="7" endline="15">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nv__settings_8h" kindref="compound">settings/nv_settings.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="render_8h" kindref="compound">print/render.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="menu_8h" kindref="compound">panel/menu.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pjl__commands_8h" kindref="compound">cmd/pjl_commands.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" kindref="member">NV_LoadDefaults</ref>();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;copies=%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" kindref="member">Menu_Dispatch</ref>(</highlight><highlight class="stringliteral">&quot;COPIES&quot;</highlight><highlight class="normal">,<sp/>2));</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;toner_save=%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" kindref="member">Menu_Dispatch</ref>(</highlight><highlight class="stringliteral">&quot;TONER_SAVE&quot;</highlight><highlight class="normal">,<sp/>2));</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;pjl=%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" kindref="member">Pjl_Dispatch</ref>(</highlight><highlight class="stringliteral">&quot;ECONOMODE&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;density=%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" kindref="member">Render_Page</ref>(10));</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/main.c"/>
+  </compounddef>
+</doxygen>

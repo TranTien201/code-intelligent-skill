@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="model__b_8h" kind="file" language="C++">
+    <compoundname>model_b.h</compoundname>
+    <includedby refid="model__config_8h" local="yes">config/model_config.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>config/model_b.h</label>
+        <link refid="model__b_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>config/model_config.h</label>
+        <link refid="model__config_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+      </node>
+      <node id="4">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="model__b_8h_1a5a9b7cbd9eecea00b9870891829bd576" prot="public" static="no">
+        <name>MODEL_NAME</name>
+        <initializer>&quot;Printer-B&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_b.h" line="1" column="9" bodyfile="config/model_b.h" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="model__b_8h_1a6fb82d66b9e90b649b433fcb912f1303" prot="public" static="no">
+        <name>SUPPORT_DUPLEX</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_b.h" line="2" column="9" bodyfile="config/model_b.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="model__b_8h_1a80fd9c16fcad3341a08fac976a060b95" prot="public" static="no">
+        <name>SUPPORT_FAX</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_b.h" line="3" column="9" bodyfile="config/model_b.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="model__b_8h_1a5a9b7cbd9eecea00b9870891829bd576" refkind="member"><highlight class="preprocessor">#define<sp/>MODEL_NAME<sp/>&quot;Printer-B&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="model__b_8h_1a6fb82d66b9e90b649b433fcb912f1303" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUPPORT_DUPLEX<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="model__b_8h_1a80fd9c16fcad3341a08fac976a060b95" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUPPORT_FAX<sp/>1</highlight></codeline>
+    </programlisting>
+    <location file="config/model_b.h"/>
+  </compounddef>
+</doxygen>

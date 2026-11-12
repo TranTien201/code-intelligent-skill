@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
+    <compoundname>src</compoundname>
+    <innerdir refid="dir_8a0776572ba2252f65a895457421e228">src/cmd</innerdir>
+    <innerdir refid="dir_aebb8dcc11953d78e620bbef0b9e2183">src/core</innerdir>
+    <innerdir refid="dir_751a3bd66ed682f151629a9c0f0ebd6e">src/features</innerdir>
+    <innerdir refid="dir_36b9b0d2401457bc88cc6d3477b4619d">src/panel</innerdir>
+    <innerdir refid="dir_88882e61be18287799144fcdac847ecd">src/print</innerdir>
+    <innerdir refid="dir_fa3b942b33b04fef8622e6ed9abffc5c">src/resources</innerdir>
+    <innerdir refid="dir_ded1f21a39ae19e27d2bdf7bc3638045">src/settings</innerdir>
+    <innerdir refid="dir_b7878ad5ecbf2506f4125b9d34c97e45">src/util</innerdir>
+    <innerfile refid="main_8c">main.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/"/>
+  </compounddef>
+</doxygen>

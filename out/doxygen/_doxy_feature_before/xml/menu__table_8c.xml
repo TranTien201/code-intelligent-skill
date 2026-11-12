@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="menu__table_8c" kind="file" language="C++">
+    <compoundname>menu_table.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="yes">menu.h</includes>
+    <includes local="yes">../../config/model_config.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>../../config/model_config.h</label>
+      </node>
+      <node id="1">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>menu.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" prot="public" static="yes" mutable="no">
+        <type>const MenuEntry_t</type>
+        <definition>const MenuEntry_t g_menu_table[]</definition>
+        <argsstring>[]</argsstring>
+        <name>g_menu_table</name>
+        <initializer>                                      = {
+    { &quot;COPIES&quot;,   Menu_Copies },
+    { &quot;DUPLEX&quot;,   Menu_Duplex },
+    { &quot;QUALITY&quot;,  Menu_Quality },
+    { &quot;LANGUAGE&quot;, Menu_Language },
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu_table.c" line="5" column="26" bodyfile="src/panel/menu_table.c" bodystart="5" bodyend="10"/>
+        <referencedby refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="12" endline="20">Menu_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Dispatch</definition>
+        <argsstring>(const char *name, int key)</argsstring>
+        <name>Menu_Dispatch</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu_table.c" line="12" column="5" bodyfile="src/panel/menu_table.c" bodystart="12" bodyend="20"/>
+        <references refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" compoundref="menu__table_8c" startline="5" endline="10">g_menu_table</references>
+        <references refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="12" endline="20">Menu_Dispatch</references>
+        <referencedby refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="12" endline="20">Menu_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;menu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../config/model_config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>MenuEntry_t<sp/><ref refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kindref="member">g_menu_table</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;COPIES&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/>Menu_Copies<sp/>},</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;DUPLEX&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/>Menu_Duplex<sp/>},</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;QUALITY&quot;</highlight><highlight class="normal">,<sp/><sp/>Menu_Quality<sp/>},</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;LANGUAGE&quot;</highlight><highlight class="normal">,<sp/>Menu_Language<sp/>},</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" kindref="member">Menu_Dispatch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kindref="member">g_menu_table</ref>)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kindref="member">g_menu_table</ref>[0]);<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(<ref refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kindref="member">g_menu_table</ref>[i].name,<sp/>name)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kindref="member">g_menu_table</ref>[i].handler(key);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/panel/menu_table.c"/>
+  </compounddef>
+</doxygen>

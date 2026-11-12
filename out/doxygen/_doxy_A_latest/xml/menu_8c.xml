@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="menu_8c" kind="file" language="C++">
+    <compoundname>menu.c</compoundname>
+    <includes refid="menu_8h" local="yes">menu.h</includes>
+    <includes refid="log_8h" local="yes">../core/log.h</includes>
+    <includes refid="density_8h" local="yes">../print/density.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>../core/log.h</label>
+        <link refid="log_8h"/>
+      </node>
+      <node id="1">
+        <label>src/panel/menu.c</label>
+        <link refid="menu_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>menu.h</label>
+        <link refid="menu_8h"/>
+      </node>
+      <node id="4">
+        <label>../print/density.h</label>
+        <link refid="density_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="menu_8c_1a556d671d85464635b4d3d4921245da8e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int is_valid</definition>
+        <argsstring>(int key)</argsstring>
+        <name>is_valid</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.c" line="5" column="12" bodyfile="src/panel/menu.c" bodystart="5" bodyend="8"/>
+        <references refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" compoundref="toner__save_8c" startline="11" endline="14">is_valid</references>
+      </memberdef>
+      <memberdef kind="function" id="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Copies</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Copies</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.c" line="10" column="5" bodyfile="src/panel/menu.c" bodystart="10" bodyend="13"/>
+        <references refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" compoundref="toner__save_8c" startline="11" endline="14">is_valid</references>
+        <references refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" compoundref="menu_8c" startline="10" endline="13">Menu_Copies</references>
+        <referencedby refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" compoundref="menu_8c" startline="10" endline="13">Menu_Copies</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Duplex</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Duplex</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.c" line="15" column="5" bodyfile="src/panel/menu.c" bodystart="15" bodyend="18"/>
+        <references refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" compoundref="menu_8c" startline="15" endline="18">Menu_Duplex</references>
+        <referencedby refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" compoundref="menu_8c" startline="15" endline="18">Menu_Duplex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Quality</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Quality</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.c" line="20" column="5" bodyfile="src/panel/menu.c" bodystart="20" bodyend="23"/>
+        <references refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</references>
+        <references refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="20" endline="23">Menu_Quality</references>
+        <referencedby refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="20" endline="23">Menu_Quality</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Menu_Language</definition>
+        <argsstring>(int key)</argsstring>
+        <name>Menu_Language</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.c" line="25" column="5" bodyfile="src/panel/menu.c" bodystart="25" bodyend="28"/>
+        <references refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" compoundref="menu_8c" startline="25" endline="28">Menu_Language</references>
+        <referencedby refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" compoundref="menu_8c" startline="25" endline="28">Menu_Language</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="menu_8h" kindref="compound">menu.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="log_8h" kindref="compound">../core/log.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="density_8h" kindref="compound">../print/density.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="menu_8c_1a556d671d85464635b4d3d4921245da8e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" kindref="member">is_valid</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>key<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>key<sp/>&lt;<sp/>100;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" kindref="member">Menu_Copies</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" kindref="member">is_valid</ref>(key)<sp/>?<sp/>key<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" kindref="member">Menu_Duplex</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>key<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" kindref="member">Menu_Quality</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" kindref="member">Density_Scale</ref>(key,<sp/>50);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" kindref="member">Menu_Language</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>key;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/panel/menu.c"/>
+  </compounddef>
+</doxygen>

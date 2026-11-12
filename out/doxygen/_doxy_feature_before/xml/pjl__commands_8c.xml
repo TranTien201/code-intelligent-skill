@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="pjl__commands_8c" kind="file" language="C++">
+    <compoundname>pjl_commands.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="yes">pjl_commands.h</includes>
+    <includes local="yes">../core/log.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>../core/log.h</label>
+      </node>
+      <node id="1">
+        <label>src/cmd/pjl_commands.c</label>
+        <link refid="pjl__commands_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>pjl_commands.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_pjl_entry__t" prot="public">PjlEntry_t</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" prot="public" static="no">
+        <type>int(*)</type>
+        <definition>typedef int(*) PjlHandler_t(const char *arg)</definition>
+        <argsstring>(const char *arg)</argsstring>
+        <name>PjlHandler_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="5" column="9" bodyfile="src/cmd/pjl_commands.c" bodystart="5" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="struct_pjl_entry__t" kindref="compound">PjlEntry_t</ref></type>
+        <definition>const PjlEntry_t g_pjl_table[]</definition>
+        <argsstring>[]</argsstring>
+        <name>g_pjl_table</name>
+        <initializer>                                    = {
+    { &quot;COPIES&quot;, <ref refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" kindref="member">Pjl_SetCopies</ref> },
+    { &quot;DUPLEX&quot;, <ref refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" kindref="member">Pjl_SetDuplex</ref> },
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="23" column="25" bodyfile="src/cmd/pjl_commands.c" bodystart="23" bodyend="26"/>
+        <referencedby refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="28" endline="36">Pjl_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Pjl_SetCopies</definition>
+        <argsstring>(const char *arg)</argsstring>
+        <name>Pjl_SetCopies</name>
+        <param>
+          <type>const char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="11" column="12" bodyfile="src/cmd/pjl_commands.c" bodystart="11" bodyend="15"/>
+        <references refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" compoundref="pjl__commands_8c" startline="11" endline="15">Pjl_SetCopies</references>
+        <referencedby refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" compoundref="pjl__commands_8c" startline="11" endline="15">Pjl_SetCopies</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Pjl_SetDuplex</definition>
+        <argsstring>(const char *arg)</argsstring>
+        <name>Pjl_SetDuplex</name>
+        <param>
+          <type>const char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="17" column="12" bodyfile="src/cmd/pjl_commands.c" bodystart="17" bodyend="21"/>
+        <references refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" compoundref="pjl__commands_8c" startline="17" endline="21">Pjl_SetDuplex</references>
+        <referencedby refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" compoundref="pjl__commands_8c" startline="17" endline="21">Pjl_SetDuplex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Pjl_Dispatch</definition>
+        <argsstring>(const char *cmd, const char *arg)</argsstring>
+        <name>Pjl_Dispatch</name>
+        <param>
+          <type>const char *</type>
+          <declname>cmd</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cmd/pjl_commands.c" line="28" column="5" bodyfile="src/cmd/pjl_commands.c" bodystart="28" bodyend="36"/>
+        <references refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" compoundref="pjl__commands_8c" startline="8">PjlEntry_t::fn</references>
+        <references refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" compoundref="pjl__commands_8c" startline="23" endline="26">g_pjl_table</references>
+        <references refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="28" endline="36">Pjl_Dispatch</references>
+        <referencedby refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" compoundref="pjl__commands_8c" startline="28" endline="36">Pjl_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pjl_commands.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../core/log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>int<sp/>(*<ref refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" kindref="member">PjlHandler_t</ref>)(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg);</highlight></codeline>
+<codeline lineno="6" refid="struct_pjl_entry__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7" refid="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" kindref="member">cmd</ref>;</highlight></codeline>
+<codeline lineno="8" refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" kindref="member">PjlHandler_t</ref><sp/><ref refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" kindref="member">fn</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}<sp/><ref refid="struct_pjl_entry__t" kindref="compound">PjlEntry_t</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" kindref="member">Pjl_SetCopies</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>Log_Info(arg);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" kindref="member">Pjl_SetDuplex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Log_Info(arg);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_pjl_entry__t" kindref="compound">PjlEntry_t</ref><sp/><ref refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kindref="member">g_pjl_table</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;COPIES&quot;</highlight><highlight class="normal">,<sp/><ref refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" kindref="member">Pjl_SetCopies</ref><sp/>},</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="stringliteral">&quot;DUPLEX&quot;</highlight><highlight class="normal">,<sp/><ref refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" kindref="member">Pjl_SetDuplex</ref><sp/>},</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" kindref="member">Pjl_Dispatch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cmd,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kindref="member">g_pjl_table</ref>)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kindref="member">g_pjl_table</ref>[0]);<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(<ref refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kindref="member">g_pjl_table</ref>[i].cmd,<sp/>cmd)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kindref="member">g_pjl_table</ref>[i].<ref refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" kindref="member">fn</ref>(arg);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/cmd/pjl_commands.c"/>
+  </compounddef>
+</doxygen>

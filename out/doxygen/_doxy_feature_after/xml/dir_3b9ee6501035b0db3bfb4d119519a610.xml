@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_3b9ee6501035b0db3bfb4d119519a610" kind="dir">
+    <compoundname>src/features/toner_save</compoundname>
+    <innerfile refid="toner__save_8c">toner_save.c</innerfile>
+    <innerfile refid="toner__save_8h">toner_save.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/features/toner_save/"/>
+  </compounddef>
+</doxygen>

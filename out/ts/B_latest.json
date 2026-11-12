@@ -1,0 +1,594 @@
+{
+ "builder": "treesitter",
+ "root": "/Users/trantien/Documents/my-project/f-research/data/B_latest",
+ "files": [
+  "Makefile",
+  "config/model_b.h",
+  "config/model_config.h",
+  "src/cmd/pjl_commands.c",
+  "src/cmd/pjl_commands.h",
+  "src/core/log.c",
+  "src/core/log.h",
+  "src/main.c",
+  "src/panel/menu.c",
+  "src/panel/menu.h",
+  "src/panel/menu_table.c",
+  "src/print/render.c",
+  "src/print/render.h",
+  "src/resources/strings.h",
+  "src/resources/strings_en.c",
+  "src/settings/nv_settings.c",
+  "src/settings/nv_settings.h",
+  "src/util/math_util.c",
+  "src/util/math_util.h"
+ ],
+ "nodes": {
+  "MODEL_NAME": {
+   "name": "MODEL_NAME",
+   "kind": "macro",
+   "file": "config/model_b.h",
+   "start": 1,
+   "end": 2,
+   "static": false,
+   "hash": "f7fbe9317aae",
+   "guards": []
+  },
+  "SUPPORT_DUPLEX": {
+   "name": "SUPPORT_DUPLEX",
+   "kind": "macro",
+   "file": "config/model_b.h",
+   "start": 2,
+   "end": 3,
+   "static": false,
+   "hash": "fdaa77e7bb5c",
+   "guards": []
+  },
+  "SUPPORT_FAX": {
+   "name": "SUPPORT_FAX",
+   "kind": "macro",
+   "file": "config/model_b.h",
+   "start": 3,
+   "end": 4,
+   "static": false,
+   "hash": "bf5851f593e0",
+   "guards": []
+  },
+  "PjlHandler_t": {
+   "name": "PjlHandler_t",
+   "kind": "type",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 5,
+   "end": 5,
+   "static": false,
+   "hash": "b0011e840c3f",
+   "guards": []
+  },
+  "PjlEntry_t": {
+   "name": "PjlEntry_t",
+   "kind": "type",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 6,
+   "end": 9,
+   "static": false,
+   "hash": "65a5e174926d",
+   "guards": []
+  },
+  "Pjl_SetCopies@src/cmd/pjl_commands.c": {
+   "name": "Pjl_SetCopies",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 11,
+   "end": 15,
+   "static": true,
+   "hash": "0521fc54f0b8",
+   "guards": []
+  },
+  "Pjl_SetDuplex@src/cmd/pjl_commands.c": {
+   "name": "Pjl_SetDuplex",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 17,
+   "end": 21,
+   "static": true,
+   "hash": "1961e43bc35e",
+   "guards": []
+  },
+  "g_pjl_table@src/cmd/pjl_commands.c": {
+   "name": "g_pjl_table",
+   "kind": "var",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 23,
+   "end": 26,
+   "static": true,
+   "hash": "faacc5d7e45b",
+   "guards": []
+  },
+  "Pjl_Dispatch": {
+   "name": "Pjl_Dispatch",
+   "kind": "function",
+   "file": "src/cmd/pjl_commands.c",
+   "start": 28,
+   "end": 36,
+   "static": false,
+   "hash": "e24a3af2948e",
+   "guards": []
+  },
+  "Log_Info": {
+   "name": "Log_Info",
+   "kind": "function",
+   "file": "src/core/log.c",
+   "start": 4,
+   "end": 7,
+   "static": false,
+   "hash": "a5157bca4fb0",
+   "guards": []
+  },
+  "main": {
+   "name": "main",
+   "kind": "function",
+   "file": "src/main.c",
+   "start": 7,
+   "end": 15,
+   "static": false,
+   "hash": "eacf3eb351e0",
+   "guards": []
+  },
+  "is_valid@src/panel/menu.c": {
+   "name": "is_valid",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 4,
+   "end": 7,
+   "static": true,
+   "hash": "4c7179ae0501",
+   "guards": []
+  },
+  "Menu_Copies": {
+   "name": "Menu_Copies",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 9,
+   "end": 12,
+   "static": false,
+   "hash": "f0e7c36e980a",
+   "guards": []
+  },
+  "Menu_Duplex": {
+   "name": "Menu_Duplex",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 14,
+   "end": 17,
+   "static": false,
+   "hash": "23c52724487a",
+   "guards": []
+  },
+  "Menu_Quality": {
+   "name": "Menu_Quality",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 19,
+   "end": 23,
+   "static": false,
+   "hash": "958420c180f4",
+   "guards": []
+  },
+  "Menu_Language": {
+   "name": "Menu_Language",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 25,
+   "end": 28,
+   "static": false,
+   "hash": "4a4dcc6ac35e",
+   "guards": []
+  },
+  "Menu_Fax": {
+   "name": "Menu_Fax",
+   "kind": "function",
+   "file": "src/panel/menu.c",
+   "start": 30,
+   "end": 34,
+   "static": false,
+   "hash": "30d14bbdc1a4",
+   "guards": []
+  },
+  "MenuHandler_t": {
+   "name": "MenuHandler_t",
+   "kind": "type",
+   "file": "src/panel/menu.h",
+   "start": 3,
+   "end": 3,
+   "static": false,
+   "hash": "fe0184766521",
+   "guards": []
+  },
+  "MenuEntry_t": {
+   "name": "MenuEntry_t",
+   "kind": "type",
+   "file": "src/panel/menu.h",
+   "start": 4,
+   "end": 7,
+   "static": false,
+   "hash": "08ce962957a4",
+   "guards": []
+  },
+  "g_menu_table@src/panel/menu_table.c": {
+   "name": "g_menu_table",
+   "kind": "var",
+   "file": "src/panel/menu_table.c",
+   "start": 5,
+   "end": 11,
+   "static": true,
+   "hash": "d3dc0955261b",
+   "guards": []
+  },
+  "Menu_Dispatch": {
+   "name": "Menu_Dispatch",
+   "kind": "function",
+   "file": "src/panel/menu_table.c",
+   "start": 13,
+   "end": 21,
+   "static": false,
+   "hash": "b8b555c4613e",
+   "guards": []
+  },
+  "Render_Page": {
+   "name": "Render_Page",
+   "kind": "function",
+   "file": "src/print/render.c",
+   "start": 5,
+   "end": 13,
+   "static": false,
+   "hash": "c8301e2ed336",
+   "guards": []
+  },
+  "StrId_t": {
+   "name": "StrId_t",
+   "kind": "type",
+   "file": "src/resources/strings.h",
+   "start": 3,
+   "end": 9,
+   "static": false,
+   "hash": "412b51dbf502",
+   "guards": []
+  },
+  "STR_COPIES": {
+   "name": "STR_COPIES",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 4,
+   "end": 4,
+   "static": false,
+   "hash": "e6eb56f5b002",
+   "guards": []
+  },
+  "STR_DUPLEX": {
+   "name": "STR_DUPLEX",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 5,
+   "end": 5,
+   "static": false,
+   "hash": "231884343daf",
+   "guards": []
+  },
+  "STR_QUALITY": {
+   "name": "STR_QUALITY",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 6,
+   "end": 6,
+   "static": false,
+   "hash": "df18df734b23",
+   "guards": []
+  },
+  "STR_FAX": {
+   "name": "STR_FAX",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 7,
+   "end": 7,
+   "static": false,
+   "hash": "3b9dc3db543d",
+   "guards": []
+  },
+  "STR_COUNT": {
+   "name": "STR_COUNT",
+   "kind": "enumconst",
+   "file": "src/resources/strings.h",
+   "start": 8,
+   "end": 8,
+   "static": false,
+   "hash": "f08573083ea6",
+   "guards": []
+  },
+  "g_strings_en@src/resources/strings_en.c": {
+   "name": "g_strings_en",
+   "kind": "var",
+   "file": "src/resources/strings_en.c",
+   "start": 3,
+   "end": 8,
+   "static": true,
+   "hash": "c84feb6d34a8",
+   "guards": []
+  },
+  "Str_Get": {
+   "name": "Str_Get",
+   "kind": "function",
+   "file": "src/resources/strings_en.c",
+   "start": 10,
+   "end": 13,
+   "static": false,
+   "hash": "ef8f72f60799",
+   "guards": []
+  },
+  "g_settings@src/settings/nv_settings.c": {
+   "name": "g_settings",
+   "kind": "var",
+   "file": "src/settings/nv_settings.c",
+   "start": 3,
+   "end": 3,
+   "static": true,
+   "hash": "590b98134f1d",
+   "guards": []
+  },
+  "NV_GetSettings": {
+   "name": "NV_GetSettings",
+   "kind": "function",
+   "file": "src/settings/nv_settings.c",
+   "start": 5,
+   "end": 8,
+   "static": false,
+   "hash": "afdd6c584b01",
+   "guards": []
+  },
+  "NV_LoadDefaults": {
+   "name": "NV_LoadDefaults",
+   "kind": "function",
+   "file": "src/settings/nv_settings.c",
+   "start": 10,
+   "end": 17,
+   "static": false,
+   "hash": "da7d3d309c41",
+   "guards": []
+  },
+  "NvSettings_t": {
+   "name": "NvSettings_t",
+   "kind": "type",
+   "file": "src/settings/nv_settings.h",
+   "start": 5,
+   "end": 11,
+   "static": false,
+   "hash": "834a2a41c3c5",
+   "guards": []
+  },
+  "Clamp": {
+   "name": "Clamp",
+   "kind": "function",
+   "file": "src/util/math_util.c",
+   "start": 3,
+   "end": 8,
+   "static": false,
+   "hash": "5e3efca92ea2",
+   "guards": []
+  }
+ },
+ "edges": [
+  {
+   "src": "MenuEntry_t",
+   "dst": "MenuHandler_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "Menu_Copies",
+   "dst": "is_valid@src/panel/menu.c",
+   "type": "CALLS"
+  },
+  {
+   "src": "Menu_Dispatch",
+   "dst": "MenuEntry_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "Menu_Dispatch",
+   "dst": "g_menu_table@src/panel/menu_table.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "Menu_Fax",
+   "dst": "Log_Info",
+   "type": "CALLS"
+  },
+  {
+   "src": "Menu_Quality",
+   "dst": "Log_Info",
+   "type": "CALLS"
+  },
+  {
+   "src": "NV_GetSettings",
+   "dst": "NvSettings_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "NV_GetSettings",
+   "dst": "g_settings@src/settings/nv_settings.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "NV_LoadDefaults",
+   "dst": "NvSettings_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "NV_LoadDefaults",
+   "dst": "g_settings@src/settings/nv_settings.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "PjlEntry_t",
+   "dst": "PjlHandler_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "Pjl_Dispatch",
+   "dst": "PjlEntry_t",
+   "type": "USES_FIELD"
+  },
+  {
+   "src": "Pjl_Dispatch",
+   "dst": "g_pjl_table@src/cmd/pjl_commands.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "Pjl_SetCopies@src/cmd/pjl_commands.c",
+   "dst": "Log_Info",
+   "type": "CALLS"
+  },
+  {
+   "src": "Pjl_SetDuplex@src/cmd/pjl_commands.c",
+   "dst": "Log_Info",
+   "type": "CALLS"
+  },
+  {
+   "src": "Render_Page",
+   "dst": "Log_Info",
+   "type": "CALLS"
+  },
+  {
+   "src": "Render_Page",
+   "dst": "SUPPORT_FAX",
+   "type": "GUARDED_BY"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_COPIES",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_COUNT",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_DUPLEX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_FAX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "StrId_t",
+   "dst": "STR_QUALITY",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "Str_Get",
+   "dst": "StrId_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "Str_Get",
+   "dst": "g_strings_en@src/resources/strings_en.c",
+   "type": "USES_VAR"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "MenuEntry_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "Menu_Copies",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "Menu_Duplex",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "Menu_Fax",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "Menu_Language",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_menu_table@src/panel/menu_table.c",
+   "dst": "Menu_Quality",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "PjlEntry_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "Pjl_SetCopies@src/cmd/pjl_commands.c",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_pjl_table@src/cmd/pjl_commands.c",
+   "dst": "Pjl_SetDuplex@src/cmd/pjl_commands.c",
+   "type": "REFERENCES"
+  },
+  {
+   "src": "g_settings@src/settings/nv_settings.c",
+   "dst": "NvSettings_t",
+   "type": "USES_TYPE"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_COPIES",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_COUNT",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_DUPLEX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_FAX",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "g_strings_en@src/resources/strings_en.c",
+   "dst": "STR_QUALITY",
+   "type": "USES_CONST"
+  },
+  {
+   "src": "main",
+   "dst": "Menu_Dispatch",
+   "type": "CALLS"
+  },
+  {
+   "src": "main",
+   "dst": "NV_LoadDefaults",
+   "type": "CALLS"
+  },
+  {
+   "src": "main",
+   "dst": "Pjl_Dispatch",
+   "type": "CALLS"
+  },
+  {
+   "src": "main",
+   "dst": "Render_Page",
+   "type": "CALLS"
+  }
+ ]
+}

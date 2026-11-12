@@ -1,0 +1,97 @@
+{
+  "added": [
+    "STR_TONER_SAVE",
+    "SUPPORT_TONER_SAVE",
+    "TONER_SAVE_HIGH",
+    "TONER_SAVE_LOW",
+    "TONER_SAVE_OFF",
+    "TonerSave_ApplyDensity",
+    "TonerSave_GetLevel",
+    "TonerSave_MenuHandler",
+    "TonerSave_PjlSet",
+    "is_valid@src/features/toner_save/toner_save.c",
+    "k_percent@src/features/toner_save/toner_save.c"
+  ],
+  "modified": [
+    "NV_LoadDefaults",
+    "NvSettings_t",
+    "Render_Page",
+    "StrId_t",
+    "g_menu_table@src/panel/menu_table.c",
+    "g_pjl_table@src/cmd/pjl_commands.c",
+    "g_strings_en@src/resources/strings_en.c"
+  ],
+  "removed": [],
+  "new_tokens": {
+    "NV_LoadDefaults": [
+      "TONER_SAVE_OFF",
+      "toner_save_level"
+    ],
+    "NvSettings_t": [
+      "toner_save_level"
+    ],
+    "Render_Page": [
+      "SUPPORT_TONER_SAVE",
+      "TonerSave_ApplyDensity",
+      "endif",
+      "ifdef"
+    ],
+    "StrId_t": [
+      "STR_TONER_SAVE"
+    ],
+    "g_menu_table@src/panel/menu_table.c": [
+      "SUPPORT_TONER_SAVE",
+      "TONER_SAVE",
+      "TonerSave_MenuHandler",
+      "endif",
+      "ifdef"
+    ],
+    "g_pjl_table@src/cmd/pjl_commands.c": [
+      "ECONOMODE",
+      "TonerSave_PjlSet"
+    ],
+    "g_strings_en@src/resources/strings_en.c": [
+      "STR_TONER_SAVE",
+      "Save",
+      "Toner"
+    ]
+  },
+  "after_hash": {
+    "STR_TONER_SAVE": "9451f5082261",
+    "SUPPORT_TONER_SAVE": "110827eae527",
+    "TONER_SAVE_HIGH": "6a3561468961",
+    "TONER_SAVE_LOW": "0f51bb66c379",
+    "TONER_SAVE_OFF": "395357306bba",
+    "TonerSave_ApplyDensity": "1fe30079687c",
+    "TonerSave_GetLevel": "8acce2fcb79c",
+    "TonerSave_MenuHandler": "5560acde7feb",
+    "TonerSave_PjlSet": "773168048eac",
+    "is_valid@src/features/toner_save/toner_save.c": "c295b615f9c8",
+    "k_percent@src/features/toner_save/toner_save.c": "7cdb8b664c4b",
+    "NV_LoadDefaults": "d7d9175956ea",
+    "NvSettings_t": "a16590418b3c",
+    "Render_Page": "2b4f80988181",
+    "StrId_t": "adc32e200e39",
+    "g_menu_table@src/panel/menu_table.c": "9cedbd41d5f4",
+    "g_pjl_table@src/cmd/pjl_commands.c": "275668833005",
+    "g_strings_en@src/resources/strings_en.c": "4aa1e9384813"
+  },
+  "new_files": [
+    "src/features/toner_save/toner_save.c",
+    "src/features/toner_save/toner_save.h"
+  ],
+  "changed_files": [
+    "Makefile",
+    "config/model_a.h",
+    "src/cmd/pjl_commands.c",
+    "src/panel/menu_table.c",
+    "src/print/render.c",
+    "src/resources/strings.h",
+    "src/resources/strings_en.c",
+    "src/settings/nv_settings.c",
+    "src/settings/nv_settings.h"
+  ],
+  "non_code_changed": [
+    "Makefile"
+  ]
+}

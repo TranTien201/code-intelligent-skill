@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="strings_8h" kind="file" language="C++">
+    <compoundname>strings.h</compoundname>
+    <includedby refid="toner__save_8c" local="yes">src/features/toner_save/toner_save.c</includedby>
+    <includedby refid="strings__en_8c" local="yes">src/resources/strings_en.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/features/toner_save/toner_save.c</label>
+        <link refid="toner__save_8c"/>
+      </node>
+      <node id="1">
+        <label>src/resources/strings.h</label>
+        <link refid="strings_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/resources/strings_en.c</label>
+        <link refid="strings__en_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" prot="public" static="no" strong="no">
+        <type></type>
+        <name>StrId_t</name>
+        <enumvalue id="strings_8h_1af0e397925f8a4b33509d06c8bf6820caafc6135537db3d25df5a27823ab866e0e" prot="public">
+          <name>STR_COPIES</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa53096af2c1e096dde115dbec1a9277b4" prot="public">
+          <name>STR_DUPLEX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa0007a52ffed2c30d9d5f9933e9264b27" prot="public">
+          <name>STR_TONER_SAVE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa12b9f17bb90682d97da628cb95971553" prot="public">
+          <name>STR_QUALITY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa7516b15aba41a57d0fc85908af0e630b" prot="public">
+          <name>STR_COUNT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/resources/strings.h" line="3" column="1" bodyfile="src/resources/strings.h" bodystart="3" bodyend="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char * Str_Get</definition>
+        <argsstring>(StrId_t id)</argsstring>
+        <name>Str_Get</name>
+        <param>
+          <type><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" kindref="member">StrId_t</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/resources/strings.h" line="11" column="12" bodyfile="src/resources/strings_en.c" bodystart="10" bodyend="13" declfile="src/resources/strings.h" declline="11" declcolumn="12"/>
+        <references refid="strings__en_8c_1a2939c475e3c820caf24e3c243b0a364d" compoundref="strings__en_8c" startline="3" endline="8">g_strings_en</references>
+        <references refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" compoundref="strings__en_8c" startline="10" endline="13">Str_Get</references>
+        <referencedby refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" compoundref="strings__en_8c" startline="10" endline="13">Str_Get</referencedby>
+        <referencedby refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="30" endline="37">TonerSave_MenuHandler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>STRINGS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRINGS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caafc6135537db3d25df5a27823ab866e0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caafc6135537db3d25df5a27823ab866e0e" kindref="member">STR_COPIES</ref>,</highlight></codeline>
+<codeline lineno="5" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa53096af2c1e096dde115dbec1a9277b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa53096af2c1e096dde115dbec1a9277b4" kindref="member">STR_DUPLEX</ref>,</highlight></codeline>
+<codeline lineno="6" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa0007a52ffed2c30d9d5f9933e9264b27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa0007a52ffed2c30d9d5f9933e9264b27" kindref="member">STR_TONER_SAVE</ref>,</highlight></codeline>
+<codeline lineno="7" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa12b9f17bb90682d97da628cb95971553" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa12b9f17bb90682d97da628cb95971553" kindref="member">STR_QUALITY</ref>,</highlight></codeline>
+<codeline lineno="8" refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa7516b15aba41a57d0fc85908af0e630b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa7516b15aba41a57d0fc85908af0e630b" kindref="member">STR_COUNT</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}<sp/><ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" kindref="member">StrId_t</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" kindref="member">Str_Get</ref>(<ref refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" kindref="member">StrId_t</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/resources/strings.h"/>
+  </compounddef>
+</doxygen>

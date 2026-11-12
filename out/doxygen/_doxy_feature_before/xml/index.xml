@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.18.0" xml:lang="en-US">
+  <compound refid="struct_nv_settings__t" kind="struct"><name>NvSettings_t</name>
+    <member refid="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" kind="variable"><name>copies</name></member>
+    <member refid="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" kind="variable"><name>duplex</name></member>
+    <member refid="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" kind="variable"><name>language</name></member>
+    <member refid="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" kind="variable"><name>quality</name></member>
+  </compound>
+  <compound refid="struct_pjl_entry__t" kind="struct"><name>PjlEntry_t</name>
+    <member refid="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" kind="variable"><name>cmd</name></member>
+    <member refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" kind="variable"><name>fn</name></member>
+  </compound>
+  <compound refid="model__a_8h" kind="file"><name>model_a.h</name>
+    <member refid="model__a_8h_1a5a9b7cbd9eecea00b9870891829bd576" kind="define"><name>MODEL_NAME</name></member>
+    <member refid="model__a_8h_1a6fb82d66b9e90b649b433fcb912f1303" kind="define"><name>SUPPORT_DUPLEX</name></member>
+  </compound>
+  <compound refid="pjl__commands_8c" kind="file"><name>pjl_commands.c</name>
+    <member refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" kind="typedef"><name>PjlHandler_t</name></member>
+    <member refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kind="variable"><name>g_pjl_table</name></member>
+    <member refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" kind="function"><name>Pjl_SetCopies</name></member>
+    <member refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" kind="function"><name>Pjl_SetDuplex</name></member>
+    <member refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" kind="function"><name>Pjl_Dispatch</name></member>
+  </compound>
+  <compound refid="menu__table_8c" kind="file"><name>menu_table.c</name>
+    <member refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kind="variable"><name>g_menu_table</name></member>
+    <member refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" kind="function"><name>Menu_Dispatch</name></member>
+  </compound>
+  <compound refid="render_8c" kind="file"><name>render.c</name>
+    <member refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" kind="function"><name>Render_Page</name></member>
+  </compound>
+  <compound refid="strings_8h" kind="file"><name>strings.h</name>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" kind="enum"><name>StrId_t</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caafc6135537db3d25df5a27823ab866e0e" kind="enumvalue"><name>STR_COPIES</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa53096af2c1e096dde115dbec1a9277b4" kind="enumvalue"><name>STR_DUPLEX</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa12b9f17bb90682d97da628cb95971553" kind="enumvalue"><name>STR_QUALITY</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa7516b15aba41a57d0fc85908af0e630b" kind="enumvalue"><name>STR_COUNT</name></member>
+    <member refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" kind="function"><name>Str_Get</name></member>
+  </compound>
+  <compound refid="strings__en_8c" kind="file"><name>strings_en.c</name>
+    <member refid="strings__en_8c_1a2939c475e3c820caf24e3c243b0a364d" kind="variable"><name>g_strings_en</name></member>
+    <member refid="strings__en_8c_1ae471e5df1a5cef05e75d60a5f3260c00" kind="function"><name>Str_Get</name></member>
+  </compound>
+  <compound refid="nv__settings_8c" kind="file"><name>nv_settings.c</name>
+    <member refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kind="variable"><name>g_settings</name></member>
+    <member refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" kind="function"><name>NV_GetSettings</name></member>
+    <member refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" kind="function"><name>NV_LoadDefaults</name></member>
+  </compound>
+  <compound refid="nv__settings_8h" kind="file"><name>nv_settings.h</name>
+    <member refid="nv__settings_8h_1a61b14662331f2275fb2c02e5e84a7fad" kind="function"><name>NV_GetSettings</name></member>
+    <member refid="nv__settings_8h_1a20f807245325f6d4a139414b581d7c1b" kind="function"><name>NV_LoadDefaults</name></member>
+  </compound>
+  <compound refid="dir_8a0776572ba2252f65a895457421e228" kind="dir"><name>src/cmd</name>
+  </compound>
+  <compound refid="dir_9f351d46ce3cc29445a41dc3a31e6919" kind="dir"><name>config</name>
+  </compound>
+  <compound refid="dir_36b9b0d2401457bc88cc6d3477b4619d" kind="dir"><name>src/panel</name>
+  </compound>
+  <compound refid="dir_88882e61be18287799144fcdac847ecd" kind="dir"><name>src/print</name>
+  </compound>
+  <compound refid="dir_fa3b942b33b04fef8622e6ed9abffc5c" kind="dir"><name>src/resources</name>
+  </compound>
+  <compound refid="dir_ded1f21a39ae19e27d2bdf7bc3638045" kind="dir"><name>src/settings</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

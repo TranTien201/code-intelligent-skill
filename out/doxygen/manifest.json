@@ -1,0 +1,202 @@
+{
+  "add": [
+    {
+      "key": "STR_TONER_SAVE",
+      "reason": "feature"
+    },
+    {
+      "key": "TONER_SAVE_HIGH",
+      "reason": "feature"
+    },
+    {
+      "key": "TONER_SAVE_LOW",
+      "reason": "feature"
+    },
+    {
+      "key": "TONER_SAVE_OFF",
+      "reason": "feature"
+    },
+    {
+      "key": "TonerSave_ApplyDensity",
+      "reason": "feature"
+    },
+    {
+      "key": "TonerSave_GetLevel",
+      "reason": "feature"
+    },
+    {
+      "key": "TonerSave_MenuHandler",
+      "reason": "feature"
+    },
+    {
+      "key": "TonerSave_PjlSet",
+      "reason": "feature"
+    },
+    {
+      "key": "is_valid@src/features/toner_save/toner_save.c",
+      "reason": "feature"
+    },
+    {
+      "key": "k_percent@src/features/toner_save/toner_save.c",
+      "reason": "feature"
+    },
+    {
+      "key": "Density_Scale",
+      "reason": "dependency",
+      "path": "Density_Scale <- TonerSave_ApplyDensity"
+    },
+    {
+      "key": "DENSITY_MAX",
+      "reason": "dependency",
+      "path": "DENSITY_MAX <- Density_Scale <- TonerSave_ApplyDensity"
+    }
+  ],
+  "merge": [
+    "NV_LoadDefaults",
+    "NvSettings_t",
+    "Render_Page",
+    "StrId_t",
+    "g_menu_table@src/panel/menu_table.c",
+    "g_pjl_table@src/cmd/pjl_commands.c",
+    "g_strings_en@src/resources/strings_en.c"
+  ],
+  "conflicts": [
+    {
+      "key": "Clamp",
+      "path": "Clamp <- TonerSave_ApplyDensity",
+      "used_in_b_by": [],
+      "suggestion": "SAFE_REPLACE"
+    }
+  ],
+  "guards": [
+    {
+      "macro": "SUPPORT_TONER_SAVE",
+      "defined_in_a": "config/model_a.h",
+      "used_by": []
+    }
+  ],
+  "drift": [
+    "TonerSave_ApplyDensity"
+  ],
+  "drift_shared": [
+    "g_menu_table@src/panel/menu_table.c"
+  ],
+  "report_only": [
+    {
+      "key": "EcoReport_Print",
+      "uses": "TONER_SAVE_OFF",
+      "edge": "USES_CONST"
+    },
+    {
+      "key": "EcoReport_Print",
+      "uses": "TonerSave_GetLevel",
+      "edge": "CALLS"
+    }
+  ],
+  "glue_review": [
+    {
+      "key": "Menu_Copies",
+      "uses": "is_valid@src/features/toner_save/toner_save.c",
+      "edge": "CALLS"
+    },
+    {
+      "key": "is_valid@src/panel/menu.c",
+      "uses": "is_valid@src/features/toner_save/toner_save.c",
+      "edge": "CALLS"
+    }
+  ],
+  "stop_identical": [
+    "NV_GetSettings",
+    "Log_Info",
+    "Str_Get"
+  ],
+  "already_in_b": [],
+  "b_impact": [
+    {
+      "key": "NV_LoadDefaults",
+      "kind": "function",
+      "used_in_b_by": [
+        "main"
+      ]
+    },
+    {
+      "key": "NvSettings_t",
+      "kind": "type",
+      "used_in_b_by": [
+        "NV_GetSettings",
+        "NV_LoadDefaults",
+        "g_settings@src/settings/nv_settings.c"
+      ]
+    },
+    {
+      "key": "Render_Page",
+      "kind": "function",
+      "used_in_b_by": [
+        "main"
+      ]
+    },
+    {
+      "key": "StrId_t",
+      "kind": "type",
+      "used_in_b_by": [
+        "Str_Get"
+      ]
+    },
+    {
+      "key": "g_menu_table@src/panel/menu_table.c",
+      "kind": "var",
+      "used_in_b_by": [
+        "Menu_Dispatch"
+      ]
+    },
+    {
+      "key": "g_pjl_table@src/cmd/pjl_commands.c",
+      "kind": "var",
+      "used_in_b_by": [
+        "Pjl_Dispatch"
+      ]
+    },
+    {
+      "key": "g_strings_en@src/resources/strings_en.c",
+      "kind": "var",
+      "used_in_b_by": [
+        "Str_Get"
+      ]
+    }
+  ],
+  "missing_in_latest": [],
+  "visited": 19,
+  "files": {
+    "new": [
+      "src/features/toner_save/toner_save.c",
+      "src/features/toner_save/toner_save.h",
+      "src/print/density.c",
+      "src/print/density.h"
+    ],
+    "merge": [
+      "Makefile",
+      "src/cmd/pjl_commands.c",
+      "src/panel/menu_table.c",
+      "src/print/render.c",
+      "src/resources/strings.h",
+      "src/resources/strings_en.c",
+      "src/settings/nv_settings.c",
+      "src/settings/nv_settings.h"
+    ],
+    "insert_symbol_into_existing": [],
+    "config_not_in_b": [
+      "config/model_a.h"
+    ]
+  },
+  "risk": {
+    "level": "HIGH",
+    "reasons": [
+      "HIGH: kiểu dữ liệu dùng chung 'NvSettings_t' bị sửa (B đang dùng ở 3 chỗ; kiểm tra NVRAM/layout)",
+      "HIGH: kiểu dữ liệu dùng chung 'StrId_t' bị sửa (B đang dùng ở 1 chỗ; kiểm tra NVRAM/layout)",
+      "HIGH: 'Clamp' có ở B nhưng KHÁC A -> xung đột, cần người/LLM quyết",
+      "MEDIUM: B chưa define 'SUPPORT_TONER_SAVE' -> copy xong code KHÔNG được build",
+      "MEDIUM: 1 symbol đã thay đổi sau commit feature (drift)",
+      "MEDIUM: 2 điểm nối nghi vấn ngoài diff"
+    ]
+  }
+}

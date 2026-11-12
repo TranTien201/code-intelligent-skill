@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="struct_menu_entry__t" kind="struct" language="C++" prot="public">
+    <compoundname>MenuEntry_t</compoundname>
+    <includes refid="menu_8h" local="no">menu.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_menu_entry__t_1a73de158ceb71d1ab891cd12764d3f070" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* MenuEntry_t::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>MenuEntry_t::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="5" column="16" bodyfile="src/panel/menu.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" prot="public" static="no" mutable="no">
+        <type><ref refid="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" kindref="member">MenuHandler_t</ref></type>
+        <definition>MenuHandler_t MenuEntry_t::handler</definition>
+        <argsstring></argsstring>
+        <name>handler</name>
+        <qualifiedname>MenuEntry_t::handler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/panel/menu.h" line="6" column="19" bodyfile="src/panel/menu.h" bodystart="6" bodyend="-1"/>
+        <referencedby refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" compoundref="menu__table_8c" startline="13" endline="21">Menu_Dispatch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/panel/menu.h" line="4" column="1" bodyfile="src/panel/menu.h" bodystart="4" bodyend="7"/>
+    <listofallmembers>
+      <member refid="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" prot="public" virt="non-virtual"><scope>MenuEntry_t</scope><name>handler</name></member>
+      <member refid="struct_menu_entry__t_1a73de158ceb71d1ab891cd12764d3f070" prot="public" virt="non-virtual"><scope>MenuEntry_t</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

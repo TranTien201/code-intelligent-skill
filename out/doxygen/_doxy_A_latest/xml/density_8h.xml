@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="density_8h" kind="file" language="C++">
+    <compoundname>density.h</compoundname>
+    <includedby refid="toner__save_8c" local="yes">src/features/toner_save/toner_save.c</includedby>
+    <includedby refid="menu_8c" local="yes">src/panel/menu.c</includedby>
+    <includedby refid="density_8c" local="yes">src/print/density.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/features/toner_save/toner_save.c</label>
+        <link refid="toner__save_8c"/>
+      </node>
+      <node id="3">
+        <label>src/panel/menu.c</label>
+        <link refid="menu_8c"/>
+      </node>
+      <node id="4">
+        <label>src/print/density.c</label>
+        <link refid="density_8c"/>
+      </node>
+      <node id="1">
+        <label>src/print/density.h</label>
+        <link refid="density_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="density_8h_1a59b69a3daf55cf53093b58a71f1fe9b5" prot="public" static="no">
+        <name>DENSITY_MAX</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/print/density.h" line="3" column="17" bodyfile="src/print/density.h" bodystart="3" bodyend="-1"/>
+        <referencedby refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="density_8h_1a51800ccb4c3bec03d2d01c6fe27270d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Density_Scale</definition>
+        <argsstring>(int base, int percent)</argsstring>
+        <name>Density_Scale</name>
+        <param>
+          <type>int</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>percent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/print/density.h" line="4" column="5" bodyfile="src/print/density.c" bodystart="4" bodyend="7" declfile="src/print/density.h" declline="4" declcolumn="5"/>
+        <references refid="math__util_8c_1a9193cba771eb019e6de6c928961616c0" compoundref="math__util_8c" startline="3" endline="8">Clamp</references>
+        <references refid="density_8h_1a59b69a3daf55cf53093b58a71f1fe9b5" compoundref="density_8h" startline="3">DENSITY_MAX</references>
+        <references refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</references>
+        <referencedby refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</referencedby>
+        <referencedby refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" compoundref="menu_8c" startline="20" endline="23">Menu_Quality</referencedby>
+        <referencedby refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" compoundref="toner__save_8c" startline="21" endline="28">TonerSave_ApplyDensity</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>DENSITY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DENSITY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="density_8h_1a59b69a3daf55cf53093b58a71f1fe9b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DENSITY_MAX<sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" kindref="member">Density_Scale</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>base,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>percent);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/print/density.h"/>
+  </compounddef>
+</doxygen>

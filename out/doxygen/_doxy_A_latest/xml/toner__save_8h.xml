@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="toner__save_8h" kind="file" language="C++">
+    <compoundname>toner_save.h</compoundname>
+    <includedby refid="pjl__commands_8c" local="yes">src/cmd/pjl_commands.c</includedby>
+    <includedby refid="eco__report_8c" local="yes">src/features/eco_report/eco_report.c</includedby>
+    <includedby refid="toner__save_8c" local="yes">src/features/toner_save/toner_save.c</includedby>
+    <includedby refid="menu__table_8c" local="yes">src/panel/menu_table.c</includedby>
+    <includedby refid="render_8c" local="yes">src/print/render.c</includedby>
+    <includedby refid="nv__settings_8c" local="yes">src/settings/nv_settings.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/cmd/pjl_commands.c</label>
+        <link refid="pjl__commands_8c"/>
+      </node>
+      <node id="3">
+        <label>src/features/eco_report/eco_report.c</label>
+        <link refid="eco__report_8c"/>
+      </node>
+      <node id="4">
+        <label>src/features/toner_save/toner_save.c</label>
+        <link refid="toner__save_8c"/>
+      </node>
+      <node id="1">
+        <label>src/features/toner_save/toner_save.h</label>
+        <link refid="toner__save_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+      </node>
+      <node id="6">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+      </node>
+      <node id="7">
+        <label>src/settings/nv_settings.c</label>
+        <link refid="nv__settings_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@212310312017256071301062163364276106122124115044</name>
+        <enumvalue id="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" prot="public">
+          <name>TONER_SAVE_OFF</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a2dd746fd7d264c05a841facbf6d6ffdd" prot="public">
+          <name>TONER_SAVE_LOW</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3aec422a4718ce1963933366ad91110f48" prot="public">
+          <name>TONER_SAVE_HIGH</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/toner_save/toner_save.h" line="3" column="1" bodyfile="src/features/toner_save/toner_save.h" bodystart="3" bodyend="7"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="toner__save_8h_1aaa4ae1688b13a3127513d353963b7de2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TonerSave_GetLevel</definition>
+        <argsstring>(void)</argsstring>
+        <name>TonerSave_GetLevel</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/toner_save/toner_save.h" line="9" column="5" bodyfile="src/features/toner_save/toner_save.c" bodystart="16" bodyend="19" declfile="src/features/toner_save/toner_save.h" declline="9" declcolumn="5"/>
+        <references refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" compoundref="nv__settings_8c" startline="6" endline="9">NV_GetSettings</references>
+        <references refid="struct_nv_settings__t_1a4edff143328ffe3abed15f8a899c7fae" compoundref="nv__settings_8h" startline="8">NvSettings_t::toner_save_level</references>
+        <references refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="16" endline="19">TonerSave_GetLevel</references>
+        <referencedby refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</referencedby>
+        <referencedby refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" compoundref="toner__save_8c" startline="21" endline="28">TonerSave_ApplyDensity</referencedby>
+        <referencedby refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="16" endline="19">TonerSave_GetLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="toner__save_8h_1aa73546a5e0af0a32982ddf9390299189" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TonerSave_ApplyDensity</definition>
+        <argsstring>(int density)</argsstring>
+        <name>TonerSave_ApplyDensity</name>
+        <param>
+          <type>int</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/toner_save/toner_save.h" line="10" column="5" bodyfile="src/features/toner_save/toner_save.c" bodystart="21" bodyend="28" declfile="src/features/toner_save/toner_save.h" declline="10" declcolumn="5"/>
+        <references refid="math__util_8c_1a9193cba771eb019e6de6c928961616c0" compoundref="math__util_8c" startline="3" endline="8">Clamp</references>
+        <references refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" compoundref="density_8c" startline="4" endline="7">Density_Scale</references>
+        <references refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" compoundref="toner__save_8c" startline="11" endline="14">is_valid</references>
+        <references refid="toner__save_8c_1a537c3dc984de53642a733be38ba95964" compoundref="toner__save_8c" startline="9" endline="9">k_percent</references>
+        <references refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3aec422a4718ce1963933366ad91110f48" compoundref="toner__save_8h" startline="6">TONER_SAVE_HIGH</references>
+        <references refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" compoundref="toner__save_8h" startline="4">TONER_SAVE_OFF</references>
+        <references refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" compoundref="toner__save_8c" startline="21" endline="28">TonerSave_ApplyDensity</references>
+        <references refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="16" endline="19">TonerSave_GetLevel</references>
+        <referencedby refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="8" endline="16">Render_Page</referencedby>
+        <referencedby refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" compoundref="toner__save_8c" startline="21" endline="28">TonerSave_ApplyDensity</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="toner__save_8h_1ae4c23b509a1ca1a0c5159407112cb02a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TonerSave_MenuHandler</definition>
+        <argsstring>(int key)</argsstring>
+        <name>TonerSave_MenuHandler</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/toner_save/toner_save.h" line="11" column="5" bodyfile="src/features/toner_save/toner_save.c" bodystart="30" bodyend="37" declfile="src/features/toner_save/toner_save.h" declline="11" declcolumn="5"/>
+        <references refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" compoundref="toner__save_8c" startline="11" endline="14">is_valid</references>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <references refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" compoundref="nv__settings_8c" startline="6" endline="9">NV_GetSettings</references>
+        <references refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" compoundref="strings__en_8c" startline="10" endline="13">Str_Get</references>
+        <references refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa0007a52ffed2c30d9d5f9933e9264b27" compoundref="strings_8h" startline="6">STR_TONER_SAVE</references>
+        <references refid="struct_nv_settings__t_1a4edff143328ffe3abed15f8a899c7fae" compoundref="nv__settings_8h" startline="8">NvSettings_t::toner_save_level</references>
+        <references refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="30" endline="37">TonerSave_MenuHandler</references>
+        <referencedby refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="30" endline="37">TonerSave_MenuHandler</referencedby>
+        <referencedby refid="toner__save_8c_1a29c826da79973eca099f1c127569872f" compoundref="toner__save_8c" startline="39" endline="42">TonerSave_PjlSet</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="toner__save_8h_1a29c826da79973eca099f1c127569872f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TonerSave_PjlSet</definition>
+        <argsstring>(const char *arg)</argsstring>
+        <name>TonerSave_PjlSet</name>
+        <param>
+          <type>const char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/toner_save/toner_save.h" line="12" column="5" bodyfile="src/features/toner_save/toner_save.c" bodystart="39" bodyend="42" declfile="src/features/toner_save/toner_save.h" declline="12" declcolumn="5"/>
+        <references refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" compoundref="toner__save_8c" startline="30" endline="37">TonerSave_MenuHandler</references>
+        <references refid="toner__save_8c_1a29c826da79973eca099f1c127569872f" compoundref="toner__save_8c" startline="39" endline="42">TonerSave_PjlSet</references>
+        <referencedby refid="toner__save_8c_1a29c826da79973eca099f1c127569872f" compoundref="toner__save_8c" startline="39" endline="42">TonerSave_PjlSet</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TONER_SAVE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TONER_SAVE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4" refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" kindref="member">TONER_SAVE_OFF</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="5" refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a2dd746fd7d264c05a841facbf6d6ffdd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a2dd746fd7d264c05a841facbf6d6ffdd" kindref="member">TONER_SAVE_LOW</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="6" refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3aec422a4718ce1963933366ad91110f48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3aec422a4718ce1963933366ad91110f48" kindref="member">TONER_SAVE_HIGH</ref><sp/>=<sp/>2</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" kindref="member">TonerSave_GetLevel</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" kindref="member">TonerSave_ApplyDensity</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>density);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" kindref="member">TonerSave_MenuHandler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="toner__save_8c_1a29c826da79973eca099f1c127569872f" kindref="member">TonerSave_PjlSet</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="src/features/toner_save/toner_save.h"/>
+  </compounddef>
+</doxygen>

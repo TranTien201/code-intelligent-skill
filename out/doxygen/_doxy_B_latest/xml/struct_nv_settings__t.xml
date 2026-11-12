@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="struct_nv_settings__t" kind="struct" language="C++" prot="public">
+    <compoundname>NvSettings_t</compoundname>
+    <includes refid="nv__settings_8h" local="no">nv_settings.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int NvSettings_t::copies</definition>
+        <argsstring></argsstring>
+        <name>copies</name>
+        <qualifiedname>NvSettings_t::copies</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.h" line="6" column="9" bodyfile="src/settings/nv_settings.h" bodystart="6" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int NvSettings_t::duplex</definition>
+        <argsstring></argsstring>
+        <name>duplex</name>
+        <qualifiedname>NvSettings_t::duplex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.h" line="7" column="9" bodyfile="src/settings/nv_settings.h" bodystart="7" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int NvSettings_t::language</definition>
+        <argsstring></argsstring>
+        <name>language</name>
+        <qualifiedname>NvSettings_t::language</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.h" line="8" column="9" bodyfile="src/settings/nv_settings.h" bodystart="8" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int NvSettings_t::quality</definition>
+        <argsstring></argsstring>
+        <name>quality</name>
+        <qualifiedname>NvSettings_t::quality</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.h" line="9" column="9" bodyfile="src/settings/nv_settings.h" bodystart="9" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_nv_settings__t_1aa3a3c684c314882edc3758310e02d2dd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int NvSettings_t::fax_resolution</definition>
+        <argsstring></argsstring>
+        <name>fax_resolution</name>
+        <qualifiedname>NvSettings_t::fax_resolution</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/settings/nv_settings.h" line="10" column="9" bodyfile="src/settings/nv_settings.h" bodystart="10" bodyend="-1"/>
+        <referencedby refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" compoundref="nv__settings_8c" startline="10" endline="17">NV_LoadDefaults</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/settings/nv_settings.h" line="5" column="1" bodyfile="src/settings/nv_settings.h" bodystart="5" bodyend="11"/>
+    <listofallmembers>
+      <member refid="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" prot="public" virt="non-virtual"><scope>NvSettings_t</scope><name>copies</name></member>
+      <member refid="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" prot="public" virt="non-virtual"><scope>NvSettings_t</scope><name>duplex</name></member>
+      <member refid="struct_nv_settings__t_1aa3a3c684c314882edc3758310e02d2dd" prot="public" virt="non-virtual"><scope>NvSettings_t</scope><name>fax_resolution</name></member>
+      <member refid="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" prot="public" virt="non-virtual"><scope>NvSettings_t</scope><name>language</name></member>
+      <member refid="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" prot="public" virt="non-virtual"><scope>NvSettings_t</scope><name>quality</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

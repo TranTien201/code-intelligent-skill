@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="model__a_8h" kind="file" language="C++">
+    <compoundname>model_a.h</compoundname>
+    <includedby refid="model__config_8h" local="yes">config/model_config.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>config/model_a.h</label>
+        <link refid="model__a_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>config/model_config.h</label>
+        <link refid="model__config_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/panel/menu_table.c</label>
+        <link refid="menu__table_8c"/>
+      </node>
+      <node id="4">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="model__a_8h_1a5a9b7cbd9eecea00b9870891829bd576" prot="public" static="no">
+        <name>MODEL_NAME</name>
+        <initializer>&quot;Printer-A&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_a.h" line="1" column="9" bodyfile="config/model_a.h" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="model__a_8h_1a6fb82d66b9e90b649b433fcb912f1303" prot="public" static="no">
+        <name>SUPPORT_DUPLEX</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_a.h" line="2" column="9" bodyfile="config/model_a.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="model__a_8h_1aa899f9399be5af1f673c28cadb38f428" prot="public" static="no">
+        <name>SUPPORT_TONER_SAVE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_a.h" line="3" column="9" bodyfile="config/model_a.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="model__a_8h_1a8190dd96e25b8d84286c5eab12141a18" prot="public" static="no">
+        <name>SUPPORT_ECO_REPORT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="config/model_a.h" line="4" column="9" bodyfile="config/model_a.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="model__a_8h_1a5a9b7cbd9eecea00b9870891829bd576" refkind="member"><highlight class="preprocessor">#define<sp/>MODEL_NAME<sp/>&quot;Printer-A&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="model__a_8h_1a6fb82d66b9e90b649b433fcb912f1303" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUPPORT_DUPLEX<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="model__a_8h_1aa899f9399be5af1f673c28cadb38f428" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUPPORT_TONER_SAVE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="model__a_8h_1a8190dd96e25b8d84286c5eab12141a18" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUPPORT_ECO_REPORT<sp/>1</highlight></codeline>
+    </programlisting>
+    <location file="config/model_a.h"/>
+  </compounddef>
+</doxygen>

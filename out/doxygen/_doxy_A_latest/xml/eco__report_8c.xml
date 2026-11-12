@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="eco__report_8c" kind="file" language="C++">
+    <compoundname>eco_report.c</compoundname>
+    <includes refid="eco__report_8h" local="yes">eco_report.h</includes>
+    <includes refid="toner__save_8h" local="yes">../toner_save/toner_save.h</includes>
+    <includes refid="log_8h" local="yes">../../core/log.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>../../core/log.h</label>
+        <link refid="log_8h"/>
+      </node>
+      <node id="1">
+        <label>src/features/eco_report/eco_report.c</label>
+        <link refid="eco__report_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>eco_report.h</label>
+        <link refid="eco__report_8h"/>
+      </node>
+      <node id="3">
+        <label>../toner_save/toner_save.h</label>
+        <link refid="toner__save_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EcoReport_Print</definition>
+        <argsstring>(void)</argsstring>
+        <name>EcoReport_Print</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/eco_report/eco_report.c" line="5" column="6" bodyfile="src/features/eco_report/eco_report.c" bodystart="5" bodyend="9"/>
+        <references refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</references>
+        <references refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" compoundref="log_8c" startline="4" endline="7">Log_Info</references>
+        <references refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" compoundref="toner__save_8h" startline="4">TONER_SAVE_OFF</references>
+        <references refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" compoundref="toner__save_8c" startline="16" endline="19">TonerSave_GetLevel</references>
+        <referencedby refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</referencedby>
+        <referencedby refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="eco__report_8c_1aa15fa73bba493253538d15200b614e60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EcoReport_MenuHandler</definition>
+        <argsstring>(int key)</argsstring>
+        <name>EcoReport_MenuHandler</name>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/features/eco_report/eco_report.c" line="11" column="5" bodyfile="src/features/eco_report/eco_report.c" bodystart="11" bodyend="15"/>
+        <references refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</references>
+        <references refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" compoundref="eco__report_8c" startline="5" endline="9">EcoReport_Print</references>
+        <referencedby refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" compoundref="eco__report_8c" startline="11" endline="15">EcoReport_MenuHandler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="eco__report_8h" kindref="compound">eco_report.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="toner__save_8h" kindref="compound">../toner_save/toner_save.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="log_8h" kindref="compound">../../core/log.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" kindref="member">EcoReport_Print</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" kindref="member">TonerSave_GetLevel</ref>()<sp/>!=<sp/><ref refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" kindref="member">TONER_SAVE_OFF</ref>)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kindref="member">Log_Info</ref>(</highlight><highlight class="stringliteral">&quot;Eco:<sp/>toner<sp/>save<sp/>ON&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" kindref="member">EcoReport_MenuHandler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" kindref="member">EcoReport_Print</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>key;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/features/eco_report/eco_report.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.18.0" xml:lang="en-US">
+  <compound refid="struct_menu_entry__t" kind="struct"><name>MenuEntry_t</name>
+    <member refid="struct_menu_entry__t_1a73de158ceb71d1ab891cd12764d3f070" kind="variable"><name>name</name></member>
+    <member refid="struct_menu_entry__t_1a7e2a7302d839fb4a9da4b9626b5b25e7" kind="variable"><name>handler</name></member>
+  </compound>
+  <compound refid="struct_nv_settings__t" kind="struct"><name>NvSettings_t</name>
+    <member refid="struct_nv_settings__t_1a22e2e8b31e8df9875c6d9f58489dfa1d" kind="variable"><name>copies</name></member>
+    <member refid="struct_nv_settings__t_1af0fbf4e4248d446e60479a53920849a4" kind="variable"><name>duplex</name></member>
+    <member refid="struct_nv_settings__t_1a4edff143328ffe3abed15f8a899c7fae" kind="variable"><name>toner_save_level</name></member>
+    <member refid="struct_nv_settings__t_1a02281a76f601747831e037333b014bc9" kind="variable"><name>language</name></member>
+    <member refid="struct_nv_settings__t_1a6d9c64c17340f5b45241abe93abfc3ef" kind="variable"><name>quality</name></member>
+  </compound>
+  <compound refid="struct_pjl_entry__t" kind="struct"><name>PjlEntry_t</name>
+    <member refid="struct_pjl_entry__t_1aa333c069a1347cc9412671b9db74b5d9" kind="variable"><name>cmd</name></member>
+    <member refid="struct_pjl_entry__t_1aa88009e38e7c3d81d069dcffd8b1d1a3" kind="variable"><name>fn</name></member>
+  </compound>
+  <compound refid="model__a_8h" kind="file"><name>model_a.h</name>
+    <member refid="model__a_8h_1a5a9b7cbd9eecea00b9870891829bd576" kind="define"><name>MODEL_NAME</name></member>
+    <member refid="model__a_8h_1a6fb82d66b9e90b649b433fcb912f1303" kind="define"><name>SUPPORT_DUPLEX</name></member>
+    <member refid="model__a_8h_1aa899f9399be5af1f673c28cadb38f428" kind="define"><name>SUPPORT_TONER_SAVE</name></member>
+    <member refid="model__a_8h_1a8190dd96e25b8d84286c5eab12141a18" kind="define"><name>SUPPORT_ECO_REPORT</name></member>
+  </compound>
+  <compound refid="model__config_8h" kind="file"><name>model_config.h</name>
+  </compound>
+  <compound refid="pjl__commands_8c" kind="file"><name>pjl_commands.c</name>
+    <member refid="pjl__commands_8c_1a495b1245a0c63cb309de753cd979049c" kind="typedef"><name>PjlHandler_t</name></member>
+    <member refid="pjl__commands_8c_1a3ff75d5b6b75b061dca2938d86b13ad5" kind="variable"><name>g_pjl_table</name></member>
+    <member refid="pjl__commands_8c_1a3205dca3f432ea8c9d7a12f2ca762bb2" kind="function"><name>Pjl_SetCopies</name></member>
+    <member refid="pjl__commands_8c_1a18eb8309b475055542bc77986b92db04" kind="function"><name>Pjl_SetDuplex</name></member>
+    <member refid="pjl__commands_8c_1ad8867745f0c9b6284051d7b6a9026ccd" kind="function"><name>Pjl_Dispatch</name></member>
+  </compound>
+  <compound refid="pjl__commands_8h" kind="file"><name>pjl_commands.h</name>
+    <member refid="pjl__commands_8h_1ad8867745f0c9b6284051d7b6a9026ccd" kind="function"><name>Pjl_Dispatch</name></member>
+  </compound>
+  <compound refid="log_8c" kind="file"><name>log.c</name>
+    <member refid="log_8c_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kind="function"><name>Log_Info</name></member>
+  </compound>
+  <compound refid="log_8h" kind="file"><name>log.h</name>
+    <member refid="log_8h_1a77b2cd6b72d6c2a1cccec1aa49fb2cc6" kind="function"><name>Log_Info</name></member>
+  </compound>
+  <compound refid="eco__report_8c" kind="file"><name>eco_report.c</name>
+    <member refid="eco__report_8c_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" kind="function"><name>EcoReport_Print</name></member>
+    <member refid="eco__report_8c_1aa15fa73bba493253538d15200b614e60" kind="function"><name>EcoReport_MenuHandler</name></member>
+  </compound>
+  <compound refid="eco__report_8h" kind="file"><name>eco_report.h</name>
+    <member refid="eco__report_8h_1a2a45bf42b9c651ed488e0c9f4b0b9ef2" kind="function"><name>EcoReport_Print</name></member>
+    <member refid="eco__report_8h_1aa15fa73bba493253538d15200b614e60" kind="function"><name>EcoReport_MenuHandler</name></member>
+  </compound>
+  <compound refid="toner__save_8c" kind="file"><name>toner_save.c</name>
+    <member refid="toner__save_8c_1a537c3dc984de53642a733be38ba95964" kind="variable"><name>k_percent</name></member>
+    <member refid="toner__save_8c_1acc061c805c4a8df5c85cf5a1880fa136" kind="function"><name>is_valid</name></member>
+    <member refid="toner__save_8c_1aaa4ae1688b13a3127513d353963b7de2" kind="function"><name>TonerSave_GetLevel</name></member>
+    <member refid="toner__save_8c_1aa73546a5e0af0a32982ddf9390299189" kind="function"><name>TonerSave_ApplyDensity</name></member>
+    <member refid="toner__save_8c_1ae4c23b509a1ca1a0c5159407112cb02a" kind="function"><name>TonerSave_MenuHandler</name></member>
+    <member refid="toner__save_8c_1a29c826da79973eca099f1c127569872f" kind="function"><name>TonerSave_PjlSet</name></member>
+  </compound>
+  <compound refid="toner__save_8h" kind="file"><name>toner_save.h</name>
+    <member refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3" kind="enum"><name>@212310312017256071301062163364276106122124115044</name></member>
+    <member refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a7852107a4091196fe4c0908ab6c37fb7" kind="enumvalue"><name>TONER_SAVE_OFF</name></member>
+    <member refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3a2dd746fd7d264c05a841facbf6d6ffdd" kind="enumvalue"><name>TONER_SAVE_LOW</name></member>
+    <member refid="toner__save_8h_1a73fde1c630b6355e7588f498f825d1e3aec422a4718ce1963933366ad91110f48" kind="enumvalue"><name>TONER_SAVE_HIGH</name></member>
+    <member refid="toner__save_8h_1aaa4ae1688b13a3127513d353963b7de2" kind="function"><name>TonerSave_GetLevel</name></member>
+    <member refid="toner__save_8h_1aa73546a5e0af0a32982ddf9390299189" kind="function"><name>TonerSave_ApplyDensity</name></member>
+    <member refid="toner__save_8h_1ae4c23b509a1ca1a0c5159407112cb02a" kind="function"><name>TonerSave_MenuHandler</name></member>
+    <member refid="toner__save_8h_1a29c826da79973eca099f1c127569872f" kind="function"><name>TonerSave_PjlSet</name></member>
+  </compound>
+  <compound refid="main_8c" kind="file"><name>main.c</name>
+    <member refid="main_8c_1a840291bc02cba5474a4cb46a9b9566fe" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="menu_8c" kind="file"><name>menu.c</name>
+    <member refid="menu_8c_1a556d671d85464635b4d3d4921245da8e" kind="function"><name>is_valid</name></member>
+    <member refid="menu_8c_1a164b6704b267ba46b06bc6b3e284dd7e" kind="function"><name>Menu_Copies</name></member>
+    <member refid="menu_8c_1abda4b86c9caac43a38c2f799e90a7c94" kind="function"><name>Menu_Duplex</name></member>
+    <member refid="menu_8c_1a0725e3acd30d3b68bd5bbda4b089fa4d" kind="function"><name>Menu_Quality</name></member>
+    <member refid="menu_8c_1ab0e432d9883679eb4085531d53af6ddd" kind="function"><name>Menu_Language</name></member>
+  </compound>
+  <compound refid="menu_8h" kind="file"><name>menu.h</name>
+    <member refid="menu_8h_1ac675cc07095c0605fde24c1d3a41ba17" kind="typedef"><name>MenuHandler_t</name></member>
+    <member refid="menu_8h_1a164b6704b267ba46b06bc6b3e284dd7e" kind="function"><name>Menu_Copies</name></member>
+    <member refid="menu_8h_1abda4b86c9caac43a38c2f799e90a7c94" kind="function"><name>Menu_Duplex</name></member>
+    <member refid="menu_8h_1a0725e3acd30d3b68bd5bbda4b089fa4d" kind="function"><name>Menu_Quality</name></member>
+    <member refid="menu_8h_1ab0e432d9883679eb4085531d53af6ddd" kind="function"><name>Menu_Language</name></member>
+    <member refid="menu_8h_1acbfa6af532c7105c8ea5c15135812afa" kind="function"><name>Menu_Dispatch</name></member>
+  </compound>
+  <compound refid="menu__table_8c" kind="file"><name>menu_table.c</name>
+    <member refid="menu__table_8c_1ae1aaa068ad942e375a16d37d7ff96601" kind="variable"><name>g_menu_table</name></member>
+    <member refid="menu__table_8c_1acbfa6af532c7105c8ea5c15135812afa" kind="function"><name>Menu_Dispatch</name></member>
+  </compound>
+  <compound refid="density_8c" kind="file"><name>density.c</name>
+    <member refid="density_8c_1a51800ccb4c3bec03d2d01c6fe27270d1" kind="function"><name>Density_Scale</name></member>
+  </compound>
+  <compound refid="density_8h" kind="file"><name>density.h</name>
+    <member refid="density_8h_1a59b69a3daf55cf53093b58a71f1fe9b5" kind="define"><name>DENSITY_MAX</name></member>
+    <member refid="density_8h_1a51800ccb4c3bec03d2d01c6fe27270d1" kind="function"><name>Density_Scale</name></member>
+  </compound>
+  <compound refid="render_8c" kind="file"><name>render.c</name>
+    <member refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" kind="function"><name>Render_Page</name></member>
+  </compound>
+  <compound refid="render_8h" kind="file"><name>render.h</name>
+    <member refid="render_8h_1ad0da9be731a14bbdd217ad7c7aeb5095" kind="function"><name>Render_Page</name></member>
+  </compound>
+  <compound refid="strings_8h" kind="file"><name>strings.h</name>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820ca" kind="enum"><name>StrId_t</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caafc6135537db3d25df5a27823ab866e0e" kind="enumvalue"><name>STR_COPIES</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa53096af2c1e096dde115dbec1a9277b4" kind="enumvalue"><name>STR_DUPLEX</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa0007a52ffed2c30d9d5f9933e9264b27" kind="enumvalue"><name>STR_TONER_SAVE</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa12b9f17bb90682d97da628cb95971553" kind="enumvalue"><name>STR_QUALITY</name></member>
+    <member refid="strings_8h_1af0e397925f8a4b33509d06c8bf6820caa7516b15aba41a57d0fc85908af0e630b" kind="enumvalue"><name>STR_COUNT</name></member>
+    <member refid="strings_8h_1ae471e5df1a5cef05e75d60a5f3260c00" kind="function"><name>Str_Get</name></member>
+  </compound>
+  <compound refid="strings__en_8c" kind="file"><name>strings_en.c</name>
+    <member refid="strings__en_8c_1a2939c475e3c820caf24e3c243b0a364d" kind="variable"><name>g_strings_en</name></member>
+    <member refid="strings__en_8c_1ae471e5df1a5cef05e75d60a5f3260c00" kind="function"><name>Str_Get</name></member>
+  </compound>
+  <compound refid="nv__settings_8c" kind="file"><name>nv_settings.c</name>
+    <member refid="nv__settings_8c_1ad1030d23472ab34a986ab7080a61d912" kind="variable"><name>g_settings</name></member>
+    <member refid="nv__settings_8c_1a61b14662331f2275fb2c02e5e84a7fad" kind="function"><name>NV_GetSettings</name></member>
+    <member refid="nv__settings_8c_1a20f807245325f6d4a139414b581d7c1b" kind="function"><name>NV_LoadDefaults</name></member>
+  </compound>
+  <compound refid="nv__settings_8h" kind="file"><name>nv_settings.h</name>
+    <member refid="nv__settings_8h_1a61b14662331f2275fb2c02e5e84a7fad" kind="function"><name>NV_GetSettings</name></member>
+    <member refid="nv__settings_8h_1a20f807245325f6d4a139414b581d7c1b" kind="function"><name>NV_LoadDefaults</name></member>
+  </compound>
+  <compound refid="math__util_8c" kind="file"><name>math_util.c</name>
+    <member refid="math__util_8c_1a9193cba771eb019e6de6c928961616c0" kind="function"><name>Clamp</name></member>
+  </compound>
+  <compound refid="math__util_8h" kind="file"><name>math_util.h</name>
+    <member refid="math__util_8h_1a9193cba771eb019e6de6c928961616c0" kind="function"><name>Clamp</name></member>
+  </compound>
+  <compound refid="dir_8a0776572ba2252f65a895457421e228" kind="dir"><name>src/cmd</name>
+  </compound>
+  <compound refid="dir_9f351d46ce3cc29445a41dc3a31e6919" kind="dir"><name>config</name>
+  </compound>
+  <compound refid="dir_aebb8dcc11953d78e620bbef0b9e2183" kind="dir"><name>src/core</name>
+  </compound>
+  <compound refid="dir_f00275ed25ebf4bdd4d445c21081ae81" kind="dir"><name>src/features/eco_report</name>
+  </compound>
+  <compound refid="dir_751a3bd66ed682f151629a9c0f0ebd6e" kind="dir"><name>src/features</name>
+  </compound>
+  <compound refid="dir_36b9b0d2401457bc88cc6d3477b4619d" kind="dir"><name>src/panel</name>
+  </compound>
+  <compound refid="dir_88882e61be18287799144fcdac847ecd" kind="dir"><name>src/print</name>
+  </compound>
+  <compound refid="dir_fa3b942b33b04fef8622e6ed9abffc5c" kind="dir"><name>src/resources</name>
+  </compound>
+  <compound refid="dir_ded1f21a39ae19e27d2bdf7bc3638045" kind="dir"><name>src/settings</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_3b9ee6501035b0db3bfb4d119519a610" kind="dir"><name>src/features/toner_save</name>
+  </compound>
+  <compound refid="dir_b7878ad5ecbf2506f4125b9d34c97e45" kind="dir"><name>src/util</name>
+  </compound>
+</doxygenindex>

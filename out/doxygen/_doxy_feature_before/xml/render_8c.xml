@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="render_8c" kind="file" language="C++">
+    <compoundname>render.c</compoundname>
+    <includes local="yes">../core/log.h</includes>
+    <includes local="yes">../../config/model_config.h</includes>
+    <includes local="yes">render.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>../../config/model_config.h</label>
+      </node>
+      <node id="2">
+        <label>../core/log.h</label>
+      </node>
+      <node id="1">
+        <label>src/print/render.c</label>
+        <link refid="render_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>render.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Render_Page</definition>
+        <argsstring>(int density)</argsstring>
+        <name>Render_Page</name>
+        <param>
+          <type>int</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/print/render.c" line="5" column="5" bodyfile="src/print/render.c" bodystart="5" bodyend="10"/>
+        <references refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="5" endline="10">Render_Page</references>
+        <referencedby refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" compoundref="render_8c" startline="5" endline="10">Render_Page</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;../core/log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../config/model_config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;render.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="render_8c_1ad0da9be731a14bbdd217ad7c7aeb5095" kindref="member">Render_Page</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>density)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Log_Info(</highlight><highlight class="stringliteral">&quot;render<sp/>start&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>Log_Info(</highlight><highlight class="stringliteral">&quot;render<sp/>done&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>density;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/print/render.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,107 @@
+# Report template (the only authoritative copy)
+
+Create `PORT_REPORT.md` with exactly the content between the fences, then replace every checkpoint
+body placeholder with `Not started.` Headings, column names and status words must match character for character.
+
+Cell rules for all tables: escape `|` as `\|`; multi-line content joined with `<br>`; cell content
+max ~200 characters (truncate with `…` and point to the diff/work file); code in backticks.
+
+```markdown
+# Port Request Report
+
+## Run Metadata
+| Field | Value |
+|---|---|
+| SOURCE_ROOT | |
+| TARGET_ROOT | |
+| SOURCE_REQUEST | |
+| TARGET_REQUEST_ID | |
+| OUTPUT_PARENT | |
+| OUTPUT_ROOT | |
+| REPORT_PATH | |
+| Created at (UTC) | |
+
+## Workflow Status
+| Checkpoint | Status | Approval to start | Next approval gate |
+|---|---|---|---|
+| A | Not started | Not required | Checkpoint B |
+| B | Not started | Not received | Checkpoint C |
+| C | Not started | Not received | Checkpoint D |
+| D | Not started | Not received | Checkpoint E |
+| E | Not started | Not received | Checkpoint F |
+| F | Not started | Not received | None |
+
+## Checkpoint A - Source Request Snapshot Comparison
+### Changed File Manifest
+| No | file | file_status | function | function_status | Modified_line_before | Modified_line_after |
+|---:|---|---|---|---|---|---|
+### Line-Level Changes
+### Gate Result
+
+## Checkpoint B - Source Change Analysis
+### Files Analyzed
+### Latest Source Anchoring
+### Changed Symbols and Behavior
+### Dependencies and Test Coverage
+### Blockers and Context Risk
+### Gate Result
+
+## Checkpoint C - Source/Target Flow Trace
+### Source Behavior
+### Target Behavior
+### Gaps, Evidence, and Confidence
+### Blockers
+### Gate Result
+
+## Checkpoint D - Formula Mapping and Plan
+### Formula Mapping Matrix
+### Target Request-Label Convention
+### Planned Changes
+### Validation Plan
+### Risks
+### Blockers
+### Gate Result
+
+## Checkpoint E - Before/After Implementation
+### Output File Manifest
+### Exact Changes
+### Diff Summary
+### Blockers
+### Gate Result
+
+## Checkpoint F - Validation and Handoff
+### Validation Commands and Results
+### Before/After Comparison
+### Traceability Matrix
+### Limitations and Tests Not Run
+### Final Handoff
+### Gate Result
+```
+
+## Column formats
+
+**Changed File Manifest** (Checkpoint A)
+- `No`: 1, 2, 3 … sequential over the whole table.
+- `file`: repository-relative path in backticks.
+- `Modified_line_before` / `Modified_line_after`: `L<start>[-L<end>]: <content>` for that point's
+  `-` lines / `+` lines. ≤3 lines: all lines joined by `<br>`; more: first 2 lines + `<br>… (+N lines, H###)`.
+  `N/A` when that side has no lines (pure addition / pure deletion) and for non-code files.
+- If no file is confirmed: single row `| 1 | No confirmed files | unknown | N/A | unknown | N/A | N/A |`.
+
+**Line-Level Changes** (Checkpoint A): one `#### \`<path>\`` subsection per changed code file, table:
+`| H-id | Modified_Before (-) | Modified_After (+) |` — one row per line pair (rule in `checkpoints/A-diff.md`),
+unchanged lines omitted, blank cell when a side has no counterpart.
+
+**Gate Result** (every checkpoint): one line per gate item: `PASS|FAIL – <item> – <evidence/number>`.
+
+**Formula Mapping Matrix** (D):
+`| M-id | Formula (source behavior) | S-ids / H-ids | Request location | Latest source location | Target location | Target state | Port class | P-ids | Confidence |`
+
+**Planned Changes** (D):
+`| P-id | Target file | Action | Anchor (exact target text or line) | Content source | Adaptation | Label |`
+
+**Output File Manifest** (E): `| File | Action (added/modified/deleted) | E-ids |`
+
+**Exact Changes** (E): `| E-id | P-id | File:lines (OUT-A) | Change | Status (applied/skipped + reason) |`
+
+**Traceability Matrix** (F): `| H-id | S-id | M-id | P-id | E-id | Output hunk | Result |`
