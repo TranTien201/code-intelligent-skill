@@ -6,7 +6,7 @@ behaviour (mark `AUTO-DECIDED`). **Content source by default = the port version 
 
 | # | Condition | Port class | Action | Interactive | Auto default |
 |---|---|---|---|---|---|
-| 1 | Anchor `NOT_FOUND` / `REMOVED_IN_LATEST` / hunk `GONE` in latest source | `SOURCE_GONE` | Do not port blindly; maybe the feature was reverted or rewritten | **ask, stop** | port REQ-A version, HIGH risk flag |
+| 1 | Anchor `NOT_FOUND` / `REWRITTEN` / `MACRO_GENERATED` / `REMOVED_IN_LATEST` / hunk `GONE` in latest source | `SOURCE_GONE` | Do not port blindly; maybe the feature was reverted or rewritten | **ask, stop** | port REQ-A version, HIGH risk flag |
 | 2 | Any `Low` confidence or `RENAMED_CANDIDATE` (source or target) | `NEEDS_CONFIRMATION` | No code planned until confirmed | **ask, stop** | `Blocked` for that M |
 | 3 | Change type `cosmetic` only | `SKIP_COSMETIC` | Port only if the symbol is ported anyway | plan | plan |
 | 4 | Target state `SAME_AS_SOURCE` (incl. equal modulo aliases) | `SKIP_ALREADY_PRESENT` | No change; cite evidence | plan | plan |

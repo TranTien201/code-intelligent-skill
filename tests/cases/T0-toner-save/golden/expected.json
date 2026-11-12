@@ -1,0 +1,64 @@
+{
+  "add_symbols": [
+    "TonerSave_GetLevel",
+    "TonerSave_ApplyDensity",
+    "TonerSave_MenuHandler",
+    "TonerSave_PjlSet",
+    "is_valid@src/features/toner_save/toner_save.c",
+    "k_percent@src/features/toner_save/toner_save.c",
+    "TONER_SAVE_OFF",
+    "TONER_SAVE_LOW",
+    "TONER_SAVE_HIGH",
+    "STR_TONER_SAVE",
+    "Density_Scale",
+    "DENSITY_MAX"
+  ],
+  "merge_symbols": [
+    "NvSettings_t",
+    "NV_LoadDefaults",
+    "Render_Page",
+    "g_menu_table@src/panel/menu_table.c",
+    "g_pjl_table@src/cmd/pjl_commands.c",
+    "StrId_t",
+    "g_strings_en@src/resources/strings_en.c"
+  ],
+  "conflicts": [
+    "Clamp"
+  ],
+  "guards": [
+    "SUPPORT_TONER_SAVE"
+  ],
+  "drift": [
+    "TonerSave_ApplyDensity"
+  ],
+  "report_only": [
+    "EcoReport_Print"
+  ],
+  "glue_review": [],
+  "must_not_copy": [
+    "EcoReport_Print",
+    "EcoReport_MenuHandler",
+    "Menu_Quality",
+    "SUPPORT_ECO_REPORT"
+  ],
+  "new_files": [
+    "src/features/toner_save/toner_save.c",
+    "src/features/toner_save/toner_save.h",
+    "src/print/density.c",
+    "src/print/density.h"
+  ],
+  "merge_files": [
+    "Makefile",
+    "src/settings/nv_settings.h",
+    "src/settings/nv_settings.c",
+    "src/print/render.c",
+    "src/panel/menu_table.c",
+    "src/cmd/pjl_commands.c",
+    "src/resources/strings.h",
+    "src/resources/strings_en.c"
+  ],
+  "high_impact": [
+    "NvSettings_t",
+    "StrId_t"
+  ]
+}
