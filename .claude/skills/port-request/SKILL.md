@@ -55,8 +55,10 @@ never rename headings, columns or status words.
    (`SOURCE_ROOT`, `TARGET_ROOT`) and one request folder with `Before/` and `After/` (full tree or only changed files).
    Check tools and record the result in Run Metadata notes of the Gate A result:
    ```bash
-   for t in diff grep awk sed find rsync shasum file iconv git; do command -v $t >/dev/null && echo "OK $t" || echo "MISSING $t"; done
+   for t in diff grep awk sed find rsync shasum file iconv git python3; do command -v $t >/dev/null && echo "OK $t" || echo "MISSING $t"; done
    ```
+   `python3` runs only the skill's own offline scripts (`SK/scripts/`, recipes R16/R17; standard library, no
+   network, no embeddings) with `python3 -I`. If it is missing, R16/R17 are skipped and every affected anchor says so.
    `git` is used **only as a file tool** (`git diff --no-index`, `git merge-file`; no repository needed). If it is
    missing, use the `diff`-only fallbacks in the recipes. **Never use `diff3 -m`** (the macOS/BSD version produced
    wrong merges in testing).
@@ -114,7 +116,8 @@ full rewrite). Keep entries concise and factual.
    or `SOURCE_REQUEST`. Builds run only inside `OUTPUT_ROOT/After` or `OUTPUT_ROOT/Before`.
 2. **Scope.** Inside `SOURCE_REQUEST` read only `Before/` and `After/`. No remote services, no network.
    Inputs are **plain folders without version history** (no `.git`): never rely on commit history; every
-   rename/move/evolution is inferred from content only (recipes R11–R14).
+   rename/move/evolution is inferred from content and from the request's own links (recipes R11–R17: link graph,
+   search ladder, fuzzy lines, rename-invariant similarity).
 3. **Evidence or nothing.** Every claim about code cites `path:line` (repository-relative, prefixed
    with the root name: `SRC:`, `TGT:`, `REQ-B:`, `REQ-A:`, `OUT-B:`, `OUT-A:`). No evidence →
    write `unknown` / `Not identified` and add a blocker. Never assume two things are equivalent.
@@ -126,7 +129,10 @@ full rewrite). Keep entries concise and factual.
    is what gets merged (glossary). Ported text is copied as-is; adaptation (alias renames, partial takes,
    conflict options) only where the approved plan (D) says so, each one listed.
 6. **Search with commands, read narrowly.** Use the recipes in `references/c-cpp-search-recipes.md`;
-   read only the line ranges you need (`sed -n 'a,bp'`), not whole repositories.
+   read only the line ranges you need (`sed -n 'a,bp'`), not whole repositories. A name that grep cannot find is
+   not yet a rename: climb the R12 ladder (links → fuzzy lines → stable anchors → similarity → pattern →
+   hypotheses) and conclude only from signals.
 7. **Encoding.** Detect with `file -I`. Never change a file's encoding or line endings in `After/`.
    For viewing non-UTF-8 files use `iconv -f <enc> -t UTF-8` into `_work/`, never in place.
+   Grep non-UTF-8 trees with `LC_ALL=C grep -a` (otherwise they are skipped as binary, silently).
 8. Do not start the next checkpoint's work early (e.g. no snapshots before E, no build before F).

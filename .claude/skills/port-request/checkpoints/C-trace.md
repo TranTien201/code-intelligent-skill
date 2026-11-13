@@ -6,7 +6,7 @@ or in another file – and keep expanding dependencies until the target already 
 **Reads:** `_work/B_*.md`, `_work/alias_map.md`, `SOURCE_ROOT`, `SOURCE_REQUEST/Before|After`, `TARGET_ROOT`
 (plain folders, no history).
 **Writes:** `_work/C_trace.md`, `_work/alias_map.md` (target column), report section C. Never assumes equivalence.
-**Load:** `references/c-cpp-search-recipes.md` (R1–R3, R5–R8, R11–R13), `references/glossary.md`.
+**Load:** `references/c-cpp-search-recipes.md` (R1–R3, R5–R8, R11–R13, R16, R17), `references/glossary.md`; uses `_work/A_links.md`.
 
 ## Steps
 
@@ -18,9 +18,12 @@ Group items into formulas (behaviors). For each, the chain in latest source, ent
 For every S-id, `ext` S-id and dependency `S###.d#` (code and data):
 1. Same path in target → R1 range by the latest name.
 2. Same name elsewhere (R2) → `MOVED` in target.
-3. Not found by name → R11 (file) / R12 (symbol) in the target: compat alias/wrapper, caller anchor (the
-   target's version of a known caller calls something at the same place), neighbor anchor, signature shape,
-   body similarity, literals → `RENAMED` (≥ Medium per R12) or `RENAMED_CANDIDATE` (`Low`).
+3. Not found by name → R11 (file) / R12 ladder (symbol) in the target, with the **latest source** text as reference:
+   L0 alias/wrapper → L1 walk the `A_links.md` edges (via the alias map) whose other end is already located in the
+   target → L2 fuzzy lines (R16, `--abstract-file` = latest names of the port items) → L3 stable anchors → L4 R17
+   (`--ref-file` = the `SOURCE_ROOT` file, `--root "$TARGET_ROOT"`) → L5 rename pattern (target naming rule) →
+   L6 hypotheses. Signals and confidence per R12 → `RENAMED` (≥ Medium) or `RENAMED_CANDIDATE` (`Low`).
+   Locate stable items first (string IDs, NVRAM keys, build entries) so their links can be walked.
 4. Nothing → `MISSING`.
 Fill the target column of `_work/alias_map.md` (`latest source name → target name`).
 

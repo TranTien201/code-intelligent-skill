@@ -1,0 +1,81 @@
+{
+  "_doc": "Expected Checkpoint B anchoring (request name/path -> A_latest). Checked by tests/score.py in _work/alias_map.md and _work/B_anchor.md.",
+  "files": [
+    {
+      "request": "src/features/toner_save/toner_save.c",
+      "latest": "src/features/eco/eco_mode.c",
+      "result": "MOVED_FILE"
+    },
+    {
+      "request": "src/features/toner_save/toner_save.h",
+      "latest": "src/features/eco/eco_mode.h",
+      "result": "MOVED_FILE"
+    }
+  ],
+  "renames": [
+    {
+      "request": "TonerSave_GetLevel",
+      "latest": "EcoMode_GetLevel",
+      "result": "RENAMED_SYMBOL",
+      "min_confidence": "Medium",
+      "expected_signals": "EDGE (calls from ApplyDensity / reads nv field) + SIM (too-short) + SIG; PATTERN after 2 renames"
+    },
+    {
+      "request": "TonerSave_ApplyDensity",
+      "latest": "EcoMode_ApplyDensity",
+      "result": "SPLIT_SYMBOL",
+      "min_confidence": "Medium",
+      "split_parts": [
+        "EcoMode_ApplyDensity",
+        "eco_effective_level"
+      ],
+      "expected_signals": "EDGE (render.c call under SUPPORT_TONER_SAVE) + R17 possible SPLIT + ANCHOR (fix #1234, k_percent)"
+    },
+    {
+      "request": "TonerSave_MenuHandler",
+      "latest": "EcoMode_MenuHandler",
+      "result": "RENAMED_SYMBOL",
+      "min_confidence": "High",
+      "expected_signals": "EDGE registers: g_menu_table entry \"TONER_SAVE\" + SIM 1.00 + ANCHOR STR_TONER_SAVE"
+    },
+    {
+      "request": "TonerSave_PjlSet",
+      "latest": "EcoMode_PjlSet",
+      "result": "RENAMED_SYMBOL",
+      "min_confidence": "High",
+      "expected_signals": "EDGE registers: g_pjl_table entry \"ECONOMODE\" + SIM + SIG"
+    },
+    {
+      "request": "toner_save_level",
+      "latest": "eco_level",
+      "result": "RENAMED_SYMBOL",
+      "min_confidence": "High",
+      "expected_signals": "EDGE defaults: NV_LoadDefaults sets it to TONER_SAVE_OFF + NvSettings_t field slot"
+    }
+  ],
+  "same_name": [
+    "STR_TONER_SAVE",
+    "SUPPORT_TONER_SAVE",
+    "TONER_SAVE_OFF",
+    "TONER_SAVE_LOW",
+    "TONER_SAVE_HIGH",
+    "k_percent",
+    "is_valid",
+    "NvSettings_t",
+    "NV_LoadDefaults",
+    "Render_Page",
+    "g_menu_table",
+    "g_pjl_table"
+  ],
+  "rename_patterns": [
+    [
+      "TonerSave_",
+      "EcoMode_"
+    ]
+  ],
+  "must_not_be_blocked_as": [
+    "NOT_FOUND",
+    "REMOVED_IN_LATEST",
+    "GONE"
+  ]
+}
