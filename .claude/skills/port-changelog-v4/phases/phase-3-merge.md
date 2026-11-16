@@ -47,7 +47,7 @@ Phần dưới là chi tiết từng bước.
     - File `added` của RT hoặc file chỉ chứa phụ thuộc mới: tạo file mới theo cùng đường dẫn tương đối, ghi vào report.
     - Trường hợp khác: `SKIP_NO_FILE`, ghi vào "Bỏ qua".
 - Copy các file Target liên quan vào `WORK/target_out/`, giữ cấu trúc thư mục. Chỉ sửa trên bản copy.
-- Với mỗi đơn vị X, tìm X trong file Target và cắt ra `WORK/phase3/fn/<file>/<X>.target.c` (cách cắt giống Phase 2 mục 3.2). Ghi khoảng dòng.
+- Với mỗi đơn vị X, tìm X trong file Target và cắt ra `WORK/phase3/fn/<file>/<X>.target.c` (cách cắt giống Phase 2, Bước 3 "Lưu bản cắt của hàm"). Ghi khoảng dòng.
 
 ## Bước 2 — So 3 phiên bản và merge từng đơn vị
 
