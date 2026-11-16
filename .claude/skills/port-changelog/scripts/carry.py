@@ -73,6 +73,7 @@ class Carry:
         self.closure_queue = []      # (symbol, reason)
         self._lfile_cache = {}
         self.latest_files = None
+        self.feature_names = set()   # names the feature itself adds/modifies (never 'new symbols')
 
     # ---------------- helpers
     def lfile(self, rel):
@@ -159,9 +160,21 @@ class Carry:
             if self.lidx.has(sym) and not self.tidx.has(sym):
                 self.closure_queue.append((sym, auto_reason))
 
+    @staticmethod
+    def only_new_definitions(l_lines):
+        """True if every non-blank line belongs to a column-0 top-level unit (macro/prototype/decl/func)."""
+        units = find_units(join_lines(l_lines))
+        covered = set()
+        for u in units:
+            if l_lines[u.start - 1][:1].isspace():
+                return False
+            covered |= set(range(u.doc_start or u.start, u.end + 1))
+        return all(n in covered for n, x in enumerate(l_lines, 1) if norm_line(x))
+
     def new_symbols(self, l_lines, a_ids):
         res = []
-        for sym in sorted(identifiers('\n'.join(l_lines)) - a_ids):
+        defined_here = {u.name for u in find_units(join_lines(l_lines))}
+        for sym in sorted(identifiers('\n'.join(l_lines)) - a_ids - self.feature_names - defined_here):
             if self.lidx.has(sym) and not self.tidx.has(sym):
                 res.append(sym)
         return res
@@ -221,6 +234,11 @@ class Carry:
                 j += 1
             run = [x for _, x in L[i:j]]
             for u in find_units(join_lines(run)):
+                first = run[u.start - 1]
+                # only top-level functions (column 0) are taken as whole units; prototypes, macros,
+                # struct fields and statements go through the line-level path
+                if u.kind != 'func' or first[:1].isspace():
+                    continue
                 idx = set(range(i + u.doc_start - 1, i + u.end))
                 res.append((u.name, u.kind, idx, run[u.start - 1:u.end]))
             i = j
@@ -311,6 +329,9 @@ class Carry:
         vis_lines = [x for _, x in visible]
         cands = locate.locate_block(A, vis_lines) if A else []
         verdict = locate.decide(cands, self.hi, self.lo) if cands else 'ask'
+        if verdict == 'llm' and cands[0]['score'] >= self.lo and (
+                len(cands) == 1 or cands[0]['score'] - cands[1]['score'] >= 0.1):
+            verdict = 'auto'   # Latest is expected to differ; D2 alignment classifies the differences
         section = h.section
         if verdict != 'auto':
             cand_view = [{'start': visible[c['start'] - 1][0], 'end': visible[c['end'] - 1][0],
@@ -400,6 +421,8 @@ class Carry:
                 dist = min((min(abs(p - lo_pos), abs(p - hi_pos)) for p in feat_pos), default=99)
                 cls = 'ADJACENT' if dist <= self.k + 0.5 else 'DISJOINT'
             l_blk = Lw[j1:j2]
+            if cls == 'ADJACENT' and tag == 'insert' and self.only_new_definitions(l_blk):
+                cls = 'DISJOINT'   # another RT's own declarations placed next to ours
             if cls == 'DISJOINT':
                 for i in range(i1, i2):
                     emit_removed(i)
@@ -460,6 +483,11 @@ class Carry:
         feature_names = set()
         for v in self.scope.get('rt_items', {}).values():
             feature_names |= set(v)
+        for fdiff in files:   # everything defined in '+' lines of the feature diff
+            for h in fdiff.hunks:
+                plus = [x for t, x in h.lines if t == '+' and not is_modblock_line(x)]
+                feature_names |= {u.name for u in find_units(join_lines(plus))}
+        self.feature_names = feature_names
         for fdiff in files:
             self.process_file(fdiff)
         self.run_closure(feature_names)
