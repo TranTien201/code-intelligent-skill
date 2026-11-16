@@ -95,6 +95,8 @@ class Carry:
         if extra:
             toks.append(extra)
         line = '# ' + ' '.join(toks) + ((' | ' + text) if text else '')
+        # feature.diff is handled as latin-1 (byte-exact code); store notes as UTF-8 bytes
+        line = line.encode('utf-8').decode('latin-1')
         lst = self.notes.setdefault(path, [])
         if line not in lst:
             lst.append(line)
