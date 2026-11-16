@@ -98,14 +98,16 @@ def grep_files(root, word, files=None):
     Uses `grep -rlw` (fast, does not load files into Python). Falls back to Python if grep fails.
     """
     try:
-        cmd = ['grep', '-rlw', '-I', '--', word]
+        # -a: treat Shift-JIS files as text (never skipped as binary); LC_ALL=C: byte semantics
+        cmd = ['grep', '-rlwa', '--', word]
         if files is not None:
             if not files:
                 return []
             cmd += [os.path.join(root, f) for f in files]
         else:
             cmd += [root]
-        r = subprocess.run(cmd, capture_output=True, text=True, encoding='latin-1')
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding='latin-1',
+                           env=dict(os.environ, LC_ALL='C'))
         if r.returncode in (0, 1):
             res = []
             for line in r.stdout.splitlines():
