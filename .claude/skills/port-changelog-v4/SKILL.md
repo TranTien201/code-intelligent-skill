@@ -93,6 +93,7 @@ WORK/
     fn/<đường dẫn file>/<tên>.latest.c   # ... từ Latest
     fn/<đường dẫn file>/<tên>.diff       # diff riêng của hàm
     diff/<đường dẫn file>.diff        # diff feature mới nhất (đầu vào Phase 3)
+    paused.md                         # danh sách tạm dừng (đồ cũ), Phase 3 kiểm tra với FOMULAR
     REPORT.md
   phase3/
     fn/<đường dẫn file>/<tên>.target.c   # thân hàm/symbol cắt ra từ Target
@@ -112,7 +113,7 @@ WORK/
 | `NOT_PORTED` | Hàm do RT thêm nhưng Latest không còn ai gọi |
 | `DEP_NEW` | Tên được dùng trong code mới nhất, Before chưa có. Phải mang sang |
 | `DEP_CHANGED` | Có từ Before nhưng Latest đã đổi định nghĩa. Mang bản Latest sang |
-| `DEP_EXISTING` | Giống hệt Before. Phase 3 chỉ kiểm tra Target có hay chưa |
+| `DEP_PAUSED` | Giống hệt Before (đồ cũ). Phase 2 tạm dừng, không đi sâu. Phase 3 kiểm tra với FOMULAR, thiếu thì mang sang và trace tiếp |
 | `UNEXPLAINED` | Diff có thay đổi nhưng changelog của RT không nhắc tới |
 | `UNRESOLVED` | Tên được dùng nhưng không tìm thấy định nghĩa |
 | `NEED_CONFIRM` | Không tự quyết được, chờ người dùng trả lời |

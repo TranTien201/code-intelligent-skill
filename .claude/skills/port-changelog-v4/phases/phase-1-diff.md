@@ -29,7 +29,8 @@ Mục tiêu:
 - Từ entry, ghi lại:
   - Ngày, người làm, mã RT.
   - Danh sách `Add.` và `Mod.`. Lưu ý một mục có thể kéo dài nhiều dòng (các dòng sau chỉ có tên, không có chữ `Add.`/`Mod.`).
-- Khách chỉ dùng hai từ khoá `Add.` và `Mod.`.
+- Khách chỉ dùng hai từ khoá `Add.` và `Mod.`. Xoá một hàm/symbol cũng ghi là `Mod.`.
+  - Vì vậy loại `Add` / `Mod` / `Del` của từng đơn vị phải xác định bằng diff (Bước 4), không lấy theo từ khoá trong changelog.
 - Tên trong changelog có thể là hàm (`xxx()`), mảng (`xxx[][]`), hoặc macro/biến (`WAVMACH_ONLY_VER`). Chưa biết là loại gì thì để Bước 4 xác định.
 
 ## Bước 4 — Lập danh sách đơn vị của RT
@@ -41,7 +42,7 @@ Mục tiêu:
 - Phân loại từng đơn vị:
   - `Add`: không có ở Before, có ở After.
   - `Mod`: có ở cả hai, nội dung khác.
-  - `Del`: có ở Before, không có ở After.
+  - `Del`: có ở Before, không có ở After. Trong changelog đơn vị này được ghi là `Mod.`, đối chiếu vẫn tính là khớp.
 - Ghi khoảng dòng của đơn vị ở Before và After.
 - Đối chiếu với changelog ở Bước 3:
   - Diff có thay đổi nhưng changelog không nhắc tới: ghi cảnh báo `UNEXPLAINED`, vẫn đưa vào danh sách.
