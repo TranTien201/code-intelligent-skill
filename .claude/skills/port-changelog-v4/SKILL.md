@@ -59,10 +59,13 @@ description: Quy trình chuyển một chức năng (mã RT) từ máy này sang
 
 ## Quy tắc chung
 
-- **Làm việc theo hàm, không theo từng dòng:**
-  - Đơn vị làm việc: hàm, macro (`#define`), biến global/static, kiểu (`struct`, `typedef`, `enum`), prototype.
-  - Hàm nào cần cập nhật thì lấy **nguyên hàm** ở Latest.
-- **Không bỏ sót:** Code mới nhất của RT gọi thêm hàm nào, dùng thêm biến/macro nào thì phải khám phá hết (đệ quy) để mang sang FOMULAR.
+- **Làm việc theo đơn vị, và theo từng block thay đổi (hunk) bên trong đơn vị:**
+  - Đơn vị: hàm, macro (`#define`), biến global/static, kiểu (`struct`, `typedef`, `enum`), prototype, bảng dữ liệu.
+  - Tìm đơn vị theo **tên định nghĩa**. Không tìm đổi tên: không thấy đúng tên thì coi như không có.
+  - **Không lấy nguyên hàm ở Latest**, vì hàm ở Latest có thể chứa logic của feature khác. Chỉ lấy đúng các block logic của RT.
+  - Cắt đơn vị ra file riêng trong `WORK/` để so sánh. Số dòng tính bên trong đơn vị (dòng đầu là dòng 1), không tính theo file gốc.
+- **Trong block thì lấy, ngoài block thì không:** code nằm bên trong block logic của RT ở Latest là của feature (kể cả dòng do RT sau sửa hoặc chèn vào giữa). Code nằm ngoài là logic khác, không mang sang.
+- **Không bỏ sót:** Code mới nhất của RT (các dòng `+`) gọi thêm hàm nào, dùng thêm biến/macro/kiểu nào thì phải khám phá hết (đệ quy) để mang sang FOMULAR.
 - **Không sửa:** các thư mục đầu vào (`request/`, `source/`, `target/`). Kết quả merge ghi vào bản copy `WORK/target_out/`.
 - **Không dừng giữa Phase để hỏi:**
   - Gặp chỗ không chắc: ghi vào mục "Cần xác nhận" của report, rồi làm tiếp phần còn lại.
@@ -76,8 +79,8 @@ description: Quy trình chuyển một chức năng (mã RT) từ máy này sang
 | Phase | File hướng dẫn | Việc chính | Cuối Phase báo cáo |
 |---|---|---|---|
 | 1. Lấy diff và khoanh vùng | `phases/phase-1-diff.md` | `get-diff(After, Before)` từng file, lập danh sách hàm/biến của RT | Đường dẫn các file diff + danh sách đơn vị của RT |
-| 2. Đưa feature lên Latest | `phases/phase-2-latest.md` | Dựa vào changelog: giữ nguyên / lấy Latest / tìm đổi tên / xoá, rồi khám phá đệ quy phụ thuộc | Đã cập nhật gì cho feature, phụ thuộc thêm vào, câu hỏi cần xác nhận |
-| 3. Merge vào FOMULAR | `phases/phase-3-merge.md` | So 3 phiên bản Before / Latest / Target cho từng hàm, merge vào `target_out/` | Đã merge gì, bỏ qua gì, câu hỏi cần xác nhận |
+| 2. Đưa feature lên Latest | `phases/phase-2-latest.md` | Tìm từng đơn vị ở Latest theo tên, cập nhật phía `+` của từng block thay đổi (hunk) theo Latest, rồi khám phá đệ quy phụ thuộc | Diff feature mới nhất (diff (new)), phụ thuộc thêm vào, câu hỏi cần xác nhận |
+| 3. Merge vào FOMULAR | `phases/phase-3-merge.md` | Tìm từng đơn vị ở FOMULAR theo tên, áp từng block thay đổi (hunk) của diff feature vào đúng vị trí trong `target_out/`, thêm định nghĩa còn thiếu | Đã merge gì, bỏ qua gì, câu hỏi cần xác nhận |
 
 ## Cấu trúc thư mục kết quả
 
@@ -88,15 +91,19 @@ WORK/
     units.md                          # danh sách đơn vị của RT
     REPORT.md
   phase2/
-    fn/<đường dẫn file>/<tên>.before.c   # thân hàm/symbol cắt ra từ Before
+    fn/<đường dẫn file>/<tên>.before.c   # đơn vị cắt ra từ Before
     fn/<đường dẫn file>/<tên>.after.c    # ... từ After
     fn/<đường dẫn file>/<tên>.latest.c   # ... từ Latest
-    fn/<đường dẫn file>/<tên>.diff       # diff riêng của hàm
-    diff/<đường dẫn file>.diff        # diff feature mới nhất (đầu vào Phase 3)
+    fn/<đường dẫn file>/<tên>.rt.diff    # get-diff(after, before) của đơn vị: các hunk của RT
+    fn/<đường dẫn file>/<tên>.ctx.diff   # get-diff(latest, after) của đơn vị, chỉ làm context định vị
+    fn/<đường dẫn file>/<tên>.feature.c  # bản Before + các hunk của RT đã cập nhật theo Latest
+    diff/<đường dẫn file>.diff        # diff (new): diff feature mới nhất (đầu vào Phase 3)
     paused.md                         # danh sách tạm dừng (đồ cũ), Phase 3 kiểm tra với FOMULAR
     REPORT.md
   phase3/
-    fn/<đường dẫn file>/<tên>.target.c   # thân hàm/symbol cắt ra từ Target
+    fn/<đường dẫn file>/<tên>.target.c   # đơn vị cắt ra từ Target
+    fn/<đường dẫn file>/<tên>.ctx.diff   # get-diff(target, before) của đơn vị, chỉ làm context định vị
+    fn/<đường dẫn file>/<tên>.merged.c   # đơn vị sau khi áp các hunk
     diff/<đường dẫn file>.diff        # get-diff(target_out, target) để người duyệt xem
     REPORT.md
   target_out/                         # bản copy Target đã merge
@@ -104,15 +111,21 @@ WORK/
 
 ## Các nhãn dùng chung
 
+Nhãn của từng hunk ở Phase 2:
+
 | Nhãn | Ý nghĩa |
 |---|---|
-| `KEEP` | Changelog không có RT nào sửa hàm này về sau. Dùng đúng block Before-After |
-| `UPDATE_LATEST` | Có RT sau sửa hàm này. Lấy nguyên hàm ở Latest |
-| `RENAMED` | Không còn tên cũ ở Latest, tìm được hàm mới chứa logic của RT |
-| `DELETE` | Không còn ở Latest, không tìm được hàm thay thế. Loại khỏi feature |
-| `NOT_PORTED` | Hàm do RT thêm nhưng Latest không còn ai gọi |
-| `DEP_NEW` | Tên được dùng trong code mới nhất, Before chưa có. Phải mang sang |
-| `DEP_CHANGED` | Có từ Before nhưng Latest đã đổi định nghĩa. Mang bản Latest sang |
+| `KEEP` | Block `+` của hunk ở Latest giống nguyên văn. Giữ hunk như cũ |
+| `UPDATED` | Block `+` của hunk ở Latest đã bị RT sau sửa. Phía `+` lấy theo Latest |
+| `DROPPED` | Không còn ở Latest. Loại khỏi feature (dùng cho cả hunk và đơn vị) |
+
+Nhãn của đơn vị và phụ thuộc ở Phase 2:
+
+| Nhãn | Ý nghĩa |
+|---|---|
+| `NOT_PORTED` | Đơn vị do RT thêm nhưng Latest không còn ai dùng |
+| `DEP_NEW` | Tên được dùng trong code mới nhất, Before chưa có. Mang nguyên định nghĩa Latest |
+| `DEP_CHANGED` | Có từ Before, Latest đã đổi, và code mới nhất dùng tới chỗ đã đổi. Mang phần đã đổi |
 | `DEP_PAUSED` | Giống hệt Before (đồ cũ). Phase 2 tạm dừng, không đi sâu. Phase 3 kiểm tra với FOMULAR, thiếu thì mang sang và trace tiếp |
 | `UNEXPLAINED` | Diff có thay đổi nhưng changelog của RT không nhắc tới |
 | `UNRESOLVED` | Tên được dùng nhưng không tìm thấy định nghĩa |
@@ -122,14 +135,21 @@ Kết quả merge ở Phase 3:
 
 | Nhãn | Ý nghĩa |
 |---|---|
-| `MERGED` | Target giống Before. Đã thay nguyên đơn vị bằng bản Latest |
-| `MERGED_NEW` | Target chưa có. Đã thêm đơn vị mới |
-| `MERGED_DEP` | Đã thêm hoặc cập nhật phụ thuộc mà code đã merge cần |
-| `MERGED_KEEP_TARGET` | Target có code riêng. Đã áp thay đổi của feature và giữ code riêng của FOMULAR |
-| `DELETED` | Đã xoá đơn vị khỏi Target |
-| `SKIP_EXISTS` | Target đã giống Latest, không cần làm gì |
-| `SKIP_NOT_IN_TARGET` | Target không có hàm cần sửa, không merge |
+| `MERGED` | Đã áp một hunk vào đơn vị ở Target (sửa / thêm / xoá). Kèm kiểu khớp |
+| `MERGED_NEW` | Target chưa có. Đã thêm đơn vị mới của feature |
+| `MERGED_DEP` | Phụ thuộc cũ (trong `paused.md`) mà Target thiếu. Đã mang sang |
+| `DELETED` | Đã xoá hẳn đơn vị khỏi Target (RT đã xoá đơn vị này) |
+| `SKIP_EXISTS` | Target đã có sẵn, không cần làm gì |
+| `SKIP_NOT_IN_TARGET` | Target không có đơn vị cần sửa. Bỏ toàn bộ diff của đơn vị đó |
 | `SKIP_NO_FILE` | Target không có file tương ứng |
+
+Kiểu khớp khi tìm vị trí của hunk ở Target (Phase 3):
+
+| Kiểu khớp | Ý nghĩa |
+|---|---|
+| `EXACT` | Block ở Target giống nguyên văn block `-`, nằm trong vùng dự kiến |
+| `NEAR` | Block ở Target gần giống (khác tên biến, tham số, hằng số...), nằm trong vùng dự kiến |
+| `MOVED` | Tìm thấy đúng một block khớp nhưng nằm ngoài vùng dự kiến |
 
 ## Mẫu report
 
@@ -164,6 +184,6 @@ Kết quả merge ở Phase 3:
 - Nguyên tắc chung:
   - Tự quyết được theo hướng dẫn thì không hỏi.
   - Không chắc chắn thì không đoán. Gắn `NEED_CONFIRM` và ghi vào mục "Cần xác nhận".
-  - Không ghi đè code riêng của FOMULAR khi chưa được xác nhận.
+  - Không xoá hoặc ghi đè logic riêng của FOMULAR khi chưa được xác nhận.
 - Mỗi câu hỏi nêu rõ: file, hàm/symbol, đoạn code liên quan và đề xuất.
 - Chờ trả lời một mục không phải lý do để dừng các mục còn lại.
