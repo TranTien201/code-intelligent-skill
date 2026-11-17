@@ -1,0 +1,6 @@
+typedef struct {
+    int copies;
+    int duplex;
+    int language;
+    int quality;
+} NvSettings_t;

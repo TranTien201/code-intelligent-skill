@@ -1,0 +1,44 @@
+## R2/R11 names & basenames in target
+EcoMode_GetLevel: 
+EcoMode_ApplyDensity: 
+EcoMode_MenuHandler: 
+EcoMode_PjlSet: 
+eco_effective_level: 
+is_valid: TGT:src/panel/menu.c:4:static int is_valid(int key) TGT:src/panel/menu.c:11:    return is_valid(key) ? key : 1; 
+k_percent: 
+TONER_SAVE_OFF: 
+ECO_MODE_H: 
+Density_Scale: 
+DENSITY_MAX: 
+eco_level: 
+STR_TONER_SAVE: 
+SUPPORT_TONER_SAVE: 
+(basename hits above)
+## R8 literals
+100, 80, 60: 
+/ 100: 
+Toner Save: 
+ECONOMODE: TGT:src/main.c:12:    printf("pjl=%d\n", Pjl_Dispatch("ECONOMODE", "1")); 
+TONER_SAVE: TGT:src/main.c:11:    printf("toner_save=%d\n", Menu_Dispatch("TONER_SAVE", 2)); 
+percent: 
+## R17 latest bodies vs target
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/A_latest/src/features/eco/eco_mode.c:28-34 EcoMode_ApplyDensity (function)  tokens=29
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.31   -      0.8x   1/1    0/2    !    SRC:src/util/math_util.c:3-8 Clamp (function)
+2     0.08   -      2.1x   1/1    0/2    !    SRC:src/cmd/pjl_commands.c:28-36 Pjl_Dispatch (function)
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/A_latest/src/features/eco/eco_mode.c:36-43 EcoMode_MenuHandler (function)  tokens=33
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.11   -      1.9x   1/1    0/4    !    SRC:src/cmd/pjl_commands.c:28-36 Pjl_Dispatch (function)
+2     0.11   -      0.3x   0/1    1/4    =    SRC:src/panel/menu.c:19-23 Menu_Quality (function)
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/A_latest/src/features/eco/eco_mode.c:21-26 eco_effective_level (function)  tokens=31
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.18   -      0.4x   1/1    1/3    !    SRC:src/panel/menu.c:9-12 Menu_Copies (function)
+2     0.11   -      2.0x   1/1    0/3    !    SRC:src/cmd/pjl_commands.c:28-36 Pjl_Dispatch (function)
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/A_latest/src/print/density.c:4-7 Density_Scale (function)  tokens=16
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.15   -      0.6x   0/2    0/1    !    SRC:src/core/log.c:4-7 Log_Info (function)
+2     0.15   -      0.8x   0/2    0/1    !    SRC:src/panel/menu.c:9-12 Menu_Copies (function)
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/A_latest/src/util/math_util.c:3-8 Clamp (function)  tokens=23
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.72   -      1.0x   0/0    0/0    !    SRC:src/util/math_util.c:3-8 Clamp (function)
+2     0.11   -      0.4x   0/0    0/0    !    SRC:src/panel/menu.c:19-23 Menu_Quality (function)

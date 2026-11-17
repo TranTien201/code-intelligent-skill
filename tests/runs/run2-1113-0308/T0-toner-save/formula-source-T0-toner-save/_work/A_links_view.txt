@@ -1,0 +1,134 @@
+```mermaid
+flowchart LR
+    subgraph C1["C1"]
+        N001["SUPPORT_TONER_SAVE<br/>config-macro · stable"]:::stable
+        N002["Makefile SRCS += toner_save.c<br/>build-file · stable"]:::stable
+        N003["#quot;ECONOMODE#quot;<br/>table-entry · stable"]:::stable
+        N004["#quot;TONER_SAVE#quot;<br/>table-entry · stable"]:::stable
+        N005["STR_TONER_SAVE<br/>string-id · stable"]:::stable
+        N006["#quot;Toner Save#quot;<br/>table-entry · stable"]:::stable
+        N007["toner_save_level<br/>nv-field · stable"]:::stable
+        N008["TONER_SAVE_H<br/>preprocessor · stable"]:::stable
+        N009["toner_save.h<br/>file scope · medium"]:::medium
+        N010["TONER_SAVE_OFF/LOW/HIGH<br/>enum · medium"]:::medium
+        N011["g_pjl_table<br/>table · medium"]:::medium
+        N012["g_menu_table<br/>table · medium"]:::medium
+        N013["StrId_t<br/>enum · medium"]:::medium
+        N014["g_strings_en<br/>table · medium"]:::medium
+        N015["NvSettings_t<br/>struct · medium"]:::medium
+        N016["k_percent<br/>global · medium"]:::medium
+        N017["is_valid<br/>function · volatile"]:::volatile
+        N018["TonerSave_GetLevel<br/>function · volatile"]:::volatile
+        N019["TonerSave_ApplyDensity<br/>function · volatile"]:::volatile
+        N020["TonerSave_MenuHandler<br/>function · volatile"]:::volatile
+        N021["TonerSave_PjlSet<br/>function · volatile"]:::volatile
+        N022["Render_Page<br/>function · volatile"]:::volatile
+        N023["NV_LoadDefaults<br/>function · volatile"]:::volatile
+        N024["toner_save.c<br/>file scope · medium"]:::medium
+        N025["includes@pjl_commands.c<br/>file scope · medium"]:::medium
+        N026["includes@nv_settings.c<br/>file scope · medium"]:::medium
+        N027["SUPPORT_TONER_SAVE@menu_table.c<br/>preprocessor · medium"]:::medium
+        N028["SUPPORT_TONER_SAVE@render.c<br/>preprocessor · medium"]:::medium
+        N029["NV_GetSettings<br/>external · medium"]:::external
+        N030["Density_Scale<br/>external · medium"]:::external
+        N031["Log_Info<br/>external · medium"]:::external
+        N032["Str_Get<br/>external · medium"]:::external
+    end
+    N002 -->|builds| N024
+    N024 -->|includes| N009
+    N025 -->|includes| N009
+    N026 -->|includes| N009
+    N027 -->|includes| N009
+    N028 -->|includes| N009
+    N001 -->|guards| N027
+    N001 -->|guards| N004
+    N001 -->|guards| N028
+    N001 -->|guards| N022
+    N008 -->|guards| N009
+    N009 -->|declares| N018
+    N009 -->|declares| N019
+    N009 -->|declares| N020
+    N009 -->|declares| N021
+    N009 -->|declares| N010
+    N011 -->|registers| N003
+    N003 -->|registers| N021
+    N012 -->|registers| N004
+    N004 -->|registers| N020
+    N013 -->|indexes| N014
+    N005 -->|indexes| N014
+    N005 -->|localizes| N006
+    N015 -->|declares| N007
+    N023 -->|defaults| N007
+    N023 -->|reads| N010
+    N017 -->|reads| N010
+    N018 -->|reads| N007
+    N018 -->|uses-external| N029
+    N019 -->|calls| N018
+    N019 -->|calls| N017
+    N019 -->|reads| N016
+    N019 -->|uses-external| N030
+    N020 -->|calls| N017
+    N020 -->|writes| N007
+    N020 -->|uses-external| N029
+    N020 -->|reads| N005
+    N020 -->|uses-external| N031
+    N020 -->|uses-external| N032
+    N021 -->|calls| N020
+    N022 -->|calls| N019
+    classDef stable fill:#d8f0dc,stroke:#2e7d32,color:#000
+    classDef medium fill:#fff4cc,stroke:#b8860b,color:#000
+    classDef volatile fill:#ffe0cc,stroke:#c85a00,color:#000
+    classDef external fill:#eeeeee,stroke:#888888,color:#000,stroke-dasharray:4 3
+    classDef same fill:#d8f0dc,stroke:#2e7d32,color:#000
+    classDef renamed fill:#d6e6ff,stroke:#1f5fbf,color:#000
+    classDef splitmerge fill:#ead9ff,stroke:#6a3fb5,color:#000
+    classDef lowconf fill:#ffe0cc,stroke:#c85a00,color:#000,stroke-width:3px
+    classDef missing fill:#ffd6d6,stroke:#c62828,color:#000,stroke-width:3px
+    classDef open fill:#ffffff,stroke:#888888,color:#000
+```
+
+Legend: green = stable · yellow = medium · orange = volatile (trace order in B) · grey dashed = outside the request
+
+| from | type | to | evidence |
+|---|---|---|---|
+| N002 `Makefile SRCS += toner_save.c` | builds | N024 `toner_save.c` | REQ-A:Makefile:6 |
+| N024 `toner_save.c` | includes | N009 `toner_save.h` | REQ-A:src/features/toner_save/toner_save.c:2 |
+| N025 `includes@pjl_commands.c` | includes | N009 `toner_save.h` | REQ-A:src/cmd/pjl_commands.c:4 |
+| N026 `includes@nv_settings.c` | includes | N009 `toner_save.h` | REQ-A:src/settings/nv_settings.c:2 |
+| N027 `SUPPORT_TONER_SAVE@menu_table.c` | includes | N009 `toner_save.h` | REQ-A:src/panel/menu_table.c:5 |
+| N028 `SUPPORT_TONER_SAVE@render.c` | includes | N009 `toner_save.h` | REQ-A:src/print/render.c:4 |
+| N001 `SUPPORT_TONER_SAVE` | guards | N027 `SUPPORT_TONER_SAVE@menu_table.c` | REQ-A:src/panel/menu_table.c:4 |
+| N001 `SUPPORT_TONER_SAVE` | guards | N004 `"TONER_SAVE"` | REQ-A:src/panel/menu_table.c:11 |
+| N001 `SUPPORT_TONER_SAVE` | guards | N028 `SUPPORT_TONER_SAVE@render.c` | REQ-A:src/print/render.c:3 |
+| N001 `SUPPORT_TONER_SAVE` | guards | N022 `Render_Page` | REQ-A:src/print/render.c:11 |
+| N008 `TONER_SAVE_H` | guards | N009 `toner_save.h` | REQ-A:src/features/toner_save/toner_save.h:1 |
+| N009 `toner_save.h` | declares | N018 `TonerSave_GetLevel` | REQ-A:src/features/toner_save/toner_save.h:9 |
+| N009 `toner_save.h` | declares | N019 `TonerSave_ApplyDensity` | REQ-A:src/features/toner_save/toner_save.h:10 |
+| N009 `toner_save.h` | declares | N020 `TonerSave_MenuHandler` | REQ-A:src/features/toner_save/toner_save.h:11 |
+| N009 `toner_save.h` | declares | N021 `TonerSave_PjlSet` | REQ-A:src/features/toner_save/toner_save.h:12 |
+| N009 `toner_save.h` | declares | N010 `TONER_SAVE_OFF/LOW/HIGH` | REQ-A:src/features/toner_save/toner_save.h:3 |
+| N011 `g_pjl_table` | registers | N003 `"ECONOMODE"` | REQ-A:src/cmd/pjl_commands.c:27 |
+| N003 `"ECONOMODE"` | registers | N021 `TonerSave_PjlSet` | REQ-A:src/cmd/pjl_commands.c:27 |
+| N012 `g_menu_table` | registers | N004 `"TONER_SAVE"` | REQ-A:src/panel/menu_table.c:12 |
+| N004 `"TONER_SAVE"` | registers | N020 `TonerSave_MenuHandler` | REQ-A:src/panel/menu_table.c:12 |
+| N013 `StrId_t` | indexes | N014 `g_strings_en` | REQ-A:src/resources/strings_en.c:3 |
+| N005 `STR_TONER_SAVE` | indexes | N014 `g_strings_en` | REQ-A:src/resources/strings_en.c:6 |
+| N005 `STR_TONER_SAVE` | localizes | N006 `"Toner Save"` | REQ-A:src/resources/strings_en.c:6 |
+| N015 `NvSettings_t` | declares | N007 `toner_save_level` | REQ-A:src/settings/nv_settings.h:8 |
+| N023 `NV_LoadDefaults` | defaults | N007 `toner_save_level` | REQ-A:src/settings/nv_settings.c:15 |
+| N023 `NV_LoadDefaults` | reads | N010 `TONER_SAVE_OFF/LOW/HIGH` | REQ-A:src/settings/nv_settings.c:15 |
+| N017 `is_valid` | reads | N010 `TONER_SAVE_OFF/LOW/HIGH` | REQ-A:src/features/toner_save/toner_save.c:12 |
+| N018 `TonerSave_GetLevel` | reads | N007 `toner_save_level` | REQ-A:src/features/toner_save/toner_save.c:17 |
+| N018 `TonerSave_GetLevel` | uses-external | N029 `NV_GetSettings` | REQ-A:src/features/toner_save/toner_save.c:17 |
+| N019 `TonerSave_ApplyDensity` | calls | N018 `TonerSave_GetLevel` | REQ-A:src/features/toner_save/toner_save.c:22 |
+| N019 `TonerSave_ApplyDensity` | calls | N017 `is_valid` | REQ-A:src/features/toner_save/toner_save.c:23 |
+| N019 `TonerSave_ApplyDensity` | reads | N016 `k_percent` | REQ-A:src/features/toner_save/toner_save.c:25 |
+| N019 `TonerSave_ApplyDensity` | uses-external | N030 `Density_Scale` | REQ-A:src/features/toner_save/toner_save.c:25 |
+| N020 `TonerSave_MenuHandler` | calls | N017 `is_valid` | REQ-A:src/features/toner_save/toner_save.c:30 |
+| N020 `TonerSave_MenuHandler` | writes | N007 `toner_save_level` | REQ-A:src/features/toner_save/toner_save.c:32 |
+| N020 `TonerSave_MenuHandler` | uses-external | N029 `NV_GetSettings` | REQ-A:src/features/toner_save/toner_save.c:32 |
+| N020 `TonerSave_MenuHandler` | reads | N005 `STR_TONER_SAVE` | REQ-A:src/features/toner_save/toner_save.c:33 |
+| N020 `TonerSave_MenuHandler` | uses-external | N031 `Log_Info` | REQ-A:src/features/toner_save/toner_save.c:33 |
+| N020 `TonerSave_MenuHandler` | uses-external | N032 `Str_Get` | REQ-A:src/features/toner_save/toner_save.c:33 |
+| N021 `TonerSave_PjlSet` | calls | N020 `TonerSave_MenuHandler` | REQ-A:src/features/toner_save/toner_save.c:39 |
+| N022 `Render_Page` | calls | N019 `TonerSave_ApplyDensity` | REQ-A:src/print/render.c:12 |

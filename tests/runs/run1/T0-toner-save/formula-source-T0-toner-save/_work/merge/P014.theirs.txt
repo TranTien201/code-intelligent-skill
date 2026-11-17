@@ -1,0 +1,9 @@
+int Render_Page(int density)
+{
+    Log_Info("render start");
+#ifdef SUPPORT_TONER_SAVE
+    density = TonerSave_ApplyDensity(density);
+#endif
+    Log_Info("render done");
+    return density;
+}

@@ -1,0 +1,2 @@
+3-7	static const char *g_strings_en[STR_COUNT] = {
+9-12	const char *Str_Get(StrId_t id)

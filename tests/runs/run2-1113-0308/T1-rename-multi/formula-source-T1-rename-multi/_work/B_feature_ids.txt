@@ -1,0 +1,17 @@
+TONER_SAVE_OFF
+TONER_SAVE_LOW
+TONER_SAVE_HIGH
+k_percent
+is_valid
+TonerSave_GetLevel
+TonerSave_ApplyDensity
+TonerSave_MenuHandler
+TonerSave_PjlSet
+g_pjl_table
+g_menu_table
+Render_Page
+StrId_t
+g_strings_en
+NvSettings_t
+NV_LoadDefaults
+toner_save_level

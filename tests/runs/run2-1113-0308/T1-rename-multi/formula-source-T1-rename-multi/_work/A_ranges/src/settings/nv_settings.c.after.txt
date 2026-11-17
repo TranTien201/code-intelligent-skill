@@ -1,0 +1,2 @@
+6-9	NvSettings_t *NV_GetSettings(void)
+11-18	void NV_LoadDefaults(void)

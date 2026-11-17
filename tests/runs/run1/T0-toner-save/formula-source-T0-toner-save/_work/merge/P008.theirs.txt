@@ -1,0 +1,7 @@
+typedef enum {
+    STR_COPIES,
+    STR_DUPLEX,
+    STR_TONER_SAVE,
+    STR_QUALITY,
+    STR_COUNT
+} StrId_t;

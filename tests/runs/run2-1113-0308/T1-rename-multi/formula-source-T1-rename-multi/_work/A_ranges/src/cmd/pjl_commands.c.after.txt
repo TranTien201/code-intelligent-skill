@@ -1,0 +1,5 @@
+7-10	typedef struct {
+12-16	static int Pjl_SetCopies(const char *arg)
+18-22	static int Pjl_SetDuplex(const char *arg)
+24-28	static const PjlEntry_t g_pjl_table[] = {
+30-38	int Pjl_Dispatch(const char *cmd, const char *arg)

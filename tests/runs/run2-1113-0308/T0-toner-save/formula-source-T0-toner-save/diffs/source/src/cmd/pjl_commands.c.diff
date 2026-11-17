@@ -1,0 +1,20 @@
+diff --git a/Before/src/cmd/pjl_commands.c b/After/src/cmd/pjl_commands.c
+index 04cae7f..cfbe6eb 100644
+--- a/Before/src/cmd/pjl_commands.c
++++ b/After/src/cmd/pjl_commands.c
+@@ -1,6 +1,7 @@
+ #include <string.h>
+ #include "pjl_commands.h"
+ #include "../core/log.h"
++#include "../features/toner_save/toner_save.h"
+ 
+ typedef int (*PjlHandler_t)(const char *arg);
+ typedef struct {
+@@ -23,6 +24,7 @@ static int Pjl_SetDuplex(const char *arg)
+ static const PjlEntry_t g_pjl_table[] = {
+     { "COPIES", Pjl_SetCopies },
+     { "DUPLEX", Pjl_SetDuplex },
++    { "ECONOMODE", TonerSave_PjlSet },
+ };
+ 
+ int Pjl_Dispatch(const char *cmd, const char *arg)

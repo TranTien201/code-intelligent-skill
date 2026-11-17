@@ -1,0 +1,8 @@
+typedef struct {
+    int copies;
+    int duplex;
+    int toner_save_level;
+    int language;
+    int quality;
+    int fax_resolution;
+} NvSettings_t;

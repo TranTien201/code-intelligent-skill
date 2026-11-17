@@ -1,0 +1,13 @@
+diff --git a/Before/src/settings/nv_settings.h b/After/src/settings/nv_settings.h
+index a00e4b5..eabd291 100644
+--- a/Before/src/settings/nv_settings.h
++++ b/After/src/settings/nv_settings.h
+@@ -4,7 +4,8 @@
+ /* Struct nay duoc luu vao NVRAM */
+ typedef struct {
+     int copies;
+     int duplex;
++    int toner_save_level;
+     int language;
+     int quality;
+ } NvSettings_t;

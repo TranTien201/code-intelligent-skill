@@ -1,0 +1,44 @@
+## R11 a: basename
+(none)
+## R11 c: content similarity toner_save.c
+58% src/features/eco/eco_mode.c
+8% src/features/eco_report/eco_report.c
+4% src/print/render.c
+## R11 c: content similarity toner_save.h
+45% src/features/eco/eco_mode.h
+9% src/util/math_util.h
+9% src/settings/nv_settings.h
+## R16 fuzzy lines
+LINE:     density = TonerSave_ApplyDensity(density);  [kept=2 wild=1  WEAK]
+SRC:src/print/render.c:12:    density = EcoMode_ApplyDensity(density);
+LINE:     { "ECONOMODE", TonerSave_PjlSet },  [kept=1 wild=1  WEAK]
+SRC:src/cmd/pjl_commands.c:27:    { "ECONOMODE", EcoMode_PjlSet },
+LINE:     { "TONER_SAVE", TonerSave_MenuHandler },  [kept=1 wild=1  WEAK]
+SRC:src/panel/menu_table.c:15:    { "TONER_SAVE", EcoMode_MenuHandler },
+LINE:     g_settings.toner_save_level = TONER_SAVE_OFF;  [kept=1 wild=2  WEAK]
+SRC:src/settings/nv_settings.c:15:    g_settings.eco_level = TONER_SAVE_OFF;
+LINE:     return NV_GetSettings()->toner_save_level;  [kept=3 wild=1]
+SRC:src/features/eco/eco_mode.c:18:    return NV_GetSettings()->eco_level;
+LINE:     NV_GetSettings()->toner_save_level = key;  [kept=3 wild=1]
+SRC:src/features/eco/eco_mode.c:40:    NV_GetSettings()->eco_level = key;
+## old names in latest (L0)
+none
+## nv field & guard
+SRC:config/model_a.h:3:#define SUPPORT_TONER_SAVE 1
+SRC:src/cmd/pjl_commands.c:27:    { "ECONOMODE", EcoMode_PjlSet },
+SRC:src/settings/nv_settings.c:15:    g_settings.eco_level = TONER_SAVE_OFF;
+SRC:src/settings/nv_settings.h:8:    int eco_level;
+SRC:src/panel/menu_table.c:4:#ifdef SUPPORT_TONER_SAVE
+SRC:src/panel/menu_table.c:14:#ifdef SUPPORT_TONER_SAVE
+SRC:src/panel/menu_table.c:15:    { "TONER_SAVE", EcoMode_MenuHandler },
+SRC:src/resources/strings_en.c:6:    [STR_TONER_SAVE] = "Toner Save",
+SRC:src/resources/strings.h:6:    STR_TONER_SAVE,
+SRC:src/features/eco/eco_mode.h:1:#ifndef ECO_MODE_H
+SRC:src/features/eco/eco_mode.h:2:#define ECO_MODE_H
+SRC:src/features/eco/eco_mode.c:18:    return NV_GetSettings()->eco_level;
+SRC:src/features/eco/eco_mode.c:40:    NV_GetSettings()->eco_level = key;
+SRC:src/features/eco/eco_mode.c:41:    Log_Info(Str_Get(STR_TONER_SAVE));
+SRC:src/print/render.c:3:#ifdef SUPPORT_TONER_SAVE
+SRC:src/print/render.c:11:#ifdef SUPPORT_TONER_SAVE
+SRC:src/main.c:11:    printf("toner_save=%d\n", Menu_Dispatch("TONER_SAVE", 2));
+SRC:src/main.c:12:    printf("pjl=%d\n", Pjl_Dispatch("ECONOMODE", "1"));

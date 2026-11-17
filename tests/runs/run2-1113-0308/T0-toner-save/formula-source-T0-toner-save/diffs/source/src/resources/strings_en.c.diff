@@ -1,0 +1,12 @@
+diff --git a/Before/src/resources/strings_en.c b/After/src/resources/strings_en.c
+index d96b46c..5f78d22 100644
+--- a/Before/src/resources/strings_en.c
++++ b/After/src/resources/strings_en.c
+@@ -3,6 +3,7 @@
+ static const char *g_strings_en[STR_COUNT] = {
+     [STR_COPIES] = "Copies",
+     [STR_DUPLEX] = "2-Sided",
++    [STR_TONER_SAVE] = "Toner Save",
+     [STR_QUALITY] = "Quality",
+ };
+ 

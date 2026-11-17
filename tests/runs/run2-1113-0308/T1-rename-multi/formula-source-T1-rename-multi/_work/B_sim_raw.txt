@@ -1,0 +1,36 @@
+##### is_valid
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:10-13 is_valid (function)  tokens=11  TOO-SHORT (scores unreliable)
+rank  blind  named  size   lits   calls  sig  candidate
+1     1.00   1.00   1.0x   0/0    0/0    =    SRC:src/features/eco/eco_mode.c:11-14 is_valid (function)
+2     0.12   0.00   1.0x   0/0    0/0    =    SRC:src/panel/menu.c:5-8 is_valid (function)
+3     0.00   0.00   0.9x   0/0    0/0    -    SRC:src/cmd/pjl_commands.c:7-10 PjlEntry_t (struct)
+##### TonerSave_GetLevel
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:15-18 TonerSave_GetLevel (function)  tokens=9  TOO-SHORT (scores unreliable)
+rank  blind  named  size   lits   calls  sig  candidate
+1     1.00   0.50   1.0x   0/0    1/1    =    SRC:src/features/eco/eco_mode.c:16-19 EcoMode_GetLevel (function)
+2     0.33   0.17   3.7x   0/0    1/1    !    SRC:src/features/eco/eco_mode.c:36-43 EcoMode_MenuHandler (function)
+3     0.17   0.00   1.2x   0/0    0/1    !    SRC:src/features/eco/eco_mode.c:45-48 EcoMode_PjlSet (function)
+##### TonerSave_ApplyDensity
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:20-26 TonerSave_ApplyDensity (function)  tokens=31
+rank  blind  named  size   lits   calls  sig  candidate
+1     0.71   0.57   0.9x   0/0    1/3    =    SRC:src/features/eco/eco_mode.c:28-34 EcoMode_ApplyDensity (function)
+2     0.36   0.07   1.0x   0/0    1/3    !    SRC:src/features/eco/eco_mode.c:21-26 eco_effective_level (function)
+3     0.21   0.07   1.1x   0/0    1/3    =    SRC:src/features/eco/eco_mode.c:36-43 EcoMode_MenuHandler (function)
+##### TonerSave_MenuHandler
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:28-35 TonerSave_MenuHandler (function)  tokens=33
+rank  blind  named  size   lits   calls  sig  candidate
+1     1.00   0.87   1.0x   1/1    4/4    =    SRC:src/features/eco/eco_mode.c:36-43 EcoMode_MenuHandler (function)
+2     0.18   0.00   0.3x   0/1    0/4    =    SRC:src/features/eco/eco_mode.c:45-48 EcoMode_PjlSet (function)
+3     0.14   0.00   0.7x   0/1    1/4    =    SRC:src/print/render.c:8-16 Render_Page (function)
+##### TonerSave_PjlSet
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:37-40 TonerSave_PjlSet (function)  tokens=11  TOO-SHORT (scores unreliable)
+rank  blind  named  size   lits   calls  sig  candidate
+1     1.00   0.62   1.0x   0/0    1/2    =    SRC:src/features/eco/eco_mode.c:45-48 EcoMode_PjlSet (function)
+2     0.62   0.00   3.0x   0/0    0/2    =    SRC:src/features/eco/eco_mode.c:36-43 EcoMode_MenuHandler (function)
+3     0.38   0.12   1.1x   0/0    0/2    =    SRC:src/panel/menu.c:10-13 Menu_Copies (function)
+##### k_percent
+reference: /Users/trantien/Documents/my-project/port-request-skill/tests/cases/T1-rename-multi/input/REQ/After/src/features/toner_save/toner_save.c:8-8 k_percent (table)  tokens=7  TOO-SHORT (scores unreliable)
+rank  blind  named  size   lits   calls  sig  candidate
+1     1.00   1.00   1.0x   3/3    0/0    -    SRC:src/features/eco/eco_mode.c:9-9 k_percent (table)
+2     0.00   0.00   1.4x   0/3    0/0    -    SRC:src/cmd/pjl_commands.c:7-10 PjlEntry_t (struct)
+3     0.00   0.00   1.4x   0/3    0/0    -    SRC:src/cmd/pjl_commands.c:12-16 Pjl_SetCopies (function)
