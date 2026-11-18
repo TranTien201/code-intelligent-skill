@@ -20,6 +20,60 @@
 
 - **"Đơn vị" không chỉ là hàm.** Gồm: hàm và prototype, macro (`#define`), biến global / `static` / `extern`, kiểu (`struct`, `union`, `typedef`, `enum`), field của struct, hằng của enum, bảng dữ liệu / mảng khởi tạo, dòng `#include`.
 
+## Từ khóa của Phase này
+
+Các từ dùng chung (RT, đơn vị, bản cắt, hunk, dòng `+` / `-`, diff (new)...) xem trong `SKILL.md`.
+
+### Hai loại đơn vị trong diff (new)
+
+- **Đơn vị bị sửa**: đơn vị có từ Before, RT sửa bên trong. Trong diff (new), nó có dòng context (code Before giữ nguyên) và các hunk sửa / thêm / xoá dòng.
+  - Ví dụ: hàm `ArtLibGetRecipeData` trong diff (new). Code Before vẫn còn, RT thay 3 dòng `-` bằng 5 dòng `+`:
+
+    ```diff
+    ### ArtLibGetRecipeData | MOD | UPDATED | Before: 3790 | Latest: 3812
+    @@ -50,3 +50,5 @@
+         retCode = RcpIfGetAllVari(subSystemId, name, &vari);
+    -    if (retCode != OK) {
+    -        return retCode;
+    -    }
+    +    if (retCode != OK) {
+    +        LogPrint("GetAllVari NG");
+    +        artLibSetVarDate(&vari);
+    +        return retCode;
+    +    }
+    ```
+
+- **Đơn vị mới**: đơn vị mà toàn bộ là dòng `+` trong diff (new): không có dòng `-`, không có dòng context. Gồm đơn vị RT thêm và phụ thuộc mới tìm ra khi trace.
+  - Ví dụ: hàm `artLibSetVarDate` do RT thêm. Before chưa có nên cả hàm là dòng `+`:
+
+    ```diff
+    ### artLibSetVarDate | NEW | KEEP | Before: - | Latest: 4100
+    @@ -0,0 +1,6 @@
+    +static int artLibSetVarDate(VARI *vari)
+    +{
+    +    vari->date = RcpGetDate();
+    +    g_varLinkTbl[VAR_ID_DATE].updated = TRUE;
+    +    return OK;
+    +}
+    ```
+
+### Tìm vị trí trong FOMULAR
+
+- **Đoạn của FOMULAR**: các dòng trong bản cắt Target ứng với các dòng `-` của một hunk trong diff (new). Có thể lệch một chút so với dòng `-`, ví dụ khác tên biến.
+  - Ví dụ: dòng `-` là `retCode = GetVari(subSystemId);`, ở FOMULAR là `retCode = GetVari(subSysId);`.
+- **Diff định vị**: `get-diff(<X>.target.c, <X>.before.c)`. Cho biết đơn vị ở FOMULAR khác Before ở đâu. Lưu ở `<X>.ctx.diff`. **Chỉ để tìm vị trí, không merge.**
+  - Ví dụ: hunk `@@ -30,4 +30,10 @@` cho biết FOMULAR có thêm 6 dòng riêng quanh dòng 30.
+- **Độ lệch**: số dòng mà một dòng Before bị dời đi khi sang FOMULAR, do FOMULAR thêm/bớt dòng **phía trên** nó.
+  - Ví dụ: phía trên có 6 dòng riêng của FOMULAR → độ lệch +6.
+- **Vị trí dự kiến**: dòng Before cộng độ lệch. Là nơi dự kiến tìm thấy đoạn của FOMULAR.
+  - Ví dụ: dòng Before 52, độ lệch +6 → dự kiến ở FOMULAR dòng 58.
+- **Kiểu khớp**: mức độ giống của đoạn tìm được, là `EXACT`, `NEAR` hoặc `MOVED` (giải thích trong bảng nhãn của `SKILL.md`).
+
+### Chèn đơn vị mới
+
+- **Symbol neo**: đơn vị đứng ngay trên (hoặc ngay dưới) đơn vị mới trong file Latest. Dùng để chọn chỗ chèn ở Target.
+  - Ví dụ: ở Latest, `artLibSetVarDate` nằm ngay sau `ArtLibPutOsfData` → ở Target chèn ngay sau `ArtLibPutOsfData`.
+
 ## Đầu vào (từ Phase 2)
 
 | Đầu vào | Nội dung |
@@ -102,13 +156,13 @@ Làm trên bản copy `WORK/phase3/fn/<file>/<X>.merged.c` (ban đầu copy từ
 ### 4.1 Tính vị trí dự kiến
 
 - Mỗi hunk của diff (new) có khoảng dòng phía Before, ví dụ dòng 52–55.
-- Trong `<X>.ctx.diff`, mỗi block `@@ -a,b +c,d @@` làm phần phía dưới nó lệch đi: **độ lệch = (c + d) − (a + b)**.
-- **Vị trí dự kiến ở FOMULAR = dòng Before + độ lệch của block gần nhất nằm phía trên.** Không có block nào phía trên thì độ lệch là 0.
+- **Độ lệch của một dòng Before** = tổng (số dòng `+` − số dòng `-`) của mọi hunk của `<X>.ctx.diff` nằm **phía trên** dòng đó. Không có hunk nào phía trên thì độ lệch là 0.
+- **Vị trí dự kiến ở FOMULAR = dòng Before + độ lệch.**
 - Ví dụ:
 
 ```text
 Hunk của diff (new):  Before dòng 52–55
-<X>.ctx.diff có:      @@ -30,4 +30,10 @@   → độ lệch = (30+10) − (30+4) = +6
+<X>.ctx.diff có:      @@ -30,4 +30,10 @@   (4 dòng -, 10 dòng +) → độ lệch = 10 − 4 = +6
 Vị trí dự kiến:       FOMULAR dòng 58–61
 ```
 
