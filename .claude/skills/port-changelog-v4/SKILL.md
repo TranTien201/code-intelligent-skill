@@ -185,13 +185,14 @@ Các từ dưới đây dùng ở mọi Phase, mỗi từ chỉ mang đúng mộ
 - **Đọc hướng dẫn đúng lúc:** Bắt đầu Phase nào thì đọc file hướng dẫn của Phase đó. Không đọc trước Phase sau.
 - **Ghi rõ vị trí:** Mỗi hàm/symbol nhắc tới trong report phải kèm file và khoảng dòng, để người duyệt mở ra kiểm tra được.
 
-## Quy trình 3 Phase
+## Quy trình 4 Phase
 
 | Phase | File hướng dẫn | Việc chính | Cuối Phase báo cáo |
 |---|---|---|---|
 | 1. Lấy diff và khoanh vùng | `phases/phase-1-diff.md` | `get-diff(After, Before)` từng file, lập danh sách hàm/biến của RT | Đường dẫn các file diff + danh sách đơn vị của RT |
 | 2. Đưa feature lên Latest | `phases/phase-2-latest.md` | Tìm từng đơn vị ở Latest theo tên, cập nhật code RT của từng hunk theo Latest, rồi khám phá đệ quy phụ thuộc | Diff feature mới nhất (diff (new)), phụ thuộc thêm vào, câu hỏi cần xác nhận |
-| 3. Merge vào FOMULAR | `phases/phase-3-merge.md` | Tìm từng đơn vị ở FOMULAR theo tên, áp từng hunk của diff (new) vào đúng vị trí trong `target_out/`, thêm định nghĩa còn thiếu | Đã merge gì, bỏ qua gì, câu hỏi cần xác nhận |
+| 3. Merge vào FOMULAR | `phases/phase-3-merge.md` | Tìm từng đơn vị ở FOMULAR theo tên, áp từng hunk của diff (new) vào đúng vị trí trong `target_out/`, thêm định nghĩa còn thiếu, ghi `merge_view.json` | Đã merge gì, bỏ qua gì, mục cần xác nhận, `merge_view.json` |
+| 4. Duyệt trên UI và chốt | `phases/phase-4-review.md` | Render UI hai cột từ `merge_view.json`, người dùng chọn lấy / giữ từng hunk, áp `decisions.json` vào `target_out/` | Quyết định của người dùng, `target_out/` cuối cùng |
 
 ## Cấu trúc thư mục kết quả
 
@@ -216,6 +217,12 @@ WORK/
     fn/<đường dẫn file>/<tên>.ctx.diff   # diff định vị: get-diff(target, before) của đơn vị
     fn/<đường dẫn file>/<tên>.merged.c   # đơn vị sau khi áp các hunk
     diff/<đường dẫn file>.diff        # get-diff(target_out, target) để người duyệt xem
+    merge_view.json                   # mọi hunk + vị trí ở Target gốc, đầu vào Phase 4
+    REPORT.md
+  phase4/
+    merge_view.html                   # UI review 2 cột, sinh bằng tools/merge_ui.py
+    decisions.json                    # người dùng tải từ UI
+    diff/<đường dẫn file>.diff        # get-diff(target_out, target) sau khi áp quyết định
     REPORT.md
   target_out/                         # bản copy Target đã merge
 ```
@@ -265,7 +272,7 @@ Kiểu khớp khi tìm vị trí của hunk ở Target (Phase 3):
 ## Mẫu report
 
 ```markdown
-# Report Phase <1|2|3> — <RT>
+# Report Phase <1|2|3|4> — <RT>
 
 ## Tổng kết
 - Số file: <n> | Đã xử lý: <n> | Bỏ qua: <n> | Cần xác nhận: <n>
@@ -288,6 +295,10 @@ Kiểu khớp khi tìm vị trí của hunk ở Target (Phase 3):
 ## Cảnh báo
 - UNEXPLAINED / UNRESOLVED / chưa compile ...
 ```
+
+## Quy tắc `NEED_CONFIRM` (mọi Phase)
+
+- **Đã gắn `NEED_CONFIRM` thì không merge.** Chỗ đó giữ nguyên code gốc (Before ở Phase 2, Target ở Phase 3) cho tới khi người dùng trả lời.
 
 ## Khi nào hỏi người dùng
 
