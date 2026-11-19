@@ -110,8 +110,7 @@ Bước 6. Kiểm tra paused.md với FOMULAR: thiếu thì mang sang và trace 
 
 Bước 7. Ghi changelog RT vào Target
 Bước 8. Kiểm tra cuối
-Bước 9. Ghi merge_view.json (mọi hunk + vị trí ở Target gốc) và tự kiểm bằng merge_ui.py check
-Bước 10. Report → DỪNG. Phase 4 dựng UI để người dùng duyệt và chốt
+Bước 9. Report + câu hỏi → DỪNG chờ xác nhận
 ```
 
 Phần dưới là chi tiết từng bước.
@@ -198,7 +197,6 @@ Vị trí dự kiến:       FOMULAR dòng 58–61
   - Block của FOMULAR có **thêm câu lệnh riêng** mà Before không có (thay vào sẽ làm mất logic riêng của FOMULAR).
   - Block của FOMULAR thiếu phần lớn các dòng của block `-`, hoặc không xác định được dòng đầu và dòng cuối của block.
   - Neo của hunk chỉ có `+` không tìm thấy ở FOMULAR.
-- **Đã gắn `NEED_CONFIRM` thì không merge:** không áp hunk đó vào `target_out/`, kể cả áp một phần. Chỗ đó giữ nguyên code Target cho tới khi người dùng trả lời.
 - Một hunk bị `NEED_CONFIRM` không dừng các hunk khác. Làm tiếp phần còn lại.
 
 ### 4.4 Ghép lại vào file
@@ -227,7 +225,6 @@ Vị trí dự kiến:       FOMULAR dòng 58–61
 | FOMULAR đã có, giống | Không làm gì | `SKIP_EXISTS` |
 | FOMULAR đã có nhưng khác | Không sửa. Đưa bản Latest và bản FOMULAR để hỏi | `NEED_CONFIRM` |
 
-- **Đơn vị mới chỉ được dùng bởi hunk `NEED_CONFIRM`** (grep các hunk đã áp ở Bước 4 không thấy tên nó): không thêm. Gắn `NEED_CONFIRM`, ghi "chờ mục <số>".
 - **Thêm vào bên trong định nghĩa đã có** (field mới của struct, hằng mới của enum, phần tử mới của bảng dữ liệu): đây là hunk chỉ có `+` của một đơn vị bị sửa. Xử lý theo Bước 4, không thay cả định nghĩa.
 
 ### Chèn vào đâu
@@ -298,7 +295,6 @@ paused.md: RcpIfGetAllVari, RCP_NAME_LEN, rcpVarCheck, LogPrint
 
 - Mọi file ở Phase 1 đều có kết quả cuối: `done`, `skipped` (có lý do) hoặc `blocked` (có lý do).
 - Mọi hunk của diff (new) đều có kết quả: `MERGED`, `SKIP_EXISTS`, `SKIP_NOT_IN_TARGET` hoặc `NEED_CONFIRM`.
-- Mọi mục `NEED_CONFIRM` chưa được áp: vị trí của nó trong `target_out/` vẫn giống file `target/` gốc.
 - **Mọi tên dùng trong các dòng `+` đã merge đều có định nghĩa hoặc khai báo ở FOMULAR** (grep lại từng tên trong `target_out/`, biến cục bộ và tham số thì xem trong chính hàm đó).
   - Thiếu: ghi vào "Cảnh báo". Trường hợp hay gặp: dòng `+` dùng tên biến của TELINDY, còn hàm FOMULAR đặt tên khác. **Không tự sửa**, để người duyệt quyết.
 - Mọi tên trong `paused.md` và mọi tên mang thêm ở Bước 6 đều có định nghĩa trong `target_out/`.
@@ -307,71 +303,7 @@ paused.md: RcpIfGetAllVari, RCP_NAME_LEN, rcpVarCheck, LogPrint
 - Encoding và kiểu xuống dòng của file trong `target_out/` giống file Target gốc.
 - Có môi trường build thì compile thử. Không có thì ghi rõ "chưa compile".
 
-## Bước 9 — Ghi `merge_view.json`
-
-`WORK/phase3/merge_view.json` ghi lại **mọi thay đổi** Phase 3 đã làm và mọi mục `NEED_CONFIRM`, kèm vị trí ở Target gốc. Đây là đầu vào của Phase 4 (UI review). Ghi trong lúc merge (Bước 4–7), vì lúc đó đang biết chính xác từng hunk nằm ở dòng nào.
-
-### 9.1 Nội dung
-
-- Mỗi file Target đã ghép ở Bước 1 là một phần tử của `files`.
-- Mỗi thay đổi trong `target_out/` là **một hunk**: hunk của Bước 4, đơn vị mới (Bước 5), phụ thuộc mang sang (Bước 6), đơn vị bị xoá (Bước 4.5), changelog (Bước 7).
-- Mỗi mục `NEED_CONFIRM` của Bước 4–6 cũng là một hunk: phía `+` là code đề xuất, `target` là vị trí đề xuất (không có thì `null`).
-- **Số dòng ở `target` là số dòng trong file `target/` gốc.** Không phải `target_out/`, không phải số dòng bên trong đơn vị.
-
-```json
-{
-  "rt": "RT2707",
-  "title": "...",
-  "target_root": "../../target",               // tương đối với file JSON
-  "issues": [ {"level": "NEED_CONFIRM|WARNING", "title": "...", "detail": "..."} ],
-  "files": [ {
-    "path": "waves/ec/source/artlib/artrcp.c", // tương đối với target_root
-    "telindy_path": "waves/ec/source/artlib/artrcp.c",
-    "issues": [],
-    "hunks": [ {
-      "id": "A5",                                // duy nhất trong file
-      "unit": "ArtLibCopyRecipeName",
-      "section": "MOD|NEW|DEL|DEP|CHANGELOG",
-      "hunk": "4/4",                             // tuỳ chọn
-      "before_range": "159–182",                 // tuỳ chọn, số dòng trong đơn vị Before
-      "minus": ["dòng - của diff (new)", "..."],
-      "plus":  ["dòng + chép nguyên văn", "..."],
-      "target": {"start": 38, "end": 41},        // thay / xoá dòng 38–41 của Target gốc
-             // hoặc {"after": 21}               // chèn sau dòng 21 (0 = đầu file)
-             // hoặc null                        // không xác định được vị trí
-      "result": "MERGED|MERGED_NEW|MERGED_DEP|DELETED|SKIP_EXISTS|NEED_CONFIRM|SKIP_NOT_IN_TARGET",
-      "match": "EXACT|NEAR|MOVED|null",
-      "note": "vì sao / neo / khác gì",
-      "question": "chỉ cho NEED_CONFIRM: người dùng cần quyết định gì"
-    } ]
-  } ]
-}
-```
-
-- Quy ước theo loại hunk:
-
-| Loại | `minus` | `plus` | `target` |
-|---|---|---|---|
-| Sửa | dòng `-` của diff (new) | dòng `+` | `start`/`end` = block thực tế của FOMULAR |
-| Chỉ thêm (kể cả đơn vị mới, field mới, changelog) | `[]` | dòng `+` | `after` = dòng neo ở Target |
-| Chỉ xoá / `DELETED` | dòng `-` | `[]` | `start`/`end` = block FOMULAR bị xoá |
-| `SKIP_EXISTS` | như trên | dòng `+` | `start`/`end` = các dòng FOMULAR đã có sẵn |
-| `NEED_CONFIRM` của `paused.md` (khác chữ ký / giá trị) | `[]` | định nghĩa Latest | `start`/`end` = định nghĩa FOMULAR |
-| Không xác định được vị trí | như trên | như trên | `null` |
-
-- Các khoảng `start`–`end` không được chồng nhau. Hunk chèn không được nằm giữa một khoảng.
-
-### 9.2 Tự kiểm
-
-```bash
-python3 <thư mục skill>/tools/merge_ui.py check WORK/phase3/merge_view.json --target-out-root WORK/target_out
-```
-
-- `check` áp mọi hunk `MERGED*` / `DELETED`, bỏ mọi hunk `NEED_CONFIRM`, rồi so với `target_out/`.
-- **Phải KHỚP hết.** Không khớp nghĩa là JSON thiếu hoặc sai một thay đổi, hoặc `target_out/` đã áp một mục `NEED_CONFIRM`. Sửa rồi chạy lại.
-- Xem lại từng `CẢNH BÁO` (hunk ghi `EXACT` mà Target khác dòng `-`, `SKIP_EXISTS` mà Target khác dòng `+`).
-
-## Bước 10 — Report, thông báo và dừng
+## Bước 9 — Report, thông báo và dừng
 
 - Với mỗi file đã sửa: gọi `get-diff(target_out/<file>, target/<file>)`, lưu vào `WORK/phase3/diff/<đường dẫn file>.diff` để người duyệt xem.
 - Ghi `WORK/phase3/REPORT.md` theo mẫu trong `SKILL.md`, thêm các phần sau:
@@ -387,9 +319,8 @@ python3 <thư mục skill>/tools/merge_ui.py check WORK/phase3/merge_view.json -
   - **Đơn vị mới đã thêm**: tên, loại, lấy từ đâu ở Latest, chèn ở đâu (file, dòng, neo), được kéo theo từ đơn vị nào.
   - **Danh sách tạm dừng**: từng tên trong `paused.md` và kết quả kiểm tra. Tên được mang sang thì vẽ cây trace tiếp như ví dụ ở Bước 6.
   - **Bỏ qua**: các `SKIP` kèm lý do.
-  - **Cần xác nhận**: kèm block `-`, vị trí dự kiến, các ứng viên; hoặc bản Latest và bản FOMULAR khi khác chữ ký / kiểu / giá trị. Mỗi mục ghi id hunk tương ứng trong `merge_view.json`.
+  - **Cần xác nhận**: kèm block `-`, vị trí dự kiến, các ứng viên; hoặc bản Latest và bản FOMULAR khi khác chữ ký / kiểu / giá trị.
   - **Cảnh báo**: kết quả kiểm tra cuối, tên chưa có định nghĩa, "chưa compile" nếu không build.
-  - Kết quả `merge_ui.py check`.
-- Báo cho người dùng: đường dẫn report, `merge_view.json`, `target_out/`, các diff ở `WORK/phase3/diff/`, số lượng từng kết quả.
-- Không hỏi từng mục "Cần xác nhận" ở đây. Phase 4 hỏi qua UI.
-- Dừng, chờ người dùng xác nhận rồi mới sang Phase 4.
+- Báo cho người dùng: đường dẫn report, đường dẫn `target_out/`, đường dẫn các diff ở `WORK/phase3/diff/`, số lượng từng kết quả.
+- Hỏi người dùng từng mục "Cần xác nhận". Áp dụng câu trả lời vào `target_out/` và cập nhật report.
+- Không báo "hoàn tất" khi còn mục chưa được trả lời.
