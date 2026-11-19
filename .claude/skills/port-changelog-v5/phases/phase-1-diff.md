@@ -38,7 +38,7 @@ Mục tiêu:
 - Với mỗi block `+`/`-` trong diff (bỏ qua phần khối `Modification:`):
   - Mở file After (cho dòng `+`) hoặc Before (cho dòng `-`) tại đúng số dòng.
   - Xác định dòng đó nằm trong đơn vị nào: hàm, macro, biến global/static, kiểu, prototype.
-  - **Không dùng tên hàm ở dòng `@@` làm căn cứ.** Phải mở file và xem dòng đó thực sự nằm trong hàm nào (từ dòng chữ ký tới dấu `}` đóng hàm).
+  - **Không dùng tên hàm ở dòng `@@` làm căn cứ.** Phải mở file và xem dòng đó thực sự nằm trong hàm nào (theo phạm vi ở `SKILL.md`, gồm cả comment đầu hàm).
 - Phân loại từng đơn vị:
   - `Add`: không có ở Before, có ở After.
   - `Mod`: có ở cả hai, nội dung khác.

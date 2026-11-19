@@ -108,7 +108,7 @@ Phần dưới là chi tiết từng bước.
 
 ### Cắt đơn vị ra file riêng
 
-- Cắt nguyên định nghĩa (hàm: từ dòng chữ ký tới dấu `}` đóng hàm) vào `WORK/phase2/fn/<file>/`. Cắt bản nào tuỳ loại:
+- Cắt nguyên định nghĩa (hàm: theo phạm vi ở `SKILL.md`, gồm cả comment đầu hàm) vào `WORK/phase2/fn/<file>/`. Cắt bản nào tuỳ loại:
 
 | Loại | `<X>.before.c` | `<X>.after.c` | `<X>.latest.c` |
 |---|---|---|---|

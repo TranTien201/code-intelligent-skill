@@ -49,7 +49,9 @@ Các từ dưới đây dùng ở mọi Phase, mỗi từ chỉ mang đúng mộ
 - Mỗi đơn vị có **tên** (dùng để tìm ở Latest / Target và đặt tên bản cắt) và **phạm vi** (từ dòng nào tới dòng nào là của nó).
 - Có 7 loại đơn vị:
 
-1. **Hàm**: phạm vi từ dòng chữ ký tới dấu `}` đóng hàm. Tên là tên hàm.
+1. **Hàm**: phạm vi từ **dòng đầu của comment đầu hàm** tới dấu `}` đóng hàm. Tên là tên hàm.
+   - **Comment đầu hàm**: các dòng comment liền ngay trên dòng chữ ký (cho phép 1 dòng trống ở giữa). Đi ngược lên, dừng khi gặp dòng code, 2 dòng trống liên tiếp, hoặc `}` của đơn vị trước.
+   - Không có comment thì phạm vi bắt đầu từ dòng chữ ký.
 
    ```c
    int ArtLibGetRecipeData(int subSystemId, char *name)
@@ -121,7 +123,7 @@ Các từ dưới đây dùng ở mọi Phase, mỗi từ chỉ mang đúng mộ
    } RECIPE_INFO;
   ```
 
-- **Không phải đơn vị**: biến cục bộ, tham số hàm, comment, khối `Modification:`. Dòng `#include` cũng không phải đơn vị, nhưng có thể phải thêm vào Target khi mang một định nghĩa từ header khác sang (Phase 3).
+- **Không phải đơn vị**: biến cục bộ, tham số hàm, comment (trừ comment đầu hàm, là một phần của hàm), khối `Modification:`. Dòng `#include` cũng không phải đơn vị, nhưng có thể phải thêm vào Target khi mang một định nghĩa từ header khác sang (Phase 3).
   - Ví dụ: trong hàm `ArtLibGetRecipeData` ở trên, `int retCode;` là biến cục bộ, `subSystemId` và `name` là tham số. Chúng là phần của hàm, không tìm hay cắt riêng.
   - Ví dụ: `/* Get All Variable Data */` là comment; `#include "rcpif.h"` là dòng include. Cả hai không phải đơn vị.
 - **Đơn vị `Add` / `Mod` / `Del`**: đơn vị RT thêm mới / RT sửa bên trong / RT xoá hẳn. Xác định bằng diff ở Phase 1, không theo từ khoá `Add.` / `Mod.` trong changelog.
@@ -259,8 +261,8 @@ Kiểu khớp khi tìm vị trí của hunk ở Target (Phase 3):
 | Kiểu khớp | Ý nghĩa |
 |---|---|
 | `EXACT` | Đoạn ở Target giống nguyên văn các dòng `-` của hunk, nằm trong vùng dự kiến |
-| `NEAR` | Đoạn ở Target gần giống (khác tên biến, tham số, hằng số...), nằm trong vùng dự kiến |
-| `MOVED` | Tìm thấy đúng một đoạn khớp nhưng nằm ngoài vùng dự kiến |
+| `NEAR` | Đoạn ở Target chỉ khác tên (biến, tham số, macro...), mọi cặp tên đã chứng minh được cùng ý nghĩa (Phase 3, Bước 4.3), và nằm trong vùng dự kiến |
+| `MOVED` | Tìm thấy đúng một đoạn khớp (nguyên văn, hoặc đạt điều kiện như `NEAR`) nhưng nằm ngoài vùng dự kiến |
 
 ## Mẫu report
 
