@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "port-changelog-v7/merge-plan",
+  "title": "Phase 3 merge plan",
+  "type": "object",
+  "required": ["rt", "version", "files", "chunks", "questions", "skipped"],
+  "additionalProperties": false,
+  "properties": {
+    "rt": { "type": "string", "description": "Mã RT, ví dụ RT1234" },
+    "version": { "const": 1 },
+    "files": {
+      "type": "object",
+      "description": "Khóa = đường dẫn file Target, tương đối từ thư mục target/",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["encoding"],
+        "additionalProperties": false,
+        "properties": {
+          "encoding": { "type": "string", "description": "Ví dụ cp932, utf-8, ascii" },
+          "name_map": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["from", "to", "proof"],
+              "additionalProperties": false,
+              "properties": {
+                "from": { "type": "string", "description": "Tên ở Before/TELINDY" },
+                "to": { "type": "string", "description": "Tên tương ứng ở Target/FOMULAR" },
+                "proof": { "type": "string", "description": "Chứng cứ, ví dụ: tham số #4, kiểu text*" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "file", "unit", "src", "summary", "target", "apply"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^K[0-9]+$" },
+          "file": { "type": "string", "description": "Một khóa trong files" },
+          "unit": { "type": "string", "description": "Tên đơn vị (hàm, prototype, global, changelog)" },
+          "src": { "type": "string", "description": "Hunk nguồn ở diff(new) Phase 2, ví dụ: P2 LibCopyItem -60,24 +67,81" },
+          "summary": { "type": "string", "description": "Một câu mô tả thay đổi" },
+          "target": {
+            "type": "object",
+            "required": ["start", "end", "text"],
+            "additionalProperties": false,
+            "properties": {
+              "start": { "type": "integer", "minimum": 1, "description": "Dòng đầu (tính từ 1) trong file Target gốc" },
+              "end": { "type": "integer", "minimum": 1, "description": "Dòng cuối, tính cả dòng này. end >= start" },
+              "text": { "type": "string", "description": "Nguyên văn các dòng start..end của Target, mỗi dòng kết thúc bằng \\n" }
+            }
+          },
+          "base": { "type": "string", "description": "Chỉ cho chunk conflict: code Before tương ứng" },
+          "rt": { "type": "string", "description": "Chỉ khi khác apply: code RT nguyên văn (đã đổi tên)" },
+          "apply": { "type": "string", "description": "Code sẽ thay vào vùng target khi áp. Đã đổi tên theo name_map" },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["chunk", "why"],
+              "additionalProperties": false,
+              "properties": {
+                "chunk": { "type": "string", "pattern": "^K[0-9]+$" },
+                "why": { "type": "string" }
+              }
+            }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "chunks", "options"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^Q[0-9]+$" },
+          "text": { "type": "string" },
+          "evidence": { "type": "string" },
+          "chunks": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^K[0-9]+$" } },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "apply"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "apply": { "type": "array", "items": { "type": "string", "pattern": "^K[0-9]+$" } }
+              }
+            }
+          },
+          "recommended": { "type": "string" }
+        }
+      }
+    },
+    "skipped": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["src", "reason", "detail"],
+        "additionalProperties": false,
+        "properties": {
+          "src": { "type": "string" },
+          "lines": { "type": "array", "items": { "type": "integer" } },
+          "reason": { "enum": ["ALREADY_IN_TARGET", "TARGET_EQUIVALENT", "QUESTION"] },
+          "detail": { "type": "string" }
+        }
+      }
+    }
+  }
+}

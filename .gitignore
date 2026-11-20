@@ -1,0 +1,11 @@
+# Dữ liệu dự án thật (nhạy cảm, không public)
+Work/
+.claude/skills/port-changelog-v7/examples/
+.claude/skills/port-changelog-v7/tools/tests/fixtures/RT*/
+.claude/skills/port-changelog-v7/tools/tests/fixtures/negative/
+.claude/skills/port-changelog-v7/tools/tests/test_rt*
+.claude/skills/port-changelog-v7/tools/tests/test_schema.py
+.claude/skills/port-changelog-v7/tools/tests/skill-eval/
+docs/port-changelog-v7/docs/
+__pycache__/
+.DS_Store
