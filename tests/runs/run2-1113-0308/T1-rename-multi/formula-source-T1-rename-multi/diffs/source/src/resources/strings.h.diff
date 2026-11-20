@@ -1,0 +1,14 @@
+diff --git a/Before/src/resources/strings.h b/After/src/resources/strings.h
+index 09987e0..77ec76e 100644
+--- a/Before/src/resources/strings.h
++++ b/After/src/resources/strings.h
+@@ -1,8 +1,9 @@
+ #ifndef STRINGS_H
+ #define STRINGS_H
+ typedef enum {
+     STR_COPIES,
+     STR_DUPLEX,
++    STR_TONER_SAVE,
+     STR_QUALITY,
+     STR_COUNT
+ } StrId_t;

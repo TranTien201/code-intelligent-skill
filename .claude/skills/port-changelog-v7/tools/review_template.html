@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duyệt merge</title>
+<style>
+:root {
+  --bg: #f6f8fa; --panel: #ffffff; --border: #d0d7de; --text: #1f2328; --muted: #656d76; --hdr: #f0f3f6;
+  --accent: #0969da; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --applied: #1a7f37; --applied-bg: #dafbe1; --applied-line: #aceebb;
+  --kept: #57606a; --kept-bg: #eef1f4; --kept-line: #d8dee4;
+  --confirm: #cf222e; --confirm-bg: #ffebe9; --confirm-line: #ffcecb;
+  --blocked: #9a6700; --blocked-bg: #fff8c5; --blocked-line: #f5e08a;
+  --follow: #a37b00; --follow-bg: #fffbe6; --follow-line: #f3e9b8;
+  --del-bg: #ffebe9; --add-bg: #dafbe1; --tok-bg: #ddf4ff; --tok-border: #54aeff;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+a { color: var(--accent); cursor: pointer; }
+code, pre, .mono { font-family: var(--mono); }
+
+header.top { position: sticky; top: 0; z-index: 20; background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 16px; }
+header.top h1 { font-size: 16px; margin: 0; white-space: nowrap; }
+header.top .src { color: var(--muted); font-size: 12px; }
+.counts { display: flex; gap: 6px; flex-wrap: wrap; }
+.spacer { flex: 1; }
+.btn { border: 1px solid var(--border); background: var(--panel); border-radius: 6px; padding: 4px 10px; font-size: 13px; white-space: nowrap; }
+.btn:hover:not(:disabled) { background: var(--hdr); }
+.btn.primary { background: var(--applied); border-color: var(--applied); color: #fff; }
+.btn.primary:hover:not(:disabled) { background: #116329; }
+.btn.small { padding: 1px 7px; font-size: 12px; }
+
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; border: 1px solid; white-space: nowrap; }
+.b-APPLIED { color: var(--applied); background: var(--applied-bg); border-color: var(--applied); }
+.b-KEPT { color: var(--kept); background: var(--kept-bg); border-color: var(--kept); }
+.b-NEED_CONFIRM { color: var(--confirm); background: var(--confirm-bg); border-color: var(--confirm); }
+.b-BLOCKED { color: var(--blocked); background: var(--blocked-bg); border-color: var(--blocked); }
+.b-FOLLOW { color: var(--follow); background: var(--follow-bg); border-color: #d4a72c; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; flex: none; }
+.d-APPLIED { background: var(--applied); } .d-KEPT { background: var(--kept); } .d-NEED_CONFIRM { background: var(--confirm); }
+.d-BLOCKED { background: #d4a72c; } .d-FOLLOW { background: #eedc82; border: 1px solid #d4a72c; }
+
+.banner { margin: 10px 16px 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; }
+.banner.err { background: var(--confirm-bg); color: #82071e; border: 1px solid var(--confirm); }
+.banner.err ul { margin: 6px 0 0; padding-left: 20px; }
+.banner.info { background: #ddf4ff; color: #0a3069; border: 1px solid #54aeff; }
+
+.app { display: grid; grid-template-columns: 270px minmax(0, 1fr); align-items: start; }
+aside.side { position: sticky; top: 49px; max-height: calc(100vh - 49px); overflow: auto; border-right: 1px solid var(--border);
+  background: var(--panel); min-height: calc(100vh - 49px); padding-bottom: 20px; }
+.side h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 14px 14px 6px; }
+.side .item { display: flex; align-items: center; padding: 4px 14px; cursor: pointer; font-size: 13px; }
+.side .item:hover { background: var(--hdr); }
+.side .file { padding: 7px 14px; cursor: pointer; border-left: 3px solid transparent; }
+.side .file:hover { background: var(--hdr); }
+.side .file.on { background: #ddf4ff; border-left-color: var(--accent); }
+.side .file .p { font-family: var(--mono); font-size: 12.5px; word-break: break-all; }
+.side .file .m { color: var(--muted); font-size: 11px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.side .unit { font-family: var(--mono); font-size: 11.5px; color: var(--muted); padding: 5px 14px 1px 24px; }
+.side .chunk { padding: 2px 14px 2px 30px; }
+.side .chunk .s { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-left: 6px; }
+.side .chunk.sel { background: #fff8c5; }
+
+main.main { min-width: 0; padding: 0 16px 60px; }
+section.box { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; margin-top: 14px; }
+section.box > .bh { padding: 8px 14px; border-bottom: 1px solid var(--border); background: var(--hdr); border-radius: 8px 8px 0 0;
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+section.box > .bh h2 { margin: 0; font-size: 14px; }
+section.box > .bb { padding: 10px 14px; }
+
+.q { border: 1px solid var(--border); border-left: 4px solid var(--confirm); border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; }
+.q.answered { border-left-color: var(--kept); }
+.q .qt { font-weight: 600; margin: 4px 0; }
+.q pre.ev { background: var(--hdr); padding: 6px 8px; border-radius: 4px; white-space: pre-wrap; font-size: 12px; margin: 6px 0; }
+.opts { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.opt { text-align: left; border: 1px solid var(--border); background: var(--panel); border-radius: 6px; padding: 6px 10px; }
+.opt:hover { background: var(--hdr); }
+.opt.on { border-color: var(--accent); background: #ddf4ff; box-shadow: inset 0 0 0 1px var(--accent); }
+.opt .rec { font-size: 11px; font-weight: 600; color: var(--applied); border: 1px solid var(--applied); border-radius: 10px; padding: 0 6px; margin-left: 6px; }
+.opt small { display: block; color: var(--muted); font-size: 12px; }
+
+.fhead { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.fhead .p { font-family: var(--mono); font-weight: 600; }
+.enc-note { font-size: 12px; color: #82071e; background: var(--confirm-bg); border: 1px solid var(--confirm-line); border-radius: 6px; padding: 6px 10px; margin: 8px 14px 0; }
+.enc-note code { background: #fff; padding: 1px 4px; border-radius: 3px; word-break: break-all; }
+
+.grid-h { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(330px, 1fr); font-size: 12px; font-weight: 600; color: var(--muted);
+  border-bottom: 1px solid var(--border); }
+.grid-h div { padding: 6px 10px; }
+.row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(330px, 1fr); border-bottom: 1px solid #eaeef2; }
+.row:last-child { border-bottom: 0; }
+.code { font-family: var(--mono); font-size: 12.5px; line-height: 1.5; overflow-x: auto; min-width: 0; padding: 2px 0; }
+.ln { display: flex; white-space: pre; min-height: 18.75px; }
+.ln .no { flex: none; width: 52px; text-align: right; padding-right: 10px; color: #8c959f; user-select: none; }
+.ln .tx { padding-right: 12px; }
+.fold { display: block; width: 100%; text-align: left; border: 0; background: #ddf4ff; color: #0a3069; font-size: 12px; padding: 2px 62px; }
+.fold:hover { background: #b6e3ff; }
+.reg { border-left: 4px solid; cursor: pointer; }
+.reg.st-APPLIED { background: var(--applied-bg); border-color: var(--applied); }
+.reg.st-KEPT { background: var(--kept-bg); border-color: var(--kept); }
+.reg.st-NEED_CONFIRM { background: var(--confirm-bg); border-color: var(--confirm); }
+.reg.st-BLOCKED { background: var(--blocked-bg); border-color: #d4a72c; }
+.reg.st-FOLLOW { background: var(--follow-bg); border-color: #eedc82; }
+.reg .empty { color: var(--muted); font-style: italic; padding: 0 62px; }
+.reg-tag { font-family: system-ui, sans-serif; font-size: 11px; color: var(--muted); padding: 1px 62px 0; }
+.sidecol { border-left: 1px solid #eaeef2; padding: 6px 8px; min-width: 0; }
+
+.card { position: sticky; top: 56px; border: 1px solid var(--border); border-left: 4px solid; border-radius: 6px; background: var(--panel); padding: 8px 10px; }
+.card.st-APPLIED { border-left-color: var(--applied); } .card.st-KEPT { border-left-color: var(--kept); }
+.card.st-NEED_CONFIRM { border-left-color: var(--confirm); } .card.st-BLOCKED { border-left-color: #d4a72c; } .card.st-FOLLOW { border-left-color: #eedc82; }
+.card .ch { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.card .ch .id { font-weight: 700; font-family: var(--mono); }
+.card .ch .unit { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.card .sum { margin: 4px 0 2px; font-weight: 500; }
+.card .meta { font-size: 12px; color: var(--muted); word-break: break-word; }
+.card .note { font-size: 12px; background: var(--hdr); border-radius: 4px; padding: 4px 6px; margin-top: 4px; white-space: pre-wrap; }
+.card .wait { font-size: 12.5px; margin-top: 4px; padding: 4px 6px; border-radius: 4px; background: var(--blocked-bg); color: #7d4e00; }
+.card .wait.q { background: var(--confirm-bg); color: #82071e; }
+.card .rel { font-size: 12px; margin-top: 4px; color: var(--muted); }
+.card .rel a { font-family: var(--mono); }
+.acts { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.acts .btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tabs { display: flex; gap: 2px; margin-top: 8px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.tabs button { border: 1px solid transparent; border-bottom: 0; background: transparent; font-size: 12px; padding: 3px 8px; border-radius: 5px 5px 0 0; color: var(--muted); }
+.tabs button.on { border-color: var(--border); background: var(--panel); color: var(--text); margin-bottom: -1px; font-weight: 600; }
+pre.view { margin: 0; font-size: 12px; line-height: 1.45; background: #fafbfc; border: 1px solid var(--border); border-top: 0; padding: 6px 8px;
+  overflow: auto; max-height: 420px; white-space: pre; }
+pre.view .d { background: var(--del-bg); display: block; } pre.view .a { background: var(--add-bg); display: block; }
+.tok { background: var(--tok-bg); border-bottom: 1px dotted var(--tok-border); border-radius: 2px; font-weight: 600; cursor: help; }
+
+.flash { animation: flash 1.4s ease-out; }
+@keyframes flash { 0% { box-shadow: 0 0 0 3px #fb8f44; } 100% { box-shadow: 0 0 0 3px transparent; } }
+
+table.sk { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.sk th, table.sk td { border-bottom: 1px solid #eaeef2; text-align: left; padding: 5px 8px; vertical-align: top; }
+table.sk th { color: var(--muted); font-size: 12px; font-weight: 600; }
+
+.modal-bg { position: fixed; inset: 0; background: rgba(31, 35, 40, .45); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal { background: var(--panel); border-radius: 10px; max-width: 620px; width: 100%; max-height: 85vh; overflow: auto; padding: 16px 18px; box-shadow: 0 8px 30px rgba(0,0,0,.25); }
+.modal h3 { margin: 0 0 8px; font-size: 16px; }
+.modal ul { padding-left: 18px; margin: 6px 0 10px; }
+.modal li { margin: 3px 0; }
+.modal .foot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+#toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: #1f2328; color: #fff; padding: 8px 14px; border-radius: 6px;
+  font-size: 13px; z-index: 60; max-width: 90vw; }
+.hidden { display: none !important; }
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  aside.side { position: static; max-height: none; min-height: 0; border-right: 0; border-bottom: 1px solid var(--border); }
+  .row, .grid-h { grid-template-columns: 1fr; }
+  .sidecol { border-left: 0; }
+  .card { position: static; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1 id="title">Duyệt merge</h1>
+  <span class="src" id="srcInfo"></span>
+  <div class="counts" id="counts"></div>
+  <span class="spacer"></span>
+  <button class="btn" id="btnLoad" title="Nạp decisions.json đã lưu">Nạp decisions.json</button>
+  <input type="file" id="fileInput" accept=".json,application/json" class="hidden">
+  <button class="btn" id="btnReset" title="Xóa mọi câu trả lời và lựa chọn tay">Xóa quyết định</button>
+  <button class="btn primary" id="btnDecisions">Tải decisions.json</button>
+  <button class="btn" id="btnAll">Tải file output</button>
+</header>
+<div id="banner"></div>
+<div class="app">
+  <aside class="side" id="side"></aside>
+  <main class="main">
+    <section class="box" id="questions"></section>
+    <section class="box" id="fileview"></section>
+    <section class="box" id="skipped"></section>
+  </main>
+</div>
+<div id="modal" class="hidden"></div>
+<div id="toast" class="hidden"></div>
+
+<script type="application/json" id="payload">/*__PAYLOAD__*/null</script>
+<script>
+/*__REVIEW_CORE__*/
+</script>
+<script>
+(function () {
+'use strict';
+var C = window.ReviewCore;
+var DATA = JSON.parse(document.getElementById('payload').textContent);
+var PLAN = DATA.plan;
+var FILES = DATA.files || {};
+var META = DATA.meta || {};
+var SRC = DATA.source || {};
+var FILE_KEYS = Object.keys(PLAN.files || {});
+var STATUSES = ['APPLIED', 'KEPT', 'NEED_CONFIRM', 'BLOCKED', 'FOLLOW'];
+var LABEL = { APPLIED: 'Đã áp', KEPT: 'Giữ Target', NEED_CONFIRM: 'Chờ câu hỏi', BLOCKED: 'Bị chặn', FOLLOW: 'Đi theo' };
+var CHOICE_LABEL = { target: 'Target', apply: 'Đề xuất', rt: 'RT' };
+var CTX = 3;
+var ERRORS = C.validate(PLAN, FILES);
+var CHUNK = {};
+(PLAN.chunks || []).forEach(function (c) { if (!CHUNK[c.id]) CHUNK[c.id] = c; });
+var REV = C.reverseIndex(PLAN);
+var STORE_KEY = 'port-changelog-v7:' + (PLAN.rt || '') + ':' + hash(JSON.stringify(PLAN));
+
+var state = {
+  decisions: C.normalizeDecisions(PLAN, null),
+  file: FILE_KEYS[0] || null,
+  tab: {},          // chunkId -> 'diff' | 'current' | 'base' | 'rt' | 'apply' | ''
+  expanded: {},     // file:gapIndex -> true
+  sel: null,
+  status: {},
+  info: ''
+};
+
+function $(id) { return document.getElementById(id); }
+function esc(s) {
+  return String(s === undefined || s === null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function hash(s) {
+  var h = 5381;
+  for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+function storeGet() { try { return window.localStorage.getItem(STORE_KEY); } catch (e) { return null; } }
+function storeSet(v) { try { window.localStorage.setItem(STORE_KEY, v); } catch (e) { /* không lưu được: bỏ qua */ } }
+function isUtf8(enc) { return ['utf-8', 'utf8', 'utf_8', 'ascii', 'us-ascii'].indexOf(String(enc || 'utf-8').toLowerCase()) >= 0; }
+function basename(p) { return String(p).split('/').pop(); }
+
+// ---------------------------------------------------------------- tô token name_map
+function tokenMap(file) {
+  var m = {};
+  var info = (PLAN.files || {})[file] || {};
+  (info.name_map || []).forEach(function (n) { if (n && n.to) m[n.to] = n; });
+  return m;
+}
+function hlLine(line, tmap) {
+  var parts = String(line).split(/([A-Za-z_][A-Za-z0-9_]*)/);
+  var out = '';
+  for (var i = 0; i < parts.length; i++) {
+    var p = parts[i];
+    if (i % 2 === 1 && Object.prototype.hasOwnProperty.call(tmap, p)) {
+      var n = tmap[p];
+      out += '<span class="tok" title="' + esc(n.from + ' → ' + n.to + '\n' + n.proof) + '">' + esc(p) + '</span>';
+    } else {
+      out += esc(p);
+    }
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------- diff dòng (LCS) cho tab "Thay đổi"
+function lineDiff(a, b) {
+  var n = a.length, m = b.length;
+  if (n * m > 4000000) return a.map(function (x) { return ['-', x]; }).concat(b.map(function (x) { return ['+', x]; }));
+  var dp = [];
+  for (var i = 0; i <= n; i++) { dp.push(new Array(m + 1).fill(0)); }
+  for (i = n - 1; i >= 0; i--) for (var j = m - 1; j >= 0; j--) {
+    dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  }
+  var out = []; i = 0; j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { out.push([' ', a[i]]); i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) { out.push(['-', a[i]]); i++; }
+    else { out.push(['+', b[j]]); j++; }
+  }
+  while (i < n) out.push(['-', a[i++]]);
+  while (j < m) out.push(['+', b[j++]]);
+  return out;
+}
+
+// ---------------------------------------------------------------- dựng HTML
+function countsHtml() {
+  var cnt = {};
+  STATUSES.forEach(function (s) { cnt[s] = 0; });
+  Object.keys(state.status).forEach(function (k) { cnt[state.status[k].status]++; });
+  return STATUSES.map(function (s) {
+    return '<span class="badge b-' + s + '" title="' + esc(LABEL[s]) + '">' + s + ' ' + cnt[s] + '</span>';
+  }).join('');
+}
+
+function bannerHtml() {
+  var h = '';
+  if (ERRORS.length) {
+    h += '<div class="banner err"><b>merge-plan.json không qua kiểm tra (' + ERRORS.length + ' lỗi). Nút xuất đã bị khóa — sửa plan ở Phase 3 rồi render lại.</b><ul>' +
+      ERRORS.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul></div>';
+  }
+  if (state.info) h += '<div class="banner info">' + esc(state.info) + '</div>';
+  return h;
+}
+
+function unitsOf(file) {
+  var cs = (PLAN.chunks || []).filter(function (c) { return c.file === file; }).slice();
+  cs.sort(function (a, b) { return ((a.target || {}).start || 0) - ((b.target || {}).start || 0); });
+  var order = [], map = {};
+  cs.forEach(function (c) {
+    if (!map[c.unit]) { map[c.unit] = []; order.push(c.unit); }
+    map[c.unit].push(c);
+  });
+  return order.map(function (u) { return { unit: u, chunks: map[u] }; });
+}
+
+function sideHtml() {
+  var h = '';
+  var qs = PLAN.questions || [];
+  if (qs.length) {
+    var open = qs.filter(function (q) { return !state.decisions.answers[q.id]; }).length;
+    h += '<h2>Câu hỏi (' + open + '/' + qs.length + ' chưa trả lời)</h2>';
+    qs.forEach(function (q) {
+      var ans = state.decisions.answers[q.id];
+      h += '<div class="item" data-gotoq="' + esc(q.id) + '"><span class="dot ' + (ans ? 'd-KEPT' : 'd-NEED_CONFIRM') + '"></span>' +
+        '<b>' + esc(q.id) + '</b>&nbsp;' + (ans ? '→ ' + esc(ans) : '<span style="color:var(--confirm)">chưa trả lời</span>') + '</div>';
+    });
+  }
+  h += '<h2>File</h2>';
+  FILE_KEYS.forEach(function (f) {
+    var m = META[f] || {};
+    var cs = (PLAN.chunks || []).filter(function (c) { return c.file === f; });
+    var dots = STATUSES.map(function (s) {
+      var n = cs.filter(function (c) { return state.status[c.id] && state.status[c.id].status === s; }).length;
+      return n ? '<span><span class="dot d-' + s + '"></span>' + n + '</span>' : '';
+    }).join('');
+    h += '<div class="file' + (f === state.file ? ' on' : '') + '" data-file="' + esc(f) + '"><div class="p">' + esc(f) + '</div>' +
+      '<div class="m">' + esc(m.encoding || '') + ' · ' + esc((m.eol || 'lf').toUpperCase()) + ' · ' + cs.length + ' chunk ' + dots + '</div></div>';
+    unitsOf(f).forEach(function (u) {
+      h += '<div class="unit">' + esc(u.unit) + '</div>';
+      u.chunks.forEach(function (c) {
+        var st = state.status[c.id] || {};
+        h += '<div class="item chunk' + (state.sel === c.id ? ' sel' : '') + '" data-goto="' + esc(c.id) + '" title="' + esc(c.summary) + '">' +
+          '<span class="dot d-' + st.status + '"></span><b class="mono">' + esc(c.id) + '</b><span class="s">' + esc(c.summary) + '</span></div>';
+      });
+    });
+  });
+  var sk = PLAN.skipped || [];
+  h += '<h2>Khác</h2><div class="item" data-gotoskip="1">Đã xét, không áp (' + sk.length + ')</div>';
+  return h;
+}
+
+function questionsHtml() {
+  var qs = PLAN.questions || [];
+  var open = qs.filter(function (q) { return !state.decisions.answers[q.id]; }).length;
+  var h = '<div class="bh"><h2>Câu hỏi cần xác nhận</h2>' +
+    (qs.length ? '<span class="badge ' + (open ? 'b-NEED_CONFIRM' : 'b-KEPT') + '">' + open + ' chưa trả lời</span>' : '') + '</div><div class="bb">';
+  if (!qs.length) return h + '<i style="color:var(--muted)">Không có câu hỏi.</i></div>';
+  qs.forEach(function (q) {
+    var ans = state.decisions.answers[q.id];
+    h += '<div class="q' + (ans ? ' answered' : '') + '" id="q-' + esc(q.id) + '">' +
+      '<div><b class="mono">' + esc(q.id) + '</b> ' +
+      (ans ? '<span class="badge b-KEPT">Đã chọn ' + esc(ans) + '</span>' : '<span class="badge b-NEED_CONFIRM">Chưa trả lời</span>') +
+      ' <span style="font-size:12px;color:var(--muted)">quyết định: ' + (q.chunks || []).map(chunkLink).join(', ') + '</span></div>' +
+      '<div class="qt">' + esc(q.text) + '</div>' +
+      (q.evidence ? '<pre class="ev">' + esc(q.evidence) + '</pre>' : '') + '<div class="opts">';
+    (q.options || []).forEach(function (o) {
+      var ap = o.apply || [];
+      var keep = (q.chunks || []).filter(function (k) { return ap.indexOf(k) < 0; });
+      h += '<button class="opt' + (ans === o.id ? ' on' : '') + '" data-ans="' + esc(q.id) + '" data-opt="' + esc(o.id) + '">' +
+        '<b>' + esc(o.id) + '.</b> ' + esc(o.label) + (q.recommended === o.id ? '<span class="rec">đề xuất</span>' : '') +
+        '<small>áp: ' + (ap.length ? esc(ap.join(', ')) : '—') + ' · giữ Target: ' + (keep.length ? esc(keep.join(', ')) : '—') + '</small></button>';
+    });
+    h += '</div>' + (ans ? '<div style="margin-top:6px"><button class="btn small" data-unans="' + esc(q.id) + '">Bỏ trả lời</button></div>' : '') + '</div>';
+  });
+  return h + '</div>';
+}
+
+function chunkLink(k) { return '<a data-goto="' + esc(k) + '" class="mono">' + esc(k) + '</a>'; }
+
+function lineHtml(no, text, tmap) {
+  return '<div class="ln"><span class="no">' + no + '</span><span class="tx">' + (tmap ? hlLine(text, tmap) : esc(text)) + '</span></div>';
+}
+
+function whyOf(fromId, toId) {
+  var c = CHUNK[fromId];
+  var r = ((c && c.requires) || []).filter(function (x) { return x.chunk === toId; })[0];
+  return r ? r.why : '';
+}
+
+function cardHtml(c, reg) {
+  var st = state.status[c.id] || { status: '?', choice: 'target', by: [] };
+  var dec = state.decisions;
+  var manual = Object.prototype.hasOwnProperty.call(dec.choices, c.id) ? dec.choices[c.id] : null;
+  var tmap = tokenMap(c.file);
+  var h = '<div class="card st-' + st.status + '" id="card-' + esc(c.id) + '" data-card="' + esc(c.id) + '">';
+  h += '<div class="ch"><span class="id">' + esc(c.id) + '</span><span class="badge b-' + st.status + '">' + st.status + '</span>' +
+    '<span class="unit">' + esc(c.unit) + '</span>' +
+    '<span style="font-size:12px;color:var(--muted)">đang dùng: <b>' + CHOICE_LABEL[st.choice] + '</b>' + (manual ? ' (chọn tay)' : '') + '</span></div>';
+  h += '<div class="sum">' + esc(c.summary) + '</div>';
+  var t = c.target || {};
+  var outR = reg ? (reg.end >= reg.start ? reg.start + '–' + reg.end : 'trống (sau dòng ' + (reg.start - 1) + ')') : '?';
+  h += '<div class="meta">src: <span class="mono">' + esc(c.src) + '</span><br>Target dòng ' + t.start + '–' + t.end + ' → output dòng ' + outR + '</div>';
+  if (c.note) h += '<div class="note">' + esc(c.note) + '</div>';
+  if (st.status === 'NEED_CONFIRM') {
+    h += st.by.map(function (q) { return '<div class="wait q">chờ câu hỏi <a data-gotoq="' + esc(q) + '">' + esc(q) + '</a></div>'; }).join('');
+  } else if (st.status === 'BLOCKED') {
+    h += st.by.map(function (k) { return '<div class="wait">chờ ' + chunkLink(k) + ': ' + esc(whyOf(c.id, k)) + '</div>'; }).join('');
+  } else if (st.status === 'FOLLOW') {
+    h += st.by.map(function (k) { return '<div class="wait">chờ ' + chunkLink(k) + ': ' + esc(whyOf(k, c.id)) + '</div>'; }).join('');
+  }
+  var reqs = (c.requires || []);
+  if (reqs.length) {
+    h += '<div class="rel">cần: ' + reqs.map(function (r) {
+      var s = state.status[r.chunk];
+      return '<span title="' + esc(r.why) + '"><span class="dot d-' + (s ? s.status : '') + '"></span>' + chunkLink(r.chunk) + '</span>';
+    }).join(' ') + '</div>';
+  }
+  var deps = REV[c.id] || [];
+  if (deps.length) {
+    h += '<div class="rel">được dùng bởi: ' + deps.map(function (k) {
+      var s = state.status[k];
+      return '<span title="' + esc(whyOf(k, c.id)) + '"><span class="dot d-' + (s ? s.status : '') + '"></span>' + chunkLink(k) + '</span>';
+    }).join(' ') + '</div>';
+  }
+  h += '<div class="acts">' +
+    '<button class="btn' + (st.choice === 'target' ? ' on' : '') + '" data-act="target" data-k="' + esc(c.id) + '" title="Giữ code Target">← Giữ Target</button>' +
+    (typeof c.rt === 'string' ? '<button class="btn' + (st.choice === 'rt' ? ' on' : '') + '" data-act="rt" data-k="' + esc(c.id) + '" title="Dùng code RT nguyên văn">RT</button>' : '') +
+    '<button class="btn' + (st.choice === 'apply' ? ' on' : '') + '" data-act="apply" data-k="' + esc(c.id) + '" title="Áp code đề xuất">Áp →</button>' +
+    (manual ? '<button class="btn small" data-act="reset" data-k="' + esc(c.id) + '" title="Bỏ lựa chọn tay, quay về mặc định">↺ mặc định</button>' : '') +
+    '</div>';
+  var tab = Object.prototype.hasOwnProperty.call(state.tab, c.id) ? state.tab[c.id] : 'diff';
+  var tabs = [['diff', 'Thay đổi'], ['current', 'Current'], ['base', 'Base'], ['rt', 'Incoming'], ['apply', 'Đề xuất']].filter(function (x) {
+    return (x[0] !== 'base' || typeof c.base === 'string') && (x[0] !== 'rt' || typeof c.rt === 'string');
+  });
+  h += '<div class="tabs">' + tabs.map(function (x) {
+    return '<button class="' + (tab === x[0] ? 'on' : '') + '" data-tab="' + x[0] + '" data-k="' + esc(c.id) + '">' + x[1] + '</button>';
+  }).join('') + '</div>';
+  if (tab) h += viewHtml(c, tab, tmap);
+  return h + '</div>';
+}
+
+function viewHtml(c, tab, tmap) {
+  var body = '';
+  if (tab === 'diff') {
+    var src = typeof c.rt === 'string' && (state.status[c.id] || {}).choice === 'rt' ? c.rt : c.apply;
+    var d = lineDiff(C.splitLines((c.target || {}).text || ''), C.splitLines(src || ''));
+    body = d.map(function (x) {
+      var cls = x[0] === '-' ? 'd' : x[0] === '+' ? 'a' : '';
+      return (cls ? '<span class="' + cls + '">' : '') + esc(x[0]) + ' ' + hlLine(x[1], x[0] === '-' ? {} : tmap) + (cls ? '</span>' : '\n');
+    }).join('');
+    if (!d.length) body = '<i>(không có dòng nào)</i>';
+  } else {
+    var text = tab === 'current' ? (c.target || {}).text : tab === 'base' ? c.base : tab === 'rt' ? c.rt : c.apply;
+    var lines = C.splitLines(text || '');
+    body = lines.length ? lines.map(function (l) { return hlLine(l, tab === 'current' || tab === 'base' ? {} : tmap); }).join('\n') : '<i>(rỗng — xóa vùng này)</i>';
+  }
+  return '<pre class="view">' + body + '</pre>';
+}
+
+function downloadNote(f) {
+  var m = META[f] || {};
+  if (isUtf8(m.encoding)) return '';
+  return '<div class="enc-note">File này dùng <b>' + esc(m.encoding) + '</b>; trình duyệt chỉ tải được UTF-8 nên không có nút tải. ' +
+    'Tải <b>decisions.json</b> rồi chạy:<br><code>' + esc(applyCmd()) + '</code></div>';
+}
+function applyCmd() {
+  return 'python3 render_review.py --plan ' + (SRC.plan || 'merge-plan.json') + ' --target-root ' + (SRC.targetRoot || 'target') +
+    ' --decisions decisions.json --apply -o <thư mục output>';
+}
+
+function fileViewHtml() {
+  var f = state.file;
+  if (!f) return '<div class="bb"><i>Plan không có file nào.</i></div>';
+  var m = META[f] || {};
+  var canDl = isUtf8(m.encoding) && typeof FILES[f] === 'string';
+  var h = '<div class="bh fhead"><span class="p">' + esc(f) + '</span><span style="font-size:12px;color:var(--muted)">' + esc(m.encoding || '') + ' · ' +
+    esc((m.eol || 'lf').toUpperCase()) + (m.bom ? ' · BOM' : '') + '</span><span class="spacer"></span>' +
+    (canDl ? '<button class="btn small" data-dl="' + esc(f) + '"' + (ERRORS.length ? ' disabled' : '') + '>Tải file này</button>' : '') + '</div>';
+  h += downloadNote(f);
+  if (typeof FILES[f] !== 'string') return h + '<div class="bb"><i>Không có nội dung Target cho file này.</i></div>';
+  var b = C.buildFile(PLAN, f, FILES[f], state.status);
+  var lines = b.lines;
+  var tmap = tokenMap(f);
+  h += '<div class="grid-h"><div>Output hiện tại (đã ghép theo quyết định)</div><div>Chunk</div></div>';
+  var pos = 1, gi = 0;
+  var regs = b.regions.slice();
+  function gap(from, to, lead, trail) { // dòng output from..to (tính cả hai đầu), không thuộc chunk nào
+    if (to < from) return '';
+    var key = f + ':' + (gi++);
+    var n = to - from + 1;
+    var rows = '';
+    var showAll = state.expanded[key] || n <= 2 * CTX + 1;
+    if (showAll) {
+      for (var i = from; i <= to; i++) rows += lineHtml(i, lines[i - 1]);
+    } else {
+      var headN = lead ? 0 : CTX, tailN = trail ? 0 : CTX;
+      for (i = from; i < from + headN; i++) rows += lineHtml(i, lines[i - 1]);
+      rows += '<button class="fold" data-expand="' + esc(key) + '">⋯ ' + (n - headN - tailN) + ' dòng không đổi (bấm để mở)</button>';
+      for (i = to - tailN + 1; i <= to; i++) rows += lineHtml(i, lines[i - 1]);
+    }
+    return '<div class="row ctx"><div class="code">' + rows + '</div><div class="sidecol"></div></div>';
+  }
+  var body = '';
+  regs.forEach(function (r, idx) {
+    body += gap(pos, r.start - 1, idx === 0, false);
+    var c = CHUNK[r.chunk];
+    var st = state.status[r.chunk] || {};
+    var code = '<div class="reg-tag">' + esc(r.chunk) + ' · ' + esc(st.status) + ' · ' + esc(CHOICE_LABEL[st.choice] || '') + '</div>';
+    if (r.end < r.start) code += '<div class="empty">∅ vùng này bị xóa (0 dòng)</div>';
+    for (var i = r.start; i <= r.end; i++) code += lineHtml(i, lines[i - 1], st.choice === 'target' ? null : tmap);
+    body += '<div class="row chunkrow" id="row-' + esc(r.chunk) + '"><div class="code reg st-' + esc(st.status) + '" id="reg-' + esc(r.chunk) + '" data-reg="' + esc(r.chunk) + '">' + code + '</div>' +
+      '<div class="sidecol">' + cardHtml(c, r) + '</div></div>';
+    pos = r.end + 1;
+  });
+  body += gap(pos, lines.length, false, true);
+  return h + '<div>' + body + '</div>';
+}
+
+function skippedHtml() {
+  var sk = PLAN.skipped || [];
+  var h = '<div class="bh"><h2>Đã xét, không áp</h2><span class="badge b-KEPT">' + sk.length + '</span></div><div class="bb">';
+  if (!sk.length) return h + '<i style="color:var(--muted)">Không có.</i></div>';
+  h += '<table class="sk"><tr><th>Nguồn</th><th>Lý do</th><th>Chi tiết</th><th>Dòng</th></tr>' + sk.map(function (s) {
+    return '<tr><td class="mono">' + esc(s.src) + '</td><td><span class="badge b-KEPT">' + esc(s.reason) + '</span></td><td>' + esc(s.detail) +
+      '</td><td class="mono">' + esc((s.lines || []).join(', ')) + '</td></tr>';
+  }).join('') + '</table>';
+  return h + '</div>';
+}
+
+function render() {
+  state.status = C.computeStatus(PLAN, state.decisions);
+  $('title').textContent = 'Duyệt merge ' + (PLAN.rt || '');
+  document.title = 'Duyệt merge ' + (PLAN.rt || '');
+  $('srcInfo').textContent = (SRC.plan || '') + (SRC.targetRoot ? ' · target: ' + SRC.targetRoot : '');
+  $('counts').innerHTML = countsHtml();
+  $('banner').innerHTML = bannerHtml();
+  $('side').innerHTML = sideHtml();
+  $('questions').innerHTML = questionsHtml();
+  $('fileview').innerHTML = fileViewHtml();
+  $('skipped').innerHTML = skippedHtml();
+  var locked = ERRORS.length > 0;
+  $('btnDecisions').disabled = locked;
+  $('btnAll').disabled = locked;
+  $('btnDecisions').title = locked ? 'Plan có lỗi kiểm tra — đã khóa' : 'Tải quyết định để chạy render_review.py --apply';
+  storeSet(JSON.stringify(state.decisions));
+}
+
+// ---------------------------------------------------------------- điều hướng
+function flash(el) {
+  if (!el) return;
+  el.classList.remove('flash');
+  void el.offsetWidth;
+  el.classList.add('flash');
+  setTimeout(function () { el.classList.remove('flash'); }, 1500);
+}
+function scrollTo(el) { if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+function gotoChunk(k, which) {
+  var c = CHUNK[k];
+  if (!c) return;
+  state.sel = k;
+  if (state.file !== c.file) { state.file = c.file; }
+  render();
+  var el = which === 'reg' ? $('reg-' + k) : $('card-' + k);
+  scrollTo(el || $('row-' + k));
+  flash(el);
+}
+function gotoQuestion(q, msg) {
+  var el = $('q-' + q);
+  scrollTo(el);
+  flash(el);
+  if (msg) toast(msg);
+}
+var toastTimer = null;
+function toast(msg) {
+  var t = $('toast');
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 3500);
+}
+
+// ---------------------------------------------------------------- thao tác
+function changeListHtml(changes) {
+  function li(x) {
+    var c = CHUNK[x.chunk] || {};
+    return '<li><b class="mono">' + esc(x.chunk) + '</b> <span class="mono" style="color:var(--muted)">' + esc(c.file) + '</span> ' + esc(c.summary) +
+      '<br><span class="badge b-' + esc(x.from) + '">' + esc(x.from) + '</span> → <span class="badge b-' + esc(x.to) + '">' + esc(x.to) + '</span>' +
+      (x.fromChoice !== x.toChoice ? ' <span style="font-size:12px;color:var(--muted)">(' + CHOICE_LABEL[x.fromChoice] + ' → ' + CHOICE_LABEL[x.toChoice] + ')</span>' : '') + '</li>';
+  }
+  var pulled = changes.filter(function (x) { return x.to === 'APPLIED' && x.from !== 'APPLIED'; });
+  var rolled = changes.filter(function (x) { return x.from === 'APPLIED' && x.to !== 'APPLIED'; });
+  var other = changes.filter(function (x) { return pulled.indexOf(x) < 0 && rolled.indexOf(x) < 0; });
+  var h = '';
+  if (pulled.length) h += '<div><b>Kéo theo (sẽ áp):</b><ul>' + pulled.map(li).join('') + '</ul></div>';
+  if (rolled.length) h += '<div><b>Lùi theo (về Target):</b><ul>' + rolled.map(li).join('') + '</ul></div>';
+  if (other.length) h += '<div><b>Đổi khác:</b><ul>' + other.map(li).join('') + '</ul></div>';
+  return h;
+}
+var pendingConfirm = null;
+function confirmModal(title, bodyHtml, okLabel, onOk) {
+  pendingConfirm = onOk;
+  var m = $('modal');
+  m.innerHTML = '<div class="modal-bg" data-modal="bg"><div class="modal"><h3>' + esc(title) + '</h3>' + bodyHtml +
+    '<div class="foot"><button class="btn" data-modal="cancel">Hủy</button><button class="btn primary" data-modal="ok">' + esc(okLabel) + '</button></div></div></div>';
+  m.classList.remove('hidden');
+}
+function closeModal() { $('modal').classList.add('hidden'); $('modal').innerHTML = ''; pendingConfirm = null; }
+
+function commit(dec, focus) {
+  state.decisions = C.normalizeDecisions(PLAN, dec);
+  state.info = '';
+  render();
+  if (focus) { var el = $('card-' + focus); flash(el); }
+}
+
+var ACT_TITLE = { apply: 'Áp đề xuất', rt: 'Dùng code RT', target: 'Giữ Target', reset: 'Bỏ lựa chọn tay' };
+function doAction(k, act) {
+  var p = C.previewAction(PLAN, state.decisions, k, act);
+  if (!p.ok) {
+    var who = (p.chunk === k ? k : 'chunk kéo theo ' + p.chunk);
+    var msg = p.reason === 'answered-keep'
+      ? 'Chưa áp được ' + k + ': ' + who + ' thuộc câu hỏi ' + p.question + ' đã trả lời giữ Target. Hãy đổi câu trả lời trước.'
+      : 'Chưa áp được ' + k + ': ' + who + ' thuộc câu hỏi ' + p.question + ' chưa trả lời. Hãy trả lời trước.';
+    gotoQuestion(p.question, msg);
+    return p;
+  }
+  var others = p.changes.filter(function (x) { return x.chunk !== k; });
+  if (!others.length) { commit(p.decisions, k); return p; }
+  confirmModal(ACT_TITLE[act] + ' ' + k, changeListHtml(others), 'Đồng ý', function () { commit(p.decisions, k); });
+  return p;
+}
+function doAnswer(q, opt) {
+  var p = C.previewAnswer(PLAN, state.decisions, q, opt);
+  var qobj = (PLAN.questions || []).filter(function (x) { return x.id === q; })[0] || { chunks: [] };
+  var others = p.changes.filter(function (x) { return (qobj.chunks || []).indexOf(x.chunk) < 0; });
+  if (!others.length) { commit(p.decisions); return p; }
+  confirmModal((opt ? 'Trả lời ' + q + ' = ' + opt : 'Bỏ trả lời ' + q), changeListHtml(others), 'Đồng ý', function () { commit(p.decisions); });
+  return p;
+}
+
+// ---------------------------------------------------------------- xuất / nạp
+function download(name, text) {
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: 'application/octet-stream' }));
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+}
+function decisionsJson() {
+  var d = C.normalizeDecisions(PLAN, state.decisions);
+  return JSON.stringify({ rt: PLAN.rt, answers: d.answers, choices: d.choices }, null, 2) + '\n';
+}
+function outputText(f) {
+  var m = META[f] || {};
+  var t = C.buildFile(PLAN, f, FILES[f], state.status).text;
+  if (m.eol === 'crlf') t = t.replace(/\n/g, '\r\n');
+  if (m.bom) t = '﻿' + t;
+  return t;
+}
+function pendingQuestions() {
+  return (PLAN.questions || []).filter(function (q) { return !state.decisions.answers[q.id]; }).map(function (q) { return q.id; });
+}
+function withPendingCheck(fn) {
+  var pend = pendingQuestions();
+  if (!pend.length) { fn(); return; }
+  confirmModal('Còn câu hỏi chưa trả lời', '<p>Câu hỏi ' + esc(pend.join(', ')) + ' chưa trả lời — các chunk của chúng (và chunk phụ thuộc) sẽ giữ Target.</p>', 'Vẫn tải', fn);
+}
+function downloadFiles(keys) {
+  if (ERRORS.length) return;
+  var ok = keys.filter(function (f) { return isUtf8((META[f] || {}).encoding) && typeof FILES[f] === 'string'; });
+  var skip = keys.filter(function (f) { return ok.indexOf(f) < 0; });
+  withPendingCheck(function () {
+    ok.forEach(function (f, i) { setTimeout(function () { download(basename(f), outputText(f)); }, i * 300); });
+    if (skip.length) {
+      confirmModal('Có file không tải được bằng trình duyệt', '<p>Các file sau không phải UTF-8/ASCII: <b>' + esc(skip.join(', ')) +
+        '</b>.</p><p>Tải decisions.json rồi chạy:</p><pre class="view">' + esc(applyCmd()) + '</pre>', 'Tải decisions.json', function () {
+        download('decisions.json', decisionsJson());
+      });
+    } else if (ok.length) {
+      toast('Đã tải ' + ok.length + ' file (giữ kiểu xuống dòng gốc).');
+    }
+  });
+}
+function loadDecisionsText(text) {
+  var d;
+  try { d = JSON.parse(text); } catch (e) { toast('decisions.json không phải JSON hợp lệ: ' + e.message); return; }
+  if (!d || typeof d !== 'object') { toast('decisions.json phải là object'); return; }
+  state.decisions = C.normalizeDecisions(PLAN, d);
+  state.info = 'Đã nạp decisions.json' + (d.rt && d.rt !== PLAN.rt ? ' (CẢNH BÁO: của ' + d.rt + ', plan là ' + PLAN.rt + ')' : '') + '.';
+  render();
+}
+
+// ---------------------------------------------------------------- sự kiện
+function closestData(el, attrs) {
+  while (el && el !== document) {
+    if (el.getAttribute) for (var i = 0; i < attrs.length; i++) if (el.getAttribute(attrs[i]) !== null) return el;
+    el = el.parentNode;
+  }
+  return null;
+}
+var ATTRS = ['data-modal', 'data-act', 'data-ans', 'data-unans', 'data-tab', 'data-goto', 'data-gotoq', 'data-gotoskip', 'data-file', 'data-expand', 'data-dl', 'data-reg', 'data-card'];
+function onClick(e) {
+  var t = closestData(e.target, ATTRS);
+  if (!t) return;
+  var g = function (a) { return t.getAttribute(a); };
+  if (g('data-modal') !== null) {
+    var v = g('data-modal');
+    if (v === 'bg' && e.target !== t) return;
+    var fn = pendingConfirm;
+    closeModal();
+    if (v === 'ok' && fn) fn();
+    return;
+  }
+  if (t.disabled) return;
+  if (g('data-act') !== null) { doAction(g('data-k'), g('data-act')); return; }
+  if (g('data-ans') !== null) { doAnswer(g('data-ans'), g('data-opt')); return; }
+  if (g('data-unans') !== null) { doAnswer(g('data-unans'), null); return; }
+  if (g('data-tab') !== null) {
+    var k = g('data-k'), tab = g('data-tab');
+    var cur = Object.prototype.hasOwnProperty.call(state.tab, k) ? state.tab[k] : 'diff';
+    state.tab[k] = cur === tab ? '' : tab;
+    render();
+    return;
+  }
+  if (g('data-goto') !== null) { gotoChunk(g('data-goto'), 'card'); return; }
+  if (g('data-gotoq') !== null) { gotoQuestion(g('data-gotoq')); return; }
+  if (g('data-gotoskip') !== null) { scrollTo($('skipped')); flash($('skipped')); return; }
+  if (g('data-file') !== null) { state.file = g('data-file'); render(); scrollTo($('fileview')); return; }
+  if (g('data-expand') !== null) { state.expanded[g('data-expand')] = true; render(); return; }
+  if (g('data-dl') !== null) { downloadFiles([g('data-dl')]); return; }
+  if (g('data-reg') !== null) { var c1 = $('card-' + g('data-reg')); state.sel = g('data-reg'); flash(c1); return; }
+  if (g('data-card') !== null) {
+    var k2 = g('data-card');
+    if (closestData(e.target, ['data-tab', 'data-act'])) return;
+    var r = $('reg-' + k2);
+    state.sel = k2;
+    scrollTo(r);
+    flash(r);
+  }
+}
+document.addEventListener('click', onClick);
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pendingConfirm) closeModal(); });
+$('btnDecisions').addEventListener('click', function () { if (!ERRORS.length) download('decisions.json', decisionsJson()); });
+$('btnAll').addEventListener('click', function () { downloadFiles(FILE_KEYS); });
+$('btnLoad').addEventListener('click', function () { $('fileInput').click(); });
+$('fileInput').addEventListener('change', function (e) {
+  var f = e.target.files && e.target.files[0];
+  if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function () { loadDecisionsText(String(rd.result)); };
+  rd.readAsText(f, 'utf-8');
+  e.target.value = '';
+});
+$('btnReset').addEventListener('click', function () {
+  confirmModal('Xóa mọi quyết định?', '<p>Xóa hết câu trả lời và lựa chọn tay, quay về trạng thái mặc định của plan.</p>', 'Xóa', function () {
+    commit({ rt: PLAN.rt, answers: {}, choices: {} });
+  });
+});
+
+// ---------------------------------------------------------------- khởi động
+if (DATA.decisions) {
+  state.decisions = C.normalizeDecisions(PLAN, DATA.decisions);
+  state.info = 'Đã nạp sẵn decisions.json từ lúc render.';
+} else {
+  var saved = storeGet();
+  if (saved) {
+    try {
+      state.decisions = C.normalizeDecisions(PLAN, JSON.parse(saved));
+      var n = Object.keys(state.decisions.answers).length + Object.keys(state.decisions.choices).length;
+      if (n) state.info = 'Đã khôi phục ' + n + ' quyết định lưu trong trình duyệt (bấm "Xóa quyết định" để làm lại).';
+    } catch (e) { /* dữ liệu lưu hỏng: bỏ qua */ }
+  }
+}
+render();
+
+window.__review = { state: state, render: render, doAction: doAction, doAnswer: doAnswer, decisionsJson: decisionsJson,
+  outputText: outputText, errors: ERRORS, onClick: onClick, confirmOk: function () { var fn = pendingConfirm; closeModal(); if (fn) fn(); } };
+})();
+</script>
+</body>
+</html>

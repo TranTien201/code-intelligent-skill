@@ -1,0 +1,197 @@
+{
+  "case": "T1-rename-multi",
+  "output_root": "/Users/trantien/Documents/my-project/port-request-skill/tests/runs/run2-1113-0308/T1-rename-multi/formula-source-T1-rename-multi",
+  "levels": {
+    "1_files": "PASS",
+    "2_line_counts": "PASS",
+    "3_lines": "PASS",
+    "4_bytes": "PASS"
+  },
+  "files": {
+    "golden_changed": 15,
+    "output_changed": 15,
+    "missing_files": [],
+    "extra_files": []
+  },
+  "line_count_mismatch": {},
+  "line_mismatch": {},
+  "byte_mismatch": {},
+  "expected_mentions": {
+    "add_symbols": {
+      "found": [
+        "EcoMode_GetLevel",
+        "EcoMode_ApplyDensity",
+        "eco_effective_level",
+        "EcoMode_MenuHandler",
+        "EcoMode_PjlSet",
+        "is_valid",
+        "k_percent",
+        "TONER_SAVE_OFF",
+        "TONER_SAVE_LOW",
+        "TONER_SAVE_HIGH",
+        "STR_TONER_SAVE",
+        "Density_Scale",
+        "DENSITY_MAX"
+      ],
+      "not_mentioned": []
+    },
+    "merge_symbols": {
+      "found": [
+        "NvSettings_t",
+        "NV_LoadDefaults",
+        "Render_Page",
+        "g_menu_table",
+        "g_pjl_table",
+        "StrId_t",
+        "g_strings_en"
+      ],
+      "not_mentioned": []
+    },
+    "conflicts": {
+      "found": [
+        "Clamp"
+      ],
+      "not_mentioned": []
+    },
+    "guards": {
+      "found": [
+        "SUPPORT_TONER_SAVE"
+      ],
+      "not_mentioned": []
+    },
+    "drift": {
+      "found": [
+        "EcoMode_ApplyDensity",
+        "eco_effective_level"
+      ],
+      "not_mentioned": []
+    },
+    "report_only": {
+      "found": [
+        "EcoReport_Print"
+      ],
+      "not_mentioned": []
+    },
+    "glue_review": {
+      "found": [],
+      "not_mentioned": []
+    },
+    "must_not_copy": {
+      "found": [
+        "EcoReport_Print",
+        "EcoReport_MenuHandler",
+        "Menu_Quality",
+        "SUPPORT_ECO_REPORT"
+      ],
+      "not_mentioned": []
+    },
+    "new_files": {
+      "found": [
+        "src/features/eco/eco_mode.c",
+        "src/features/eco/eco_mode.h",
+        "src/print/density.c",
+        "src/print/density.h"
+      ],
+      "not_mentioned": []
+    },
+    "merge_files": {
+      "found": [
+        "Makefile",
+        "src/settings/nv_settings.h",
+        "src/settings/nv_settings.c",
+        "src/print/render.c",
+        "src/panel/menu_table.c",
+        "src/cmd/pjl_commands.c",
+        "src/resources/strings.h",
+        "src/resources/strings_en.c"
+      ],
+      "not_mentioned": []
+    },
+    "high_impact": {
+      "found": [
+        "NvSettings_t",
+        "StrId_t"
+      ],
+      "not_mentioned": []
+    }
+  },
+  "anchor_checks": {
+    "files": {
+      "src/features/toner_save/toner_save.c": {
+        "found": true,
+        "confidence": "High",
+        "line": "| file | src/features/toner_save/toner_save.c | src/features/eco/eco_mode.c | MISSING (new file, copy) | R11 + EDGE | R11c content 58% (next 8%); EDGE builds SRC:Makefile:6; includes eco_mode.h at SRC"
+      },
+      "src/features/toner_save/toner_save.h": {
+        "found": true,
+        "confidence": "High",
+        "line": "| file | src/features/toner_save/toner_save.h | src/features/eco/eco_mode.h | MISSING (new file, copy) | R11 + EDGE | R11c 45% (next 9%); EDGE includes from anchored files SRC:src/cmd/pjl_commands.c:4"
+      }
+    },
+    "renames": {
+      "TonerSave_GetLevel": {
+        "found": true,
+        "confidence": "High",
+        "line": "| symbol | TonerSave_GetLevel | EcoMode_GetLevel | MISSING | EDGE + FUZZY | EDGE declares slot 1 SRC:src/features/eco/eco_mode.h:9; FUZZY `return NV_GetSettings()->…;` SRC:src/features/eco/eco_mode.c:",
+        "confidence_ok": true
+      },
+      "TonerSave_ApplyDensity": {
+        "found": true,
+        "confidence": "High",
+        "line": "| symbol | TonerSave_ApplyDensity | EcoMode_ApplyDensity | MISSING | EDGE + SIM | EDGE calls from Render_Page SRC:src/print/render.c:12; declares slot 2 SRC:src/features/eco/eco_mode.h:10; SIM 0.71 + ",
+        "confidence_ok": true,
+        "split_parts_found": [
+          "EcoMode_ApplyDensity",
+          "eco_effective_level"
+        ]
+      },
+      "TonerSave_MenuHandler": {
+        "found": true,
+        "confidence": "High",
+        "line": "| symbol | TonerSave_MenuHandler | EcoMode_MenuHandler | MISSING | EDGE + SIM | EDGE registers \"TONER_SAVE\" SRC:src/panel/menu_table.c:15; SIM 1.00 + SIG = SRC:src/features/eco/eco_mode.c:36-43; FUZZY",
+        "confidence_ok": true
+      },
+      "TonerSave_PjlSet": {
+        "found": true,
+        "confidence": "High",
+        "line": "| symbol | TonerSave_PjlSet | EcoMode_PjlSet | MISSING | EDGE + SIG + PATTERN | EDGE registers \"ECONOMODE\" SRC:src/cmd/pjl_commands.c:27; SIG =; SIM 1.00 (TOO-SHORT); PATTERN TonerSave_→EcoMode_; call",
+        "confidence_ok": true
+      },
+      "toner_save_level": {
+        "found": true,
+        "confidence": "High",
+        "line": "| symbol | toner_save_level (NvSettings_t field) | eco_level | MISSING | EDGE + FUZZY | EDGE declares: same slot between duplex/language SRC:src/settings/nv_settings.h:8; defaults SRC:src/settings/nv_",
+        "confidence_ok": true
+      }
+    },
+    "blocked_wrongly": [],
+    "summary": "7/7 anchors found, 0 wrongly blocked"
+  },
+  "workflow_status": [
+    [
+      "A",
+      "Not required"
+    ],
+    [
+      "B",
+      "AUTO (APPROVAL_MODE=auto)"
+    ],
+    [
+      "C",
+      "AUTO (APPROVAL_MODE=auto)"
+    ],
+    [
+      "D",
+      "AUTO (APPROVAL_MODE=auto)"
+    ],
+    [
+      "E",
+      "AUTO (APPROVAL_MODE=auto)"
+    ],
+    [
+      "F",
+      "AUTO (APPROVAL_MODE=auto)"
+    ]
+  ],
+  "pass": true
+}

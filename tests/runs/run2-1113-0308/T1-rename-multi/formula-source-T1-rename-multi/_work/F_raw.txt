@@ -1,0 +1,22 @@
+### Before: make -s MODEL=B
+exit=0
+copies=2
+toner_save=-1
+pjl=-1
+[INFO] render start
+[INFO] render done
+[INFO] fax header
+density=10
+run_exit=0
+### After: make -s MODEL=B
+exit=0
+copies=2
+[INFO] Toner Save
+toner_save=2
+[INFO] Toner Save
+pjl=1
+[INFO] render start
+[INFO] render done
+[INFO] fax header
+density=8
+run_exit=0

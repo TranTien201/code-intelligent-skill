@@ -1,0 +1,19 @@
+{
+  "s1:src/artlib.c:ArtLibCopyRecipeName:new_symbol:artLibLinkOnVarSet": {
+    "answer": "Y",
+    "note": "RT2707 call next to feature lines; human decides it is part of the feature -> pull definition + prototype"
+  },
+  "s1:src/artlib.c:ArtLibEntryRecipeName:new_symbol:WAVMACH_VER0800_0000": {
+    "answer": "N",
+    "note": "RT2611 version guard belongs to RT2611, FOMULAR has no WAVMACH_* -> keep feature lines in After form"
+  },
+  "s2:src/artlib.c:ArtLibRecoverOsfHistoryData:target_mismatch": {
+    "answer": "Y",
+    "note": "FOMULAR rewrote the loop (RT3105); insert the 2 feature lines right after the while loop"
+  },
+  "s2:src/artlib.c:ArtLibRecoverOsfHistoryData:llm_judge": {
+    "answer": "Y",
+    "optional": true,
+    "note": "acceptable alternative to target_mismatch if the computed similarity lands in 0.6-0.9"
+  }
+}

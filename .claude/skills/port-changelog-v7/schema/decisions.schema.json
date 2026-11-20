@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "port-changelog-v7/decisions",
+  "title": "Quyết định của người duyệt (UI xuất ra)",
+  "type": "object",
+  "required": ["rt", "answers", "choices"],
+  "additionalProperties": false,
+  "properties": {
+    "rt": { "type": "string" },
+    "answers": {
+      "type": "object",
+      "description": "Mã câu hỏi -> mã phương án",
+      "additionalProperties": { "type": "string" }
+    },
+    "choices": {
+      "type": "object",
+      "description": "Mã chunk -> lựa chọn tay của người duyệt, ưu tiên hơn answers",
+      "additionalProperties": { "enum": ["target", "rt", "apply"] }
+    }
+  }
+}

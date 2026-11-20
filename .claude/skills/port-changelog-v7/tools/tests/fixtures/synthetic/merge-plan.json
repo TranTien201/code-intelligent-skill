@@ -1,0 +1,112 @@
+{
+  "rt": "RT9001",
+  "version": 1,
+  "files": {
+    "src/eco.c": {
+      "encoding": "utf-8",
+      "name_map": [
+        { "from": "TelEcoCount", "to": "FomEcoCnt", "proof": "cùng chữ ký void (int), gọi ở cùng vị trí trong ReportMain" },
+        { "from": "tel_eco_mode", "to": "eco_mode", "proof": "biến static duy nhất của module eco" }
+      ]
+    },
+    "src/eco.h": {
+      "encoding": "cp932"
+    }
+  },
+  "chunks": [
+    {
+      "id": "K1",
+      "file": "src/eco.c",
+      "unit": "Modification",
+      "src": "P2 Modification -3,2 +3,3",
+      "summary": "Thêm dòng changelog RT9001",
+      "target": { "start": 4, "end": 4, "text": " *   2024/01/10 RT1001 init\n" },
+      "apply": " *   2024/01/10 RT1001 init\n *   2026/11/01 RT9001 eco report count\n",
+      "rt": " *   2024/01/10 RT1001 init\n *   2026/11/01 RT9001 eco report count (TELINDY)\n",
+      "note": "rt giữ nguyên chữ TELINDY trong changelog"
+    },
+    {
+      "id": "K2",
+      "file": "src/eco.c",
+      "unit": "EcoInit",
+      "src": "P2 EcoInit -12,1 +12,1",
+      "summary": "Đặt eco_mode theo ECO_MODE_DEFAULT",
+      "target": { "start": 12, "end": 12, "text": "    eco_mode = 1;\n" },
+      "base": "    eco_mode = 2;\n",
+      "apply": "    eco_mode = ECO_MODE_DEFAULT;\n"
+    },
+    {
+      "id": "K3",
+      "file": "src/eco.c",
+      "unit": "EcoReport",
+      "src": "P2 EcoReport -22,1 +22,2",
+      "summary": "Đếm trang eco sau khi tính total",
+      "target": { "start": 22, "end": 22, "text": "    total = page * 2;\n" },
+      "apply": "    total = page * 2;\n    FomEcoCnt(total);\n",
+      "requires": [
+        { "chunk": "K2", "why": "FomEcoCnt chỉ đúng khi eco_mode đặt theo ECO_MODE_DEFAULT (K2)" }
+      ]
+    },
+    {
+      "id": "K4",
+      "file": "src/eco.c",
+      "unit": "EcoReport",
+      "src": "P2 EcoReport -27,2 +28,4",
+      "summary": "Chỉ in body khi eco bật",
+      "target": { "start": 27, "end": 28, "text": "    /* print body */\n    PrintBody(total);\n" },
+      "apply": "    /* print body */\n    if (EcoIsOn()) {\n        PrintBody(total);\n    }\n",
+      "requires": [
+        { "chunk": "K3", "why": "cùng ý đồ: hunk 2 của thay đổi đếm trang eco" },
+        { "chunk": "K5", "why": "dùng prototype EcoIsOn khai báo ở K5" }
+      ]
+    },
+    {
+      "id": "K5",
+      "file": "src/eco.h",
+      "unit": "prototype",
+      "src": "P2 eco.h -6,1 +6,2",
+      "summary": "Khai báo prototype EcoIsOn",
+      "target": { "start": 6, "end": 6, "text": "int EcoReport(int page);\n" },
+      "apply": "int EcoReport(int page);\nint EcoIsOn(void);\n",
+      "requires": [
+        { "chunk": "K6", "why": "khai báo cho hàm EcoIsOn định nghĩa ở K6" }
+      ]
+    },
+    {
+      "id": "K6",
+      "file": "src/eco.c",
+      "unit": "EcoIsOn",
+      "src": "P2 EcoIsOn -38,0 +38,6",
+      "summary": "Thêm hàm EcoIsOn trước dòng EOF",
+      "target": { "start": 38, "end": 38, "text": "/** EOF **/\n" },
+      "apply": "int EcoIsOn(void)\n{\n    return eco_mode != 0;\n}\n\n/** EOF **/\n",
+      "note": "Chèn mới: thay dòng neo EOF (dòng cuối file không có \\n)"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "Target đặt eco_mode = 1, Before đặt 2. Có thay bằng ECO_MODE_DEFAULT không?",
+      "evidence": "Target src/eco.c:12 `eco_mode = 1;` — Before eco.c:12 `eco_mode = 2;` — grep ECO_MODE_DEFAULT trong Target: có ở config/model.h:40",
+      "chunks": ["K2"],
+      "options": [
+        { "id": "A", "label": "Áp: dùng ECO_MODE_DEFAULT", "apply": ["K2"] },
+        { "id": "B", "label": "Giữ Target: eco_mode = 1", "apply": [] }
+      ],
+      "recommended": "A"
+    }
+  ],
+  "skipped": [
+    {
+      "src": "P2 EcoReset -35,1 +35,1",
+      "lines": [35],
+      "reason": "ALREADY_IN_TARGET",
+      "detail": "Target src/eco.c:35 đã có `eco_mode = 0;`"
+    },
+    {
+      "src": "P2 EcoDebug -50,3 +50,0",
+      "reason": "TARGET_EQUIVALENT",
+      "detail": "Target dùng macro DBG_OFF tương đương, src/eco.c không có EcoDebug"
+    }
+  ]
+}

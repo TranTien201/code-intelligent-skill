@@ -1,0 +1,16 @@
+g_pjl_table
+g_menu_table
+StrId_t
+g_strings_en
+NvSettings_t
+k_percent
+is_valid
+TonerSave_GetLevel
+TonerSave_ApplyDensity
+TonerSave_MenuHandler
+TonerSave_PjlSet
+Render_Page
+NV_LoadDefaults
+TONER_SAVE_OFF
+TONER_SAVE_LOW
+TONER_SAVE_HIGH

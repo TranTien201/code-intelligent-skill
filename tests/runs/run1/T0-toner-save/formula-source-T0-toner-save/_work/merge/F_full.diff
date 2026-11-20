@@ -1,0 +1,259 @@
+diff --git a/Before/Makefile b/After/Makefile
+index dbad182..bf1b221 100644
+--- a/Before/Makefile
++++ b/After/Makefile
+@@ -1,8 +1,9 @@
+ MODEL ?= B
+-SRCS = src/main.c src/core/log.c src/util/math_util.c \
++SRCS = src/main.c src/core/log.c src/util/math_util.c src/print/density.c \
+        src/settings/nv_settings.c src/print/render.c \
+        src/panel/menu.c src/panel/menu_table.c \
+        src/cmd/pjl_commands.c src/resources/strings_en.c
++SRCS += src/features/toner_save/toner_save.c
+ 
+ all:
+ 	$(CC) -Wall -DMODEL_$(MODEL) -o printer_$(MODEL) $(SRCS)
+diff --git a/Before/config/model_b.h b/After/config/model_b.h
+index 1f8cef0..81e3b49 100644
+--- a/Before/config/model_b.h
++++ b/After/config/model_b.h
+@@ -1,3 +1,4 @@
+ #define MODEL_NAME "Printer-B"
+ #define SUPPORT_DUPLEX 1
+ #define SUPPORT_FAX 1
++#define SUPPORT_TONER_SAVE 1
+diff --git a/Before/printer_B b/After/printer_B
+index 9c49a0b..4dbcb07 100755
+Binary files a/Before/printer_B and b/After/printer_B differ
+diff --git a/Before/src/cmd/pjl_commands.c b/After/src/cmd/pjl_commands.c
+index 04cae7f..cfbe6eb 100644
+--- a/Before/src/cmd/pjl_commands.c
++++ b/After/src/cmd/pjl_commands.c
+@@ -1,6 +1,7 @@
+ #include <string.h>
+ #include "pjl_commands.h"
+ #include "../core/log.h"
++#include "../features/toner_save/toner_save.h"
+ 
+ typedef int (*PjlHandler_t)(const char *arg);
+ typedef struct {
+@@ -23,6 +24,7 @@ static int Pjl_SetDuplex(const char *arg)
+ static const PjlEntry_t g_pjl_table[] = {
+     { "COPIES", Pjl_SetCopies },
+     { "DUPLEX", Pjl_SetDuplex },
++    { "ECONOMODE", TonerSave_PjlSet },
+ };
+ 
+ int Pjl_Dispatch(const char *cmd, const char *arg)
+diff --git a/After/src/features/toner_save/toner_save.c b/After/src/features/toner_save/toner_save.c
+new file mode 100644
+index 0000000..0492925
+--- /dev/null
++++ b/After/src/features/toner_save/toner_save.c
+@@ -0,0 +1,42 @@
++#include <stdlib.h>
++#include "toner_save.h"
++#include "../../settings/nv_settings.h"
++#include "../../print/density.h"
++#include "../../core/log.h"
++#include "../../resources/strings.h"
++#include "../../util/math_util.h"
++
++static const int k_percent[] = { 100, 80, 60 };
++
++static int is_valid(int level)
++{
++    return level >= TONER_SAVE_OFF && level <= TONER_SAVE_HIGH;
++}
++
++int TonerSave_GetLevel(void)
++{
++    return NV_GetSettings()->toner_save_level;
++}
++
++int TonerSave_ApplyDensity(int density)
++{
++    int level = TonerSave_GetLevel();
++    level = Clamp(level, TONER_SAVE_OFF, TONER_SAVE_HIGH); /* fix #1234: NV value hong */
++    if (!is_valid(level))
++        return density;
++    return Density_Scale(density, k_percent[level]);
++}
++
++int TonerSave_MenuHandler(int key)
++{
++    if (!is_valid(key))
++        return -1;
++    NV_GetSettings()->toner_save_level = key;
++    Log_Info(Str_Get(STR_TONER_SAVE));
++    return key;
++}
++
++int TonerSave_PjlSet(const char *arg)
++{
++    return TonerSave_MenuHandler(atoi(arg));
++}
+diff --git a/After/src/features/toner_save/toner_save.h b/After/src/features/toner_save/toner_save.h
+new file mode 100644
+index 0000000..e7049cf
+--- /dev/null
++++ b/After/src/features/toner_save/toner_save.h
+@@ -0,0 +1,13 @@
++#ifndef TONER_SAVE_H
++#define TONER_SAVE_H
++enum {
++    TONER_SAVE_OFF = 0,
++    TONER_SAVE_LOW = 1,
++    TONER_SAVE_HIGH = 2
++};
++
++int TonerSave_GetLevel(void);
++int TonerSave_ApplyDensity(int density);
++int TonerSave_MenuHandler(int key);
++int TonerSave_PjlSet(const char *arg);
++#endif
+diff --git a/Before/src/panel/menu_table.c b/After/src/panel/menu_table.c
+index dd57de5..211975c 100644
+--- a/Before/src/panel/menu_table.c
++++ b/After/src/panel/menu_table.c
+@@ -1,10 +1,16 @@
+ #include <string.h>
+ #include "menu.h"
+ #include "../../config/model_config.h"
++#ifdef SUPPORT_TONER_SAVE
++#include "../features/toner_save/toner_save.h"
++#endif
+ 
+ static const MenuEntry_t g_menu_table[] = {
+     { "COPIES",   Menu_Copies },
+     { "DUPLEX",   Menu_Duplex },
++#ifdef SUPPORT_TONER_SAVE
++    { "TONER_SAVE", TonerSave_MenuHandler },
++#endif
+     { "QUALITY",  Menu_Quality },
+     { "LANGUAGE", Menu_Language },
+     { "FAX",      Menu_Fax },
+diff --git a/After/src/print/density.c b/After/src/print/density.c
+new file mode 100644
+index 0000000..f1fb74a
+--- /dev/null
++++ b/After/src/print/density.c
+@@ -0,0 +1,7 @@
++#include "density.h"
++#include "../util/math_util.h"
++
++int Density_Scale(int base, int percent)
++{
++    return Clamp(base * percent / 100, 0, DENSITY_MAX);
++}
+diff --git a/After/src/print/density.h b/After/src/print/density.h
+new file mode 100644
+index 0000000..a164b2c
+--- /dev/null
++++ b/After/src/print/density.h
+@@ -0,0 +1,5 @@
++#ifndef DENSITY_H
++#define DENSITY_H
++#define DENSITY_MAX 15
++int Density_Scale(int base, int percent);
++#endif
+diff --git a/Before/src/print/render.c b/After/src/print/render.c
+index 2f79888..557f041 100644
+--- a/Before/src/print/render.c
++++ b/After/src/print/render.c
+@@ -1,10 +1,16 @@
+ #include "../core/log.h"
+ #include "../../config/model_config.h"
++#ifdef SUPPORT_TONER_SAVE
++#include "../features/toner_save/toner_save.h"
++#endif
+ #include "render.h"
+ 
+ int Render_Page(int density)
+ {
+     Log_Info("render start");
++#ifdef SUPPORT_TONER_SAVE
++    density = TonerSave_ApplyDensity(density);
++#endif
+     Log_Info("render done");
+ #ifdef SUPPORT_FAX
+     Log_Info("fax header");
+diff --git a/Before/src/resources/strings.h b/After/src/resources/strings.h
+index 03c5e2c..8ec6022 100644
+--- a/Before/src/resources/strings.h
++++ b/After/src/resources/strings.h
+@@ -3,6 +3,7 @@
+ typedef enum {
+     STR_COPIES,
+     STR_DUPLEX,
++    STR_TONER_SAVE,
+     STR_QUALITY,
+     STR_FAX,
+     STR_COUNT
+diff --git a/Before/src/resources/strings_en.c b/After/src/resources/strings_en.c
+index bf1d625..d259573 100644
+--- a/Before/src/resources/strings_en.c
++++ b/After/src/resources/strings_en.c
+@@ -3,6 +3,7 @@
+ static const char *g_strings_en[STR_COUNT] = {
+     [STR_COPIES] = "Copies",
+     [STR_DUPLEX] = "2-Sided",
++    [STR_TONER_SAVE] = "Toner Save",
+     [STR_QUALITY] = "Quality",
+     [STR_FAX] = "Fax",
+ };
+diff --git a/Before/src/settings/nv_settings.c b/After/src/settings/nv_settings.c
+index 31229f0..625b1f3 100644
+--- a/Before/src/settings/nv_settings.c
++++ b/After/src/settings/nv_settings.c
+@@ -1,4 +1,5 @@
+ #include "nv_settings.h"
++#include "../features/toner_save/toner_save.h"
+ 
+ static NvSettings_t g_settings;
+ 
+@@ -11,6 +12,7 @@ void NV_LoadDefaults(void)
+ {
+     g_settings.copies = 1;
+     g_settings.duplex = 0;
++    g_settings.toner_save_level = TONER_SAVE_OFF;
+     g_settings.language = 0;
+     g_settings.quality = 1;
+     g_settings.fax_resolution = 200;
+diff --git a/Before/src/settings/nv_settings.h b/After/src/settings/nv_settings.h
+index ac32515..950bd16 100644
+--- a/Before/src/settings/nv_settings.h
++++ b/After/src/settings/nv_settings.h
+@@ -5,6 +5,7 @@
+ typedef struct {
+     int copies;
+     int duplex;
++    int toner_save_level;
+     int language;
+     int quality;
+     int fax_resolution;
+diff --git a/Before/src/util/math_util.c b/After/src/util/math_util.c
+index b37421e..c968d15 100644
+--- a/Before/src/util/math_util.c
++++ b/After/src/util/math_util.c
+@@ -1,8 +1,8 @@
+ #include "math_util.h"
+ 
+-int Clamp(int v, int hi)
++int Clamp(int v, int lo, int hi)
+ {
+-    if (v < 0) return 0;
++    if (v < lo) return lo;
+     if (v > hi) return hi;
+     return v;
+ }
+diff --git a/Before/src/util/math_util.h b/After/src/util/math_util.h
+index 11c216a..7bcfd61 100644
+--- a/Before/src/util/math_util.h
++++ b/After/src/util/math_util.h
+@@ -1,4 +1,4 @@
+ #ifndef MATH_UTIL_H
+ #define MATH_UTIL_H
+-int Clamp(int v, int hi);
++int Clamp(int v, int lo, int hi);
+ #endif

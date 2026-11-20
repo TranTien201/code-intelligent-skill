@@ -1,0 +1,7 @@
+src/print/render.c conflicts=0 result-vs-After=EQUAL
+src/resources/strings.h conflicts=0 result-vs-After=EQUAL
+src/resources/strings_en.c conflicts=0 result-vs-After=EQUAL
+src/settings/nv_settings.c conflicts=0 result-vs-After=EQUAL
+src/settings/nv_settings.h conflicts=0 result-vs-After=EQUAL
+src/panel/menu_table.c conflicts=0 result-vs-After=EQUAL
+src/cmd/pjl_commands.c conflicts=0 result-vs-After=EQUAL

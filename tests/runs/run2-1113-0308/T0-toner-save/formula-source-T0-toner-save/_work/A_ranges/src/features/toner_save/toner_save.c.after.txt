@@ -1,0 +1,6 @@
+8-8	static const int k_percent[] = { 100, 80, 60 };
+10-13	static int is_valid(int level)
+15-18	int TonerSave_GetLevel(void)
+20-26	int TonerSave_ApplyDensity(int density)
+28-35	int TonerSave_MenuHandler(int key)
+37-40	int TonerSave_PjlSet(const char *arg)

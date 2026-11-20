@@ -1,0 +1,47 @@
+=== config/model_a.h
+3a4
+> #define SUPPORT_ECO_REPORT 1
+=== Makefile
+6a7
+> SRCS += src/features/eco_report/eco_report.c
+=== src/cmd/pjl_commands.c
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/settings/nv_settings.c
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/settings/nv_settings.h
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/panel/menu_table.c
+6a7,9
+> #ifdef SUPPORT_ECO_REPORT
+> #include "../features/eco_report/eco_report.h"
+> #endif
+15a19,21
+> #ifdef SUPPORT_ECO_REPORT
+>     { "ECO_REPORT", EcoReport_MenuHandler },
+> #endif
+=== src/resources/strings_en.c
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/resources/strings.h
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/features/eco/eco_mode.h
+UNCHANGED_IN_LATEST (modulo aliases)
+=== src/features/eco/eco_mode.c
+6a7
+> #include "../../util/math_util.h"
+20c21
+< int EcoMode_ApplyDensity(int density)
+---
+> static int eco_effective_level(void)
+23c24,31
+<     if (!is_valid(level))
+---
+>     level = Clamp(level, TONER_SAVE_OFF, TONER_SAVE_HIGH); /* fix #1234: NV value hong */
+>     return is_valid(level) ? level : -1;
+> }
+> 
+> int EcoMode_ApplyDensity(int density)
+> {
+>     int level = eco_effective_level();
+>     if (level < 0)
+=== src/print/render.c
+UNCHANGED_IN_LATEST (modulo aliases)

@@ -1,0 +1,11 @@
+modified	Makefile
+modified	config/model_a.h
+modified	src/cmd/pjl_commands.c
+added	src/features/toner_save/toner_save.c
+added	src/features/toner_save/toner_save.h
+modified	src/panel/menu_table.c
+modified	src/print/render.c
+modified	src/resources/strings.h
+modified	src/resources/strings_en.c
+modified	src/settings/nv_settings.c
+modified	src/settings/nv_settings.h

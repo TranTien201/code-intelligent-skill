@@ -1,0 +1,26 @@
+# R4 tokens from request + lines (diffs/source/**) and extension/bugfix lines (SRC:src/features/toner_save/toner_save.c:7,24)
+# project tokens (21): classification
+Clamp                    S009.d3 (dependency, BUGFIX line)
+Density_Scale            S009.d1
+DENSITY_MAX              S009.d2 (recursion from Density_Scale body)
+Log_Info                 S010.d1
+NV_GetSettings           S008.d1
+STR_TONER_SAVE           S022 (S-id)
+SUPPORT_TONER_SAVE       S002 (S-id)
+Str_Get                  S010.d2
+TONER_SAVE_H             S012 (S-id)
+TONER_SAVE_OFF           S013 (S-id)
+TONER_SAVE_LOW           S013 (S-id)
+TONER_SAVE_HIGH          S013 (S-id)
+TonerSave_GetLevel       S008 (S-id)
+TonerSave_ApplyDensity   S009 (S-id)
+TonerSave_MenuHandler    S010 (S-id)
+TonerSave_PjlSet         S011 (S-id)
+g_settings               S025 context (existing static in SRC:src/settings/nv_settings.c:4, not new)
+is_valid                 S007 (S-id)
+k_percent                S006 (S-id)
+toner_save_level         S026 (S-id)
+SRCS                     S001 (Makefile variable)
+# local identifiers (4): arg density key level
+# include-path fragments (5): features src toner_save h c
+# standard/library/keywords (14): atoi stdlib char const define endif enum if ifdef ifndef include int return static void

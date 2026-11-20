@@ -1,0 +1,374 @@
+[
+ {
+  "pid": "P001",
+  "m": "M006",
+  "file": "config/model_b.h",
+  "action": "add-define",
+  "anchor_line": 3,
+  "anchor_text": "#define SUPPORT_FAX 1",
+  "mode": "insert-after",
+  "src": "SRC:config/model_a.h:3",
+  "text": [
+   "#define SUPPORT_TONER_SAVE 1"
+  ],
+  "adaptation": "position AUTO-DECIDED: appended after last feature define (TGT:config/model_b.h:3); request also appended at end of model_a.h"
+ },
+ {
+  "pid": "P002",
+  "m": "M005",
+  "file": "src/util/math_util.h",
+  "action": "replace",
+  "anchor_line": 3,
+  "anchor_text": "int Clamp(int v, int hi);",
+  "mode": "replace",
+  "src": "SRC:src/util/math_util.h:3",
+  "text": [
+   "int Clamp(int v, int lo, int hi);"
+  ],
+  "adaptation": "none (REPLACE row 14: target prototype `int Clamp(int v, int hi);` replaced)"
+ },
+ {
+  "pid": "P003",
+  "m": "M005",
+  "file": "src/util/math_util.c",
+  "action": "replace",
+  "anchor_line": 3,
+  "anchor_text": "int Clamp(int v, int hi)",
+  "mode": "replace3",
+  "src": "SRC:src/util/math_util.c:3-5",
+  "text": [
+   "int Clamp(int v, int lo, int hi)",
+   "{",
+   "    if (v < lo) return lo;"
+  ],
+  "adaptation": "none (REPLACE row 14: target L3-5 replaced; L4 `{` identical)"
+ },
+ {
+  "pid": "P004",
+  "m": "M004",
+  "file": "src/print/density.h",
+  "action": "add-file",
+  "anchor_line": null,
+  "anchor_text": null,
+  "mode": "add-file",
+  "src": "SRC:src/print/density.h:1-5",
+  "text": [
+   "#ifndef DENSITY_H",
+   "#define DENSITY_H",
+   "#define DENSITY_MAX 15",
+   "int Density_Scale(int base, int percent);",
+   "#endif"
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P005",
+  "m": "M004",
+  "file": "src/print/density.c",
+  "action": "add-file",
+  "anchor_line": null,
+  "anchor_text": null,
+  "mode": "add-file",
+  "src": "SRC:src/print/density.c:1-7",
+  "text": [
+   "#include \"density.h\"",
+   "#include \"../util/math_util.h\"",
+   "",
+   "int Density_Scale(int base, int percent)",
+   "{",
+   "    return Clamp(base * percent / 100, 0, DENSITY_MAX);",
+   "}"
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P006",
+  "m": "M003",
+  "file": "src/features/eco/eco_mode.h",
+  "action": "add-file",
+  "anchor_line": null,
+  "anchor_text": null,
+  "mode": "add-file",
+  "src": "SRC:src/features/eco/eco_mode.h:1-13",
+  "text": [
+   "#ifndef ECO_MODE_H",
+   "#define ECO_MODE_H",
+   "enum {",
+   "    TONER_SAVE_OFF = 0,",
+   "    TONER_SAVE_LOW = 1,",
+   "    TONER_SAVE_HIGH = 2",
+   "};",
+   "",
+   "int EcoMode_GetLevel(void);",
+   "int EcoMode_ApplyDensity(int density);",
+   "int EcoMode_MenuHandler(int key);",
+   "int EcoMode_PjlSet(const char *arg);",
+   "#endif"
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P007",
+  "m": "M001",
+  "file": "src/features/eco/eco_mode.c",
+  "action": "add-file",
+  "anchor_line": null,
+  "anchor_text": null,
+  "mode": "add-file",
+  "src": "SRC:src/features/eco/eco_mode.c:1-20,28-48",
+  "text": [
+   "#include <stdlib.h>",
+   "#include \"eco_mode.h\"",
+   "#include \"../../settings/nv_settings.h\"",
+   "#include \"../../print/density.h\"",
+   "#include \"../../core/log.h\"",
+   "#include \"../../resources/strings.h\"",
+   "#include \"../../util/math_util.h\"",
+   "",
+   "static const int k_percent[] = { 100, 80, 60 };",
+   "",
+   "static int is_valid(int level)",
+   "{",
+   "    return level >= TONER_SAVE_OFF && level <= TONER_SAVE_HIGH;",
+   "}",
+   "",
+   "int EcoMode_GetLevel(void)",
+   "{",
+   "    return NV_GetSettings()->eco_level;",
+   "}",
+   "",
+   "int EcoMode_ApplyDensity(int density)",
+   "{",
+   "    int level = eco_effective_level();",
+   "    if (level < 0)",
+   "        return density;",
+   "    return Density_Scale(density, k_percent[level]);",
+   "}",
+   "",
+   "int EcoMode_MenuHandler(int key)",
+   "{",
+   "    if (!is_valid(key))",
+   "        return -1;",
+   "    NV_GetSettings()->eco_level = key;",
+   "    Log_Info(Str_Get(STR_TONER_SAVE));",
+   "    return key;",
+   "}",
+   "",
+   "int EcoMode_PjlSet(const char *arg)",
+   "{",
+   "    return EcoMode_MenuHandler(atoi(arg));",
+   "}"
+  ],
+  "adaptation": "none (file written together with P008 as SRC:src/features/eco/eco_mode.c:1-48)"
+ },
+ {
+  "pid": "P008",
+  "m": "M002",
+  "file": "src/features/eco/eco_mode.c",
+  "action": "insert",
+  "anchor_line": null,
+  "anchor_text": null,
+  "mode": "ext-in-file",
+  "src": "SRC:src/features/eco/eco_mode.c:21-27",
+  "text": [
+   "static int eco_effective_level(void)",
+   "{",
+   "    int level = EcoMode_GetLevel();",
+   "    level = Clamp(level, TONER_SAVE_OFF, TONER_SAVE_HIGH); /* fix #1234: NV value hong */",
+   "    return is_valid(level) ? level : -1;",
+   "}",
+   ""
+  ],
+  "adaptation": "none; ext (scope beyond request), inserted between EcoMode_GetLevel and EcoMode_ApplyDensity as in source"
+ },
+ {
+  "pid": "P009",
+  "m": "M019",
+  "file": "src/settings/nv_settings.h",
+  "action": "insert",
+  "anchor_line": 7,
+  "anchor_text": "    int duplex;",
+  "mode": "insert-after",
+  "src": "SRC:src/settings/nv_settings.h:8",
+  "text": [
+   "    int eco_level;"
+  ],
+  "adaptation": "none; target-only `fax_resolution` kept"
+ },
+ {
+  "pid": "P010",
+  "m": "M015",
+  "file": "src/resources/strings.h",
+  "action": "insert",
+  "anchor_line": 5,
+  "anchor_text": "    STR_DUPLEX,",
+  "mode": "insert-after",
+  "src": "SRC:src/resources/strings.h:6",
+  "text": [
+   "    STR_TONER_SAVE,"
+  ],
+  "adaptation": "none; target-only `STR_FAX` kept"
+ },
+ {
+  "pid": "P011",
+  "m": "M016",
+  "file": "src/resources/strings_en.c",
+  "action": "insert",
+  "anchor_line": 5,
+  "anchor_text": "    [STR_DUPLEX] = \"2-Sided\",",
+  "mode": "insert-after",
+  "src": "SRC:src/resources/strings_en.c:6",
+  "text": [
+   "    [STR_TONER_SAVE] = \"Toner Save\","
+  ],
+  "adaptation": "none; target-only `[STR_FAX]` kept"
+ },
+ {
+  "pid": "P012",
+  "m": "M017",
+  "file": "src/settings/nv_settings.c",
+  "action": "add-include",
+  "anchor_line": 1,
+  "anchor_text": "#include \"nv_settings.h\"",
+  "mode": "insert-after",
+  "src": "SRC:src/settings/nv_settings.c:2",
+  "text": [
+   "#include \"../features/eco/eco_mode.h\""
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P013",
+  "m": "M018",
+  "file": "src/settings/nv_settings.c",
+  "action": "insert",
+  "anchor_line": 13,
+  "anchor_text": "    g_settings.duplex = 0;",
+  "mode": "insert-after",
+  "src": "SRC:src/settings/nv_settings.c:15",
+  "text": [
+   "    g_settings.eco_level = TONER_SAVE_OFF;"
+  ],
+  "adaptation": "none; target-only fax default kept"
+ },
+ {
+  "pid": "P014",
+  "m": "M009",
+  "file": "src/cmd/pjl_commands.c",
+  "action": "add-include",
+  "anchor_line": 3,
+  "anchor_text": "#include \"../core/log.h\"",
+  "mode": "insert-after",
+  "src": "SRC:src/cmd/pjl_commands.c:4",
+  "text": [
+   "#include \"../features/eco/eco_mode.h\""
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P015",
+  "m": "M010",
+  "file": "src/cmd/pjl_commands.c",
+  "action": "add-registration",
+  "anchor_line": 25,
+  "anchor_text": "    { \"DUPLEX\", Pjl_SetDuplex },",
+  "mode": "insert-after",
+  "src": "SRC:src/cmd/pjl_commands.c:27",
+  "text": [
+   "    { \"ECONOMODE\", EcoMode_PjlSet },"
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P016",
+  "m": "M011",
+  "file": "src/panel/menu_table.c",
+  "action": "add-include",
+  "anchor_line": 3,
+  "anchor_text": "#include \"../../config/model_config.h\"",
+  "mode": "insert-after",
+  "src": "SRC:src/panel/menu_table.c:4-6",
+  "text": [
+   "#ifdef SUPPORT_TONER_SAVE",
+   "#include \"../features/eco/eco_mode.h\"",
+   "#endif"
+  ],
+  "adaptation": "partial take: SRC:src/panel/menu_table.c:7-9 (eco_report include) excluded"
+ },
+ {
+  "pid": "P017",
+  "m": "M012",
+  "file": "src/panel/menu_table.c",
+  "action": "add-registration",
+  "anchor_line": 7,
+  "anchor_text": "    { \"DUPLEX\",   Menu_Duplex },",
+  "mode": "insert-after",
+  "src": "SRC:src/panel/menu_table.c:14-16",
+  "text": [
+   "#ifdef SUPPORT_TONER_SAVE",
+   "    { \"TONER_SAVE\", EcoMode_MenuHandler },",
+   "#endif"
+  ],
+  "adaptation": "partial take: SRC:src/panel/menu_table.c:19-21 (ECO_REPORT entry) excluded; target-only FAX entry kept"
+ },
+ {
+  "pid": "P018",
+  "m": "M013",
+  "file": "src/print/render.c",
+  "action": "add-include",
+  "anchor_line": 2,
+  "anchor_text": "#include \"../../config/model_config.h\"",
+  "mode": "insert-after",
+  "src": "SRC:src/print/render.c:3-5",
+  "text": [
+   "#ifdef SUPPORT_TONER_SAVE",
+   "#include \"../features/eco/eco_mode.h\"",
+   "#endif"
+  ],
+  "adaptation": "none"
+ },
+ {
+  "pid": "P019",
+  "m": "M014",
+  "file": "src/print/render.c",
+  "action": "insert",
+  "anchor_line": 7,
+  "anchor_text": "    Log_Info(\"render start\");",
+  "mode": "insert-after",
+  "src": "SRC:src/print/render.c:11-13",
+  "text": [
+   "#ifdef SUPPORT_TONER_SAVE",
+   "    density = EcoMode_ApplyDensity(density);",
+   "#endif"
+  ],
+  "adaptation": "none; target-only SUPPORT_FAX block kept after \"render done\""
+ },
+ {
+  "pid": "P020",
+  "m": "M007",
+  "file": "Makefile",
+  "action": "add-to-build",
+  "anchor_line": 5,
+  "anchor_text": "       src/cmd/pjl_commands.c src/resources/strings_en.c",
+  "mode": "insert-after",
+  "src": "SRC:Makefile:6",
+  "text": [
+   "SRCS += src/features/eco/eco_mode.c"
+  ],
+  "adaptation": "partial take: SRC:Makefile:7 (eco_report.c) excluded"
+ },
+ {
+  "pid": "P021",
+  "m": "M008",
+  "file": "Makefile",
+  "action": "add-to-build",
+  "anchor_line": 5,
+  "anchor_text": "       src/cmd/pjl_commands.c src/resources/strings_en.c",
+  "mode": "insert-after-P020",
+  "src": "SRC:Makefile:2 (density.c entry)",
+  "text": [
+   "SRCS += src/print/density.c"
+  ],
+  "adaptation": "AUTO-DECIDED: source lists density.c inside `SRCS =` (SRC:Makefile:2); added as own `SRCS +=` line after P020 so existing target lines stay untouched"
+ }
+]

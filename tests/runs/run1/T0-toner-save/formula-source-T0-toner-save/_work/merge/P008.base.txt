@@ -1,0 +1,6 @@
+typedef enum {
+    STR_COPIES,
+    STR_DUPLEX,
+    STR_QUALITY,
+    STR_COUNT
+} StrId_t;
